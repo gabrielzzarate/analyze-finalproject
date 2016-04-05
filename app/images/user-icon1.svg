@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.0686424366">
+        <g id="desktop/dashboard" transform="translate(-363.000000, -420.000000)" fill="#000000">
+            <g id="opening-box" transform="translate(290.000000, 92.000000)">
+                <g id="students-group" transform="translate(52.000000, 284.000000)">
+                    <g id="user-1" transform="translate(0.000000, 36.000000)">
+                        <path d="M56,8 C36.75,8 21,23.75 21,43 C21,62.25 36.75,78 56,78 C75.25,78 91,62.25 91,43 C91,23.75 75.25,8 56,8 L56,8 Z M56,18.5 C61.95,18.5 66.5,23.05 66.5,29 C66.5,34.95 61.95,39.5 56,39.5 C50.05,39.5 45.5,34.95 45.5,29 C45.5,23.05 50.05,18.5 56,18.5 L56,18.5 Z M56,68.2 C47.25,68.2 39.55,63.65 35,57 C35,50 49,46.15 56,46.15 C63,46.15 77,50 77,57 C72.45,63.65 64.75,68.2 56,68.2 L56,68.2 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

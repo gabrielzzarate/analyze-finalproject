@@ -1,0 +1,461 @@
+
+// Bootstrap Variables
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+// my variables
+$font-stack-primary:   'Merriweather Sans', sans-serif;
+$font-stack-secondary: 'Merriweather', serif;
+
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+// ##############################################
+//###############################################
+// Login Screen Styles
+// #############################################
+// #############################################
+h1, h2, h3, {
+  font-family: $font-stack-primary;
+}
+
+
+body {
+  font-family: $font-stack-primary;
+  background-color: #273669;
+  background-size: cover;
+  // &::before{
+  //   position: absolute;
+  //   content: "";
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right:0;
+}
+
+.user-login-container {
+	margin: 80px auto;
+  width: 380px;
+  height: 437px;
+  padding: 40px 60px;
+	border-radius: 8px;
+	background-color: #eceef5;
+	box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.11);
+}
+.login-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.login-title-container{
+    width: 231px;
+    height: 50px;
+
+}
+.login-title {
+  font-family: $font-stack-primary;
+  text-align: center;
+  font-size: 40px;
+  color: #222e5f;
+}
+
+.login-sub-title-container {
+  width: 161px;
+  height: 14px;
+}
+
+.login-sub-title {
+  font-family: $font-stack-secondary;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 2.6px;
+  color: #222e5f;
+}
+.login-label {
+    font-family: $font-stack-primary;
+    width: 198.8px;
+    height: 18px;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 2.6px;
+    color: #8d909e;
+}
+.username-input, .password-input {
+
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 298px;
+    height: 35px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: solid 1px #e1e4eb;
+    margin-bottom: 5px;
+
+}
+
+.logIn-button {
+    font-family: $font-stack-primary;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 20px;
+    color: white;
+    width: 170px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: #57cbbb;
+    border: none;
+}
+
+// ##############################################
+//###############################################
+// SideBar  Styles
+// #############################################
+// #############################################
+
+#sidebar {
+  padding: 0px;
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.11);
+  height: 100%;
+}
+
+.sidebar {
+	height: 100%;
+	background-color: rgba(10, 27, 84, 0.88);
+
+}
+
+.sidebar-header {
+  width: 100%;
+  margin-top: 22px;
+  margin-left: 22px;
+  img {
+    display: inline-block;
+  }
+
+}
+.sidebar-image {
+  width: 30%;
+
+}
+.sidebar-heading {
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: bottom;
+  width: 70%;
+}
+
+.sidebar-title {
+  width: 100%;
+
+  position: relative;
+  display: inline-block;
+  top: -5px;
+  color: #ffffff;
+
+  font-size: 30px;
+  font-family: $font-stack-primary;
+}
+
+.sidebar-subtitle {
+  width: 100%;
+  position: relative;
+  top: -5px;
+  font-family: $font-stack-secondary;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+.sidebar-nav {
+  font-family: $font-stack-primary;
+  margin-top: 25px;
+
+
+
+}
+
+
+
+.nav-pills > li > a {
+  &:hover {
+    background-color: #57cbbb;
+  }
+
+}
+
+
+
+
+// ##############################################
+//###############################################
+// Header  Styles
+// #############################################
+// #############################################
+
+.header-container {
+  width: 100%;
+  height: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.11);
+}
+.user-header-info {
+    font-family: $font-stack-primary;
+    position: relative;
+    top: 3px;
+    right: 50px;
+    float: right;
+    img {
+      height: 15px;
+    }
+    font-size: 10px;
+
+    .user-header-welcome{
+      font-family: $font-stack-primary;
+      color: #8d909e;
+      margin-left: 3px;
+      font-size: 8px;
+
+    }
+
+    .fullscreen-icon {
+      margin-left: 15px;
+      color: #8d909e;
+      img {
+        height: 10px;
+
+      }
+    }
+}
+// ##############################################
+//###############################################
+// Main Body Home
+// #############################################
+// #############################################
+
+#body-container {
+  height: 100%;
+}
+
+#main-container {
+  padding: 0px;
+  height: 1024px;
+}
+
+.main-dashboard-container {
+  margin-top: 50px;
+  height: 500px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 7px 0 #a5abb8;
+
+}
+
+.dashboard-welcome-container {
+  margin-top: 38px;
+  border-bottom: 1px solid #e1e4eb;
+  padding-bottom: 25px;
+
+
+  .welcome-user {
+    font-size: 18px;
+    color: rgba(11, 28, 84, 0.88);
+    font-family: $font-stack-primary;
+
+  }
+  .welcome-date {
+    text-transform: uppercase;
+    font-size: 8px;
+    letter-spacing: 2.6px;
+    color: #8d909e;
+
+  }
+}
+
+//dashboardEvents styles
+
+.dashboard-events-container {
+  margin-top: 10px;
+  border-bottom: 1px solid #e1e4eb;
+
+  .event-section {
+    padding-bottom: 10px;
+    p, span {
+      text-align: center;
+    }
+  }
+
+}
+.event-number {
+  font-family: $font-stack-primary;
+  color: rgba(11, 28, 84, 0.88);
+  font-size: 25px;
+
+}
+
+.event-title {
+  font-family: $font-stack-primary;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2.6px;
+  color: rgba(11, 28, 84, 0.88);
+
+}
+
+.event-subtitle {
+  font-family: $font-stack-secondary;
+  color: #8d909e;
+  text-transform: uppercase;
+  font-size: 10px;
+
+}
+.client-name {
+  font-family: $font-stack-secondary;
+  font-size: 12px;
+  color: #4caaa0;
+  text-align: center;
+}
+
+.align {
+  position: relative;
+  top: 10px;
+}
+
+// dashboard caseload
+
+.dashboard-caseload-container {
+  margin-top: 50px;
+}
+
+.caseload-heading {
+  font-family: $font-stack-primary;
+  font-size: 10px;
+  letter-spacing: 2.6px;
+  color: #8d909e;
+  text-transform: uppercase;
+  position: relative;
+  left: 20px;
+}
+.caseload-listing {
+  margin-top: 15px;
+}
+
+.caseload-name {
+  margin-top: 10px;
+}
+
+
+// ##############################################
+//###############################################
+// Client Profile Styles
+// #############################################
+// #############################################
+
+.client-profile-container {
+  margin-top: 50px;
+  height: 600px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 7px 0 #a5abb8;
+
+}
+
+.client-info-container {
+   margin-top: 15px;
+  border-bottom: 1px solid #e1e4eb;
+  padding-bottom: 25px;
+
+}
+.client-info {
+}
+
+.client-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.team-info {
+  height: 150px;
+  box-shadow: none;
+  background-color: #8d909e;
+  border: none;
+  border-radius: 5%;
+  opacity: 10%;
+
+}
+
+.client-data-container {
+  margin-top: 5px;
+
+}
+.note-container {
+  height: 200px;
+  overflow: scroll;
+
+}
+
+.program-form {
+  height: 40px;
+  box-shadow: none;
+  background-color: rgba(249, 249, 249, 1);
+  border: none;
+  border-radius: 0;
+
+}
+.program-add-btn {
+  float: right;
+}
+
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba 11 28 84, 0.88;
+
+  border: 1px solid rgba 11 28 84, 0.88;
+}
+
+.secondary-btn {
+  width: 70px;
+  height: 35px;
+  border-radius: 100px;
+  border: solid 2px #57cbbb;
+
+
+}
+
+.remove-icon-btn {
+  float: right;
+}
+
+// notes styles
+
+.note-container {
+  margin-top: 10px;
+   margin-bottom: 5px;
+
+}
+
+// ##############################################
+//###############################################
+// Chart Styles
+// #############################################
+// #############################################
+
+.behavior-line-chart {
+  margin-top: 20px;
+}
