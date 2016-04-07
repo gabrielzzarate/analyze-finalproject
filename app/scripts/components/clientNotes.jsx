@@ -25,6 +25,9 @@ var ClientNotes = React.createClass({
 	},
 
 	componentWillMount: function() {
+		this.getNotes();
+	},
+	getNotes: function(){
 		var self = this;
 		var Notes = Parse.Object.extend("Notes");
 		var query = new Parse.Query( Notes );
@@ -36,13 +39,11 @@ var ClientNotes = React.createClass({
 			console.log(error);
 		});
 	},
-	componentWillUpdate: function() {
-		this.componentWillMount();
 
-	},
 
 	handleSubmit: function(event){
 		event.preventDefault();
+		var self = this;
 		var noteValue = $('#noteText').val();
 
 		var note = new models.Note();
@@ -53,6 +54,7 @@ var ClientNotes = React.createClass({
   		success: function(note) {
    			 // Execute any logic that should take place after the object is saved.
   		  alert('New object created with objectId: ' + note.id);
+  		  self.getNotes();
   			},
   		error: function(note, error) {
    				 // Execute any logic that should take place if the save fails.

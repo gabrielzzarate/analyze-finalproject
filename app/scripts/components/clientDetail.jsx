@@ -56,26 +56,27 @@ var ClientDetail = React.createClass({
 
 	render: function() {
 		var client = this.data.clientObj;
-		//console.log("client object", client);
-		//console.log("client address", client.address);
-		//console.log('render id: ', this.props.id);
-		//console.log('render clientObj: ', this.data.clientObj);
+
 		if(this.data.clientObj){
-			//var clientItem = function(client) {
 				return (
 					<div key={client.objectId}>
 					<div className = "col-sm-10 col-sm-offset-1 client-profile-container">
 						<div className= "col-sm-12 client-info-container">
-							<div className="col-sm-4 client-info">
-								<img className="client-image" src="./images/user-icon-1.svg" />
-								<p>{client.Name}</p>
-								<p><i className="fa fa-phone"></i> {client.telephone}</p>
+							<div className="col-sm-6 client-info">
+								<div className="col-sm-3 client-image-container">
+									<img className="client-image" src="./images/user-icon-1.svg" />
+								</div>
 
-								<p><i className="fa fa-map-marker"></i> {client.address}</p>
+								<div className="client-header col-sm-6">
+										<h4 className='client-name'>{client.Name}</h4>
+										<p><i className="fa fa-phone client-phone"></i> {client.telephone}</p>
+
+										<p><i className="fa fa-map-marker client-address"></i> {client.address}</p>
+								</div>
 							</div>
 
 
-						<div className="col-sm-4 col-sm-offset-4 team-info">
+						<div className="col-sm-4 col-sm-offset-1 team-info">
 						</div>
 						</div>
 						<div className= "col-sm-12 client-data-container">
@@ -94,13 +95,7 @@ var ClientDetail = React.createClass({
 				</div>
 
 		);
-	 //};
-		// return (
-		// 	<div>
-		// 		{this.data.clientObj.map(clientItem.bind(this))}
 
-		// 	</div>
-		// 	);
 	 } else {
 	 		return	(
 	 			<div>

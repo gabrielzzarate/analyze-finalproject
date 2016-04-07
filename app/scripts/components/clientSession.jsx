@@ -7,7 +7,7 @@ Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
 var models = require('../models/models.js');
-
+var ProgramItem = require('./programItem.jsx');
 var ListGroup = require("react-bootstrap").ListGroup;
 var ListGroupItem = require("react-bootstrap").ListGroupItem;
 var Input = require("react-bootstrap").Input;
@@ -20,6 +20,17 @@ var ClientSession = React.createClass({
     return {
     	programs: null
     };
+},
+addYes: function(program){
+	var programItem = $('.program-item');
+	programItem = $(this);
+	var self = $(this);
+        self.siblings().removeClass('yes-background');
+        self.toggleClass('yes-background');
+
+},
+addNo: function(){
+	$('.program-item').toggleClass('no-background');
 },
 	componentWillMount: function() {
 		var self = this;
@@ -40,14 +51,14 @@ var ClientSession = React.createClass({
 			var programs = this.state.programs.map(function(program){
 				return (
 					<div key={program.id}>
-						<ListGroupItem>{program.get('name')}</ListGroupItem>
+						<ListGroupItem className="program-item">{program.get('name')}<a onClick={this.addNo.bind(this, program)} className="no-icon"><i className=" fa fa-times"></i></a><a onClick={this.addYes.bind(this, program)} className="yes-icon"><i className="fa fa-check"></i></a></ListGroupItem>
 					</div>
 					);
 
-			});
+			}.bind(this));
 			return (
 
-				<div className="col-sm-6">
+				<div className="col-sm-10 col-sm-offset-1 client-session-container">
 					<p> current programs</p>
 					<ListGroup>
 						{programs}

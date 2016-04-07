@@ -368,7 +368,7 @@ body {
 
 .client-profile-container {
   margin-top: 50px;
-  height: 600px;
+  max-height: 100%;
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 0 7px 0 #a5abb8;
@@ -376,12 +376,34 @@ body {
 }
 
 .client-info-container {
-   margin-top: 15px;
+  width: 100%;
+
+  margin-left: 22px;
+  img {
+    display: inline-block;
+
+  }
+  margin-top: 30px;
   border-bottom: 1px solid #e1e4eb;
   padding-bottom: 25px;
 
 }
 .client-info {
+  margin-top: 20px;
+}
+.client-name {
+  display: inline-block;
+}
+.client-image-container {
+  padding: 0px;
+}
+.client-header {
+  p {
+    font-family: "Merriweather", serif;
+    color: #8d909e;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
 }
 
 .client-image {
@@ -394,10 +416,10 @@ body {
 .team-info {
   height: 150px;
   box-shadow: none;
-  background-color: #8d909e;
-  border: none;
+  border-color: #8d909e;
+  border: 1px solid;
   border-radius: 5%;
-  opacity: 10%;
+
 
 }
 
@@ -419,9 +441,30 @@ body {
   border-radius: 0;
 
 }
-.program-add-btn {
+.remove-program-icon {
   float: right;
 }
+
+.program-form-container {
+  margin-top: 15px;
+  height: 300px;
+  overflow: scroll;
+
+  .add-target-btn {
+    float: right;
+    margin: 10px;
+  }
+
+}
+
+.program-config-container {
+  margin-top: 15px;
+  height: 200px;
+  overflow: scroll;
+  border-bottom: solid 1px #e1e4eb;
+
+}
+
 
 input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba 11 28 84, 0.88;
@@ -430,7 +473,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 .secondary-btn {
-  width: 70px;
+  width: 140px;
   height: 35px;
   border-radius: 100px;
   border: solid 2px #57cbbb;
@@ -438,8 +481,29 @@ input[type=text]:focus, textarea:focus {
 
 }
 
-.remove-icon-btn {
+.program-item {
+  height: 40px;
+  box-shadow: none;
+  background-color: rgba(249, 249, 249, 1);
+  border: none;
+  border-radius: 0;
+  margin: 15px;
+
+}
+
+ .no-icon, .yes-icon {
   float: right;
+  margin-right: 10px;
+}
+
+.no-background {
+  background-color: rgba(204, 0, 0, 50);
+}
+.yes-background {
+  background-color: rgba(0, 179, 0, 50);
+}
+.default-background {
+  background-color: rgba(249, 249, 249, 1);
 }
 
 // notes styles
@@ -448,6 +512,12 @@ input[type=text]:focus, textarea:focus {
   margin-top: 10px;
    margin-bottom: 5px;
 
+}
+
+//session styles
+.client-session-container {
+  margin-top: 15px;
+  height: 300px;
 }
 
 // ##############################################
