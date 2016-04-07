@@ -33,27 +33,6 @@ var ClientDetail = React.createClass({
 		};
 	},
 
-	// componentWillMount: function() {
-	// 	console.log(this.props.id);
-	// 	var self = this;
-	// 	var Client = Parse.Object.extend("Clients");
-	// 	var client;
-	// 	var query = new Parse.Query(Client);
-	// 	query.equalTo('objectId', this.props.id);
-
-	// 	query.find({
-	// 		success:function(client){
-	// 			query = client;
-	// 			self.setState({clientObj: client});
-	// 		}
-	// 	});
-
-
-	// 	console.log(query);
-	// 	console.log(this.state.clientObj);
-
-	// },
-
 	render: function() {
 		var client = this.data.clientObj;
 

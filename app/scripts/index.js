@@ -15,6 +15,8 @@ var Interface = require("./components/Interface.jsx").Interface; //main app comp
 $(function(){
 Backbone.history.start();
 
+
+
 //when page loads interface component renders first, passes in router
 // ReactDOM.render(
 // 	React.createElement(Interface, {

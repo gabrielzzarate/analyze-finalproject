@@ -3,13 +3,19 @@ var React = require("react");
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var iconic = require('iconic/iconic.min.js');
+var _ = require('underscore');
 
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
+// Parse class models
 var models = require('../models/models.js');
-var TargetFormSet = require('./targetFormSet.jsx');
 
+// require in child components
+var TargetFormSet = require('./targetFormSet.jsx');
+var SiteHeader = require('./siteheader.jsx');
+
+// bootstrap-react components
 var ListGroup = require("react-bootstrap").ListGroup;
 var ListGroupItem = require("react-bootstrap").ListGroupItem;
 var Input = require("react-bootstrap").Input;
@@ -29,22 +35,17 @@ var ClientPrograms = React.createClass({
 
 	getPrograms: function(){
 		var self = this;
-
-		var query = new Parse.Query(models.Target);
+		var targetsObj;
+		var query = new Parse.Query(models.Program);
 
 		query.equalTo('client', this.props.clientObj);
-		query.include('program');
-		query.find().then(function(targets){
-		console.log("targets:", targets);
+		query.include('targets');
+		query.find().then(function(programs){
+				console.log("program:", programs);
+				self.setState({"programs": programs});
 
-			//var programId = programs.get('id');
-			//console.log("program id", programId);
-			self.setState({"targets": targets});
-			//var query = new Parse.Query(models.Target);
-			//query.equalTo('program', programs.id);
-			//query.find().then(function(targets){
-			//	self.setState({"targets": targets});
-			//});
+
+
 		}, function(error){
 			console.log(error);
 		});
@@ -59,12 +60,14 @@ var ClientPrograms = React.createClass({
 	handleSubmit: function(event){
 		event.preventDefault();
 
-		// save program
+
 		var programName = $('#program-input').val();
 		var programDescription = $('#description-input').val();
 		var client = this.props.clientObj;
 		var programObj;
 		var self = this;
+
+
 
 		var program = new models.Program();
 		program.set("name", programName);
@@ -76,19 +79,25 @@ var ClientPrograms = React.createClass({
   		  alert('New object created with objectId: ' + program.id);
   		  	programObj = program;
   		  	self.getPrograms();
-  		  var programTargets = [];
+  		  	var programTargets = [];
+
+
   		  	for(var i=1; i <= self.state.targetCount; i++){
-  		  		var formset = self.refs["formset" + i];
 
-
-  		  		var targetName = $('.target-input').val();
+  		  		console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
+  		  		var name = self.refs["formset"+i].refs["name"+i].value;
   		  		var target = new models.Target();
-  		  		target.set("name", targetName);
+
+  		  		target.set("name", name);
   		  		target.set("client", new models.Client(client));
   		  		target.set('program', programObj);
+  		  		programTargets.push(target);
+  		  	}
+  		  		Parse.Object.saveAll(programTargets).then(function(){
+  		  			program.set('targets', programTargets);
+  		  			program.save();
+  		  		});
 
-  		  		target.save();
-  				}
   			},
   				error: function(note, error) {
    						 // Execute any logic that should take place if the save fails.
@@ -98,31 +107,7 @@ var ClientPrograms = React.createClass({
 
 
   		  	});
-  		 // var targetName = $('#target-input').val();
-				//var target = new models.Target();
-			//	target.set("name", targetName);
-			//	target.set("client", new models.Client(client));
-			//	target.set('program', programObj);
-			// 	target.save(null, {
-			// 				success: function(target) {
-   // 							 // Execute any logic that should take place after the object is saved.
-  	// 	 					 alert('New object created with objectId: ' + target.id);
 
-  	// 					},
-  	// 					error: function(target, error) {
-   // 							 // Execute any logic that should take place if the save fails.
-   //  						// error is a Parse.Error with an error code and message.
-  	// 		 			 alert('Failed to create new object, with error code: ' + error.message);
-  	// 					}
-
-			// 			});
-  	// 			},
-  	// 			error: function(note, error) {
-   // 						 // Execute any logic that should take place if the save fails.
-   //  					// error is a Parse.Error with an error code and message.
-  	// 				  alert('Failed to create new object, with error code: ' + error.message);
-  	// 				}
-			//});
 
 
 	},
@@ -133,20 +118,41 @@ var ClientPrograms = React.createClass({
 
 	render: function() {
 
-		//console.log(this.props);
 		if(this.state.programs) {
 
 			var targetForms = [];
 			for(var i=1; i<= this.state.targetCount; i++){
 				var count = i;
-				targetForms.push(<TargetFormSet key={count} count={count}  />);
+				targetForms.push(<TargetFormSet key={count} count={count} ref={"formset" + count} />);
+
 			}
 			var data = this.props.clientObj;
-			var programs = this.state.programs.map(function(program){
 
+
+			var programs = this.state.programs.map(function(program){
+					var targetsArray = program.get('targets');
+
+					var targets = targetsArray.map(function(target){
+						return (
+							<div className="col-sm-6 col-sm-offset-1" key = {target.id}>
+
+								<span>{target.get('name')}</span>
+							</div>
+							);
+					});
 				return (
 					<div key={program.id}>
-						<ListGroupItem>{program.get('name')}  <a onClick={this.handleClick.bind(this, program)} className="remove-program-icon"><i className="fa fa-times"></i></a></ListGroupItem>
+						<div className="col-sm-12">
+						 <SiteHeader title={program.get('name')}/>
+
+							<div className="col-sm-10 col-sm-offset-1">
+								<p className="master-criteria-text">mastery criteria: {program.get('description')}</p>
+								<h5 className="targets-header">Targets</h5>
+								<ul>
+									<li className="targets-item">{targets}</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 					);
 
@@ -155,11 +161,7 @@ var ClientPrograms = React.createClass({
 				<div>
 						<div>
 							<div className="col-sm-12 program-config-container">
-								<p>{data.Name} current programs</p>
-								<ListGroup>
 									{programs}
-								</ListGroup>
-
 							</div>
 					</div>
 

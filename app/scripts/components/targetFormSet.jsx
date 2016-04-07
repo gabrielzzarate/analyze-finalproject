@@ -9,7 +9,7 @@ var TargetFormSet = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<Input  id="target-input" className="target-input program-form" type="text" placeholder="Enter a target"/>
+				<input ref={"name" + this.props.count} id="target-input" className="target-input program-form" type="text" placeholder="Enter a target"/>
 			</div>
 		);
 	}

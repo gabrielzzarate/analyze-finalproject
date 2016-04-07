@@ -465,6 +465,11 @@ body {
 
 }
 
+.targets-item {
+  list-style: none;
+
+}
+
 
 input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba 11 28 84, 0.88;
@@ -489,6 +494,11 @@ input[type=text]:focus, textarea:focus {
   border-radius: 0;
   margin: 15px;
 
+}
+
+.master-criteria-text {
+  font-family: "Merriweather", serif;
+    color: #8d909e;
 }
 
  .no-icon, .yes-icon {
@@ -520,6 +530,13 @@ input[type=text]:focus, textarea:focus {
   height: 300px;
 }
 
+//session styles
+.save-session-btn {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+
 // ##############################################
 //###############################################
 // Chart Styles
@@ -529,3 +546,27 @@ input[type=text]:focus, textarea:focus {
 .behavior-line-chart {
   margin-top: 20px;
 }
+
+//site title styles
+
+.site-title {
+    margin-bottom: 10px;
+
+    .title-site-heading {
+        float: left;
+        padding-right: 10px;
+    }
+
+}
+.site-header-link {
+    float: right;
+    padding-left: 10px;
+}
+.site-title-border {
+    content: '';
+    width: auto;
+    overflow: hidden;
+    border-bottom: 1px solid black;
+     padding-top: 14px;
+}
+

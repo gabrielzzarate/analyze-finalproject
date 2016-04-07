@@ -1,7 +1,6 @@
 var $ = require('jQuery');
 var React = require("react");
 var moment = require('moment');
-
 require('backbone-react-component');
 var Parse = require('parse');
 var ParseReact = require('parse-react');
@@ -10,7 +9,7 @@ var ParseReact = require('parse-react');
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
-
+// bootstrap-react components
 var Input = require('react-bootstrap').Input;
 var models = require('../models/models.js');
 
@@ -70,6 +69,7 @@ var ClientNotes = React.createClass({
 		if(this.state.notes){
 			var notes = this.state.notes.map(function(note){
 				var created = note.get('createdAt');
+				//console.log("notes", this.state.notes);
 
 				return (
 						<div  key={note.id}>

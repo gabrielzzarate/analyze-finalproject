@@ -10,12 +10,18 @@ var Client = Parse.Object.extend("Clients");
 var Program = Parse.Object.extend('Programs');
 var Target = Parse.Object.extend('Targets');
 
+var Session = Parse.Object.extend('ClientSessions');
+var SessionOutcome = Parse.Object.extend('SessionOutcomes');
+
 
 
 module.exports = {
 	"Note": Note,
 	"Client": Client,
 	"Program": Program,
-	"Target": Target
+	"Target": Target,
+	"Session": Session,
+	"SessionOutcome": SessionOutcome
+
 
 };
