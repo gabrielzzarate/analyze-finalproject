@@ -77,9 +77,11 @@ saveSession: function(){
 
 				});
 				return (
+					<div className="target-session-container">
 					<div className="program-item" key={program.id}>
 						<ListGroupItem className="program-item">{program.get('name')}</ListGroupItem>
 						{targets}
+					</div>
 					</div>
 					);
 
@@ -87,14 +89,14 @@ saveSession: function(){
 			return (
 
 				<div className="col-sm-10 col-sm-offset-1 client-session-container">
-					<p> current programs</p>
-					<Button onClick={this.handleSession}>Start Session</Button>
+					<div>
+						<Button onClick={this.handleSession}>Start Session</Button>
+						<Button className="save-session-btn" onClick={this.saveSession}>Save Session</Button>
+					</div>
 					<ListGroup>
 						{programs}
 
 					</ListGroup>
-
-					<Button className="save-session-btn" onClick={this.saveSession}>Save Session</Button>
 				</div>
 
 				);

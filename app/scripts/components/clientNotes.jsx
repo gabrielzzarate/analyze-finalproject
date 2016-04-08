@@ -82,7 +82,7 @@ var ClientNotes = React.createClass({
 			}.bind(this));
 
 				return (
-					<div>
+					<div className='client-notes-container'>
 						<div className="col-sm-6">
 							<form onSubmit={this.handleSubmit}>
 								<Input type="textarea" id="noteText" label="Notes" placeholder="write a note..." />

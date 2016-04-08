@@ -142,12 +142,12 @@ var ClientPrograms = React.createClass({
 					});
 				return (
 					<div key={program.id}>
-						<div className="col-sm-12">
+						<div className="col-sm-12 program-config-item-container">
 						 <SiteHeader title={program.get('name')}/>
 
 							<div className="col-sm-10 col-sm-offset-1">
 								<p className="master-criteria-text">mastery criteria: {program.get('description')}</p>
-								<h5 className="targets-header">Targets</h5>
+								<h5 className="targets-header">Targets:</h5>
 								<ul>
 									<li className="targets-item">{targets}</li>
 								</ul>

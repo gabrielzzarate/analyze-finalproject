@@ -459,7 +459,7 @@ body {
 
 .program-config-container {
   margin-top: 15px;
-  height: 200px;
+  height: 300px;
   overflow: scroll;
   border-bottom: solid 1px #e1e4eb;
 
@@ -495,6 +495,9 @@ input[type=text]:focus, textarea:focus {
   margin: 15px;
 
 }
+.program-config-item-container {
+  margin-bottom: 20px;
+}
 
 .master-criteria-text {
   font-family: "Merriweather", serif;
@@ -518,6 +521,14 @@ input[type=text]:focus, textarea:focus {
 
 // notes styles
 
+.client-notes-container {
+  margin-top: 15px;
+  height: 500px;
+
+  overflow: scroll;
+
+}
+
 .note-container {
   margin-top: 10px;
    margin-bottom: 5px;
@@ -527,14 +538,16 @@ input[type=text]:focus, textarea:focus {
 //session styles
 .client-session-container {
   margin-top: 15px;
-  height: 300px;
+  height: 600px;
+
+  overflow: scroll;
 }
 
-//session styles
+.target-session-container {
+  height: 200px;
+}
 .save-session-btn {
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 10px;
+  margin-left: 15px;
 }
 
 // ##############################################
