@@ -323,6 +323,8 @@ body {
   text-transform: uppercase;
   font-size: 10px;
 
+
+
 }
 .client-name {
   font-family: $font-stack-secondary;
@@ -465,6 +467,26 @@ body {
 
 }
 
+.add-program-btn {
+  float: right;
+  font-family: $font-stack-primary;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-bottom: 20px;
+    color: white;
+    width: 120px;
+    height: 35px;
+    border-radius: 100px;
+    background-color: #57cbbb;
+    border: none;
+
+}
+.program-edit {
+  float: right;
+  text-decoration: underline;
+}
 .targets-item {
   list-style: none;
 
@@ -492,7 +514,8 @@ input[type=text]:focus, textarea:focus {
   background-color: rgba(249, 249, 249, 1);
   border: none;
   border-radius: 0;
-  margin: 15px;
+  margin-top: 15px;
+  margin-bottom: 1px;
 
 }
 .program-config-item-container {

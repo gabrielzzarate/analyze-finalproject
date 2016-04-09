@@ -12,6 +12,8 @@ Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 var models = require('../models/models.js');
 
 // require in child components
+var ProgramAddForm = require('./programAddForm.jsx');
+var ProgramEditForm = require('./programEditForm.jsx');
 var TargetFormSet = require('./targetFormSet.jsx');
 var SiteHeader = require('./siteheader.jsx');
 
@@ -30,6 +32,9 @@ var ClientPrograms = React.createClass({
 	    	programs: null,
 	    	targets: null,
 	    	targetCount: 1,
+	    	modalAddToggle: false,
+	    	modalEditToggle: false,
+	    	modalEditModel: null
 	    };
 	},
 
@@ -56,7 +61,24 @@ var ClientPrograms = React.createClass({
 
 	handleClick: function(program){
 		console.log("programs:", this.state.programs);
+
 	},
+	modalAddOpen: function(e){
+    e.preventDefault();
+   this.setState({ modalAddToggle: true });
+  },
+  modalAddClose: function(){
+   this.setState({ modalAddToggle: false });
+  },
+  modalEditOpen: function(program){
+
+  	this.setState({modalEditModel: program, modalEditToggle: true});
+
+  },
+  modalEditClose: function(){
+  	this.setState({modalEditToggle: false});
+  },
+
 	handleSubmit: function(event){
 		event.preventDefault();
 
@@ -111,21 +133,13 @@ var ClientPrograms = React.createClass({
 
 
 	},
-	addTarget:function(){
-		var newCount = this.state.targetCount + 1;
-    this.setState({'targetCount': newCount});
-	},
 
 	render: function() {
 
 		if(this.state.programs) {
 
-			var targetForms = [];
-			for(var i=1; i<= this.state.targetCount; i++){
-				var count = i;
-				targetForms.push(<TargetFormSet key={count} count={count} ref={"formset" + count} />);
 
-			}
+
 			var data = this.props.clientObj;
 
 
@@ -143,7 +157,10 @@ var ClientPrograms = React.createClass({
 				return (
 					<div key={program.id}>
 						<div className="col-sm-12 program-config-item-container">
-						 <SiteHeader title={program.get('name')}/>
+
+
+						 <SiteHeader title={program.get('name')}/><a onClick={this.modalEditOpen.bind(this, program)}   className="program-edit">edit</a>
+						 <ProgramEditForm programObj={this.state.modalEditModel} modal={this.state.modalEditToggle} open={this.modalEditOpen} close={this.modalEditClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
 
 							<div className="col-sm-10 col-sm-offset-1">
 								<p className="master-criteria-text">mastery criteria: {program.get('description')}</p>
@@ -161,24 +178,14 @@ var ClientPrograms = React.createClass({
 				<div>
 						<div>
 							<div className="col-sm-12 program-config-container">
+								<Button className="add-program-btn" bsStyle="primary" onClick={this.modalAddOpen}>Add Program</Button>
+								<ProgramAddForm modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
+
 									{programs}
 							</div>
 					</div>
 
-						<div className="col-sm-12 program-form-container">
-							<p>Add behavior targets</p>
-							<form onSubmit={this.handleSubmit}>
-								<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"/>
-								<Input id="description-input" className="program-form" type="textarea" placeholder="Enter mastery criteria"/>
-								<div className="col-sm-8 pull-right">
-									<a onClick={this.addTarget} className="add-target-btn"><i className="fa fa-plus-circle"></i></a>
-									{targetForms}
-								</div>
 
-								<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
-
-							</form>
-						</div>
 
 				</div>
 				);

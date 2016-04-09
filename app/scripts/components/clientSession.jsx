@@ -17,6 +17,7 @@ var ListGroup = require("react-bootstrap").ListGroup;
 var ListGroupItem = require("react-bootstrap").ListGroupItem;
 var Input = require("react-bootstrap").Input;
 var Button = require('react-bootstrap').Button;
+var Table = require('react-bootstrap').Table;
 
 
 
@@ -70,17 +71,33 @@ saveSession: function(){
 				var targetsArray = program.get('targets');
 				var targets = targetsArray.map(function(target){
 					return (
-						<div className="col-sm-offset-2" key = {target.id}>
-							{target.get('name')}<a className="no-icon"><i className=" fa fa-times"></i></a><a className="yes-icon"><i className="fa fa-check"></i></a>
-						</div>
+						<tbody key={target.id}>
+									<tr>
+										<td>{target.get('name')}</td>
+										<td><a className="yes-icon"><i className="fa fa-check"></i></a></td>
+										<td><a className="no-icon"><i className=" fa fa-times"></i></a></td>
+
+									</tr>
+
+						</tbody>
+
 						);
 
 				});
 				return (
-					<div className="target-session-container">
-					<div className="program-item" key={program.id}>
+					<div key={program.id} className="target-session-container">
+					<div className="program-item">
 						<ListGroupItem className="program-item">{program.get('name')}</ListGroupItem>
-						{targets}
+						<Table striped bordered condensed hover>
+								<thead>
+								<tr>
+									<th>Targets</th>
+									<th>Y</th>
+									<th>N</th>
+								</tr>
+							</thead>
+							{targets}
+						</Table>
 					</div>
 					</div>
 					);
@@ -89,14 +106,17 @@ saveSession: function(){
 			return (
 
 				<div className="col-sm-10 col-sm-offset-1 client-session-container">
+					<form onSubmit={this.saveSession}>
 					<div>
+
 						<Button onClick={this.handleSession}>Start Session</Button>
-						<Button className="save-session-btn" onClick={this.saveSession}>Save Session</Button>
+						<Button className="save-session-btn" type="submit">Save Session</Button>
 					</div>
 					<ListGroup>
 						{programs}
 
 					</ListGroup>
+					</form>
 				</div>
 
 				);
