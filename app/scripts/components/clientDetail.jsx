@@ -36,6 +36,8 @@ var ClientDetail = React.createClass({
 	render: function() {
 		var client = this.data.clientObj;
 
+		//console.log(client);
+
 		if(this.data.clientObj){
 				return (
 					<div key={client.objectId}>
@@ -51,11 +53,13 @@ var ClientDetail = React.createClass({
 										<p><i className="fa fa-phone client-phone"></i> {client.telephone}</p>
 
 										<p><i className="fa fa-map-marker client-address"></i> {client.address}</p>
+										<p><i className="fa fa-calendar"></i></p>
 								</div>
 							</div>
 
 
 						<div className="col-sm-4 col-sm-offset-1 team-info">
+								<p><i className="fa fa-user"></i></p>
 						</div>
 						</div>
 						<div className= "col-sm-12 client-data-container">

@@ -19,7 +19,8 @@ var Router = Backbone.Router.extend({
 	routes: {
 		"": "login",
 		"home/": "home",
-		"profile/(:id)": "profile"
+		"profile/(:id)": "profile",
+		"profile/(:id)/session/(:sessionId)/": 'session'
 	},
 
 	login: function(){
@@ -53,6 +54,11 @@ var Router = Backbone.Router.extend({
 	profile: function(id){
 		this.clientId = id;
 		this.mainApp("profile");
+	},
+	session: function(id, sessionId){
+		this.clientId = id;
+		this.sessionId = sessionId;
+		this.mainApp("session");
 	}
 });
 

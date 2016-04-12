@@ -18,7 +18,10 @@ var Login = require('./Login.jsx');
 var Home = require('./Home.jsx');
 var ClientDetail = require("./clientDetail.jsx").ClientDetail;
 
-
+// } else if (this.props.router.current == 'session') {
+// 				body = (
+// 					<ClientDetail sessionId={this.props.router.sessionId} id={this.props.router.clientId} />
+// 					);
 
 // main interface component
 
@@ -44,6 +47,7 @@ var Interface = React.createClass({
 						//client profile
 						<ClientDetail id={this.props.router.clientId} />
 						);
+
 			} else {
 					body = (
 		        <div>

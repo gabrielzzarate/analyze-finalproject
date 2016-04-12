@@ -53,6 +53,7 @@ var ProgramAddForm = React.createClass({
 								</div>
 
 
+								<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
 
 							</form>
 						</Modal.Body>

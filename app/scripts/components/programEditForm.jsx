@@ -30,7 +30,7 @@ var ProgramEditForm = React.createClass({
 		};
 	},
 	getInitialState: function() {
-		var programName ='', masteryCriteria = '', state = {};
+		var programName ='', masteryCriteria = '', targets = '', state = {};
 		console.log('programObj', this.props.programObj);
 
 		if(this.props.programObj){
@@ -43,7 +43,8 @@ var ProgramEditForm = React.createClass({
 	    return state;
 	},
 	componentWillReceiveProps: function(nextProps) {
-		console.log('nextProps.programObj', nextProps);
+		//console.log('nextProps.programObj', nextProps);
+		console.log('edit', nextProps.programObj);
 	  this.setState(this.buildProgram(nextProps.programObj));
 	},
 	// componentWillMount: function() {
@@ -67,18 +68,18 @@ var ProgramEditForm = React.createClass({
     this.setState({'targetCount': newCount});
 	},
 	render: function() {
-		console.log("edit this program", this.props.programObj);
+	//	console.log("edit this program", this.props.programObj);
 
 
 		if(this.props.programObj) {
 			var targetForms = [];
 			var program = this.props.programObj;
-			console.log(program.get('name'));
+			//console.log(program.get('name'));
 				for(var i=1; i<= this.state.targetCount; i++){
 					var count = i;
 					targetForms.push(<TargetFormSet targets={this.state.targets} key={count} count={count} ref={"formset" + count} />);
 				}
-			console.log('programName', this.state.programName);
+			//console.log('programName', this.state.programName);
 			return (
 
 				<div>
@@ -86,19 +87,24 @@ var ProgramEditForm = React.createClass({
 						<Modal show={this.props.modal} close={this.props.close} bsSize="large" aria-labelledby="contained-modal-title-lg">
 							<Modal.Header closeButton>
 								 <Modal.Title id="contained-modal-title-sm"> Edit Program: {program.get('name')} </Modal.Title>
+								// <Button onClick={this.props.close}>Close</Button>
 							</Modal.Header>
 							<Modal.Body>
+								<div className="modal-edit-container">
 								<form onSubmit={this.props.handleSubmit}>
+								<div className="col-sm-6">
 									<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"  valueLink={this.linkState('programName')}/>
 									<Input id="description-input" className="program-form" type="textarea" placeholder="Enter mastery criteria" valueLink={this.linkState('masteryCriteria')}/>
-									<div className="col-sm-8 pull-right">
+								</div>
+								<div className="col-sm-6">
+
 										<a onClick={this.addTarget} className="add-target-btn"><i className="fa fa-plus-circle"></i></a>
 										{targetForms}
-									</div>
 
-
+								</div>
 
 								</form>
+								</div>
 							</Modal.Body>
 							<Modal.Footer>
 									<Button type="submit" className="secondary-btn program-add-btn">Save Program</Button>

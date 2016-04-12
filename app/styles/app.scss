@@ -495,7 +495,6 @@ body {
 
 input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba 11 28 84, 0.88;
-
   border: 1px solid rgba 11 28 84, 0.88;
 }
 
@@ -527,19 +526,49 @@ input[type=text]:focus, textarea:focus {
     color: #8d909e;
 }
 
- .no-icon, .yes-icon {
-  float: right;
-  margin-right: 10px;
+.target-item-name {
+  font-size: 18px;
+    color: rgba(11, 28, 84, 0.88);
+    font-family: "Merriweather Sans", sans-serif;
 }
 
-.no-background {
-  background-color: rgba(204, 0, 0, 50);
+.target-item-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-.yes-background {
-  background-color: rgba(0, 179, 0, 50);
-}
-.default-background {
-  background-color: rgba(249, 249, 249, 1);
+
+ .yes-btn {
+  border-radius: 100%;
+  float: left;
+  color: white;
+  background-color: green;
+ }
+
+ .no-btn {
+  border-radius: 100%;
+  color: white;
+  float: right;
+  background-color: red;
+ }
+ .session-start-btn {
+
+   font-family: "Merriweather Sans", sans-serif;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    color: white;
+    width: 120px;
+    height: 35px;
+    border-radius: 100px;
+    background-color: #57cbbb;
+    border: none;
+  }
+
+.save-session-btn {
+  border-radius: 100px;
+  border: solid 2px #57cbbb;
+  margin-bottom: 20px;
 }
 
 // notes styles
@@ -566,11 +595,22 @@ input[type=text]:focus, textarea:focus {
   overflow: scroll;
 }
 
+.session-date {
+  float: right;
+}
+.session-input {
+  float: right;
+}
+
 .target-session-container {
   height: 200px;
 }
 .save-session-btn {
   margin-left: 15px;
+}
+
+.modal-edit-container {
+  height: 300px;
 }
 
 // ##############################################

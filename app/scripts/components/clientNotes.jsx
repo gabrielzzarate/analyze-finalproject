@@ -44,7 +44,7 @@ var ClientNotes = React.createClass({
 		event.preventDefault();
 		var self = this;
 		var noteValue = $('#noteText').val();
-
+		console.log(this.props.clientObj);
 		var note = new models.Note();
 		note.set("text", noteValue);
 		note.set("postedBy", Parse.User.current());

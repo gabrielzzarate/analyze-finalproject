@@ -4,6 +4,7 @@ var Parse = require('parse');
 var ParseReact = require('parse-react');
 var iconic = require('iconic/iconic.min.js');
 var _ = require('underscore');
+var LinkedStateMixin = require('react/lib/LinkedStateMixin');
 
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
@@ -60,7 +61,7 @@ var ClientPrograms = React.createClass({
 	},
 
 	handleClick: function(program){
-		console.log("programs:", this.state.programs);
+	//	console.log("programs:", this.state.programs);
 
 	},
 	modalAddOpen: function(e){
@@ -137,11 +138,7 @@ var ClientPrograms = React.createClass({
 	render: function() {
 
 		if(this.state.programs) {
-
-
-
 			var data = this.props.clientObj;
-
 
 			var programs = this.state.programs.map(function(program){
 					var targetsArray = program.get('targets');
@@ -157,8 +154,6 @@ var ClientPrograms = React.createClass({
 				return (
 					<div key={program.id}>
 						<div className="col-sm-12 program-config-item-container">
-
-
 						 <SiteHeader title={program.get('name')}/><a onClick={this.modalEditOpen.bind(this, program)}   className="program-edit">edit</a>
 						 <ProgramEditForm programObj={this.state.modalEditModel} modal={this.state.modalEditToggle} open={this.modalEditOpen} close={this.modalEditClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
 
