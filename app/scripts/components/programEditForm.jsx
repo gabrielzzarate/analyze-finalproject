@@ -19,27 +19,37 @@ var Footer = require('react-bootstrap').Footer;
 var Input = require('react-bootstrap').Input;
 var Button = require('react-bootstrap').Button;
 
+
+
 var ProgramEditForm = React.createClass({
 	mixins: [LinkedStateMixin],
+
 	buildProgram: function(program){
 		var programName = program.get('name');
 		var masteryCriteria = program.get('description');
+		var targets = program.get('targets');
+		var targetNames = targets.map(function(target){
+			return target.get('name');
+		});
+
 		return {
     	programName: programName,
-    	masteryCriteria: masteryCriteria
+    	masteryCriteria: masteryCriteria,
+    	targets: targetNames,
+    	targetCount: targetNames.length
 		};
 	},
 	getInitialState: function() {
-		var programName ='', masteryCriteria = '', targets = '', state = {};
-		console.log('programObj', this.props.programObj);
+		var programName ='', masteryCriteria = '', targets = [], state = {};
+		//console.log('programObj', this.props.programObj);
 
 		if(this.props.programObj){
 			var program = this.props.programObj;
 			state = this.buildProgram(program);
 		}
 		state.targetCount = 1;
-		state.targets = [];
-	    console.log('state', state);
+		state.targets = '';
+	    //console.log('state', state);
 	    return state;
 	},
 	componentWillReceiveProps: function(nextProps) {
@@ -47,22 +57,7 @@ var ProgramEditForm = React.createClass({
 		console.log('edit', nextProps.programObj);
 	  this.setState(this.buildProgram(nextProps.programObj));
 	},
-	// componentWillMount: function() {
 
-	// 	if(this.props.programObj){
-	// 		var program = this.props.programObj;
-	// 		var programName = program.get('name');
-	// 		var masteryCriteria = program.get('description');
-
-	// 		this.setState({
-	// 			"programName" : programName,
-	// 			"masterCriteria": masterCriteria
-
-	// 		});
-	// 		console.log(this.state.programName);
-	// 	}
-
-	// },
 	addTarget:function(){
 		var newCount = this.state.targetCount + 1;
     this.setState({'targetCount': newCount});
@@ -74,7 +69,7 @@ var ProgramEditForm = React.createClass({
 		if(this.props.programObj) {
 			var targetForms = [];
 			var program = this.props.programObj;
-			//console.log(program.get('name'));
+			//console.log(program.get('name'));w
 				for(var i=1; i<= this.state.targetCount; i++){
 					var count = i;
 					targetForms.push(<TargetFormSet targets={this.state.targets} key={count} count={count} ref={"formset" + count} />);

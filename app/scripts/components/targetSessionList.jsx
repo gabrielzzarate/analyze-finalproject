@@ -13,6 +13,22 @@ var models = require('../models/models.js');
 
 var TargetSessionList = React.createClass({
 	mixins: [LinkedStateMixin],
+	// buildSession: function(session){
+	// 	//var targetBtnYes = session.get()
+	// },
+	// getInitialState: function() {
+	//     var targetBtnYes = '', targetBtnNo = '', state = {};
+	//     if(this.props.sessionObj){
+	//     	var session = this.props.sessionObjs;
+	//     	state = this.buildSession(session);
+	//     }
+	//     state.targetBtnYes = null;
+	//     state.targetBtnNo = null;
+	//     return state;
+	// },
+	// componentWillReceiveProps: function(nextProps) {
+	// 	this.setState(this.buildSession(nextProps.session));
+	// },
 
 saveYesTarget: function(target){
  	event.preventDefault();
@@ -20,22 +36,37 @@ saveYesTarget: function(target){
  	console.log('session props', this.props.sessionObj);
  	var outcome = new models.SessionOutcome();
  	outcome.set('outcome', true);
- 	//outcome.set('session', new models.Session(this.props.sessionObj));
+ 	outcome.set('session', this.props.sessionObj);
  	outcome.set('target', target);
- 	outcome.save();
- 	$('#yes-btn').attr('disabled', 'disabled');
- 	$('#no-btn').attr('disabled', 'disabled');
+ 	outcome.save((null, {
+  		success: function(outome) {
+   			 // Execute any logic that should take place after the object is saved.
+  		 // alert('New object created with objectId: ' + outcome.id);
 
+  			},
+  		error: function(outcome, error) {
+   				 // Execute any logic that should take place if the save fails.
+    			// error is a Parse.Error with an error code and message.
+  			  alert('Failed to create new object, with error code: ' + error.message);
+  			}
+		})
+
+);
+ 	//$('#yes-btn').attr('disabled', 'disabled');
+ 	//$('#no-btn').attr('disabled', 'disabled');
+ 	console.log(this.state.targetBtnYes);
 },
 saveNoTarget: function(target){
-	//event.preventDefault();
+	event.preventDefault();
 	var sessionObj = this.props.sessionObj;
 
  	var outcome = new models.SessionOutcome();
  	outcome.set('outcome', false);
- //	outcome.set('session', new models.Session(this.props.sessionObj));
+ 	outcome.set('session', this.props.sessionObj);
  	outcome.set('target', target);
  	outcome.save();
+ 	//$('#yes-btn').attr('disabled', 'disabled');
+ 	//$('#no-btn').attr('disabled', 'disabled');
 
 },
 
@@ -46,11 +77,11 @@ saveNoTarget: function(target){
 					return (
 						<div className="col-sm-12 target-item-container">
 
-											<Button id="yes-btn" className="yes-btn" onClick={this.saveYesTarget.bind(this, target)}><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></Button>
+											<Button id="yes-btn" className="yes-btn" onClick={this.saveYesTarget.bind(this, target)} ><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></Button>
 											<div className="col-sm-5 col-sm-offset-3">
 											<span className="target-item-name">{target.get('name')}</span>
 											</div>
-											<Button id="no-btn" className="no-btn" onClick={this.saveNoTarget.bind(this, target)}><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></Button>
+											<Button id="no-btn" className="no-btn" onClick={this.saveNoTarget.bind(this, target)} ><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></Button>
 
 						</div>
 						);

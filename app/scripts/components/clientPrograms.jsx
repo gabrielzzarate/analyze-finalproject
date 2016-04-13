@@ -47,10 +47,8 @@ var ClientPrograms = React.createClass({
 		query.equalTo('client', this.props.clientObj);
 		query.include('targets');
 		query.find().then(function(programs){
-				console.log("program:", programs);
+				//console.log("program:", programs);
 				self.setState({"programs": programs});
-
-
 
 		}, function(error){
 			console.log(error);
@@ -72,9 +70,7 @@ var ClientPrograms = React.createClass({
    this.setState({ modalAddToggle: false });
   },
   modalEditOpen: function(program){
-
   	this.setState({modalEditModel: program, modalEditToggle: true});
-
   },
   modalEditClose: function(){
   	this.setState({modalEditToggle: false});
@@ -107,7 +103,7 @@ var ClientPrograms = React.createClass({
 
   		  	for(var i=1; i <= self.state.targetCount; i++){
 
-  		  		console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
+  		  		//console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
   		  		var name = self.refs["formset"+i].refs["name"+i].value;
   		  		var target = new models.Target();
 

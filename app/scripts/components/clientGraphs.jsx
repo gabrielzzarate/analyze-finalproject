@@ -4,44 +4,37 @@ var LineChart = require("react-chartjs").Line;
 
 var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
+var Button = require('react-bootstrap').Button;
+
+// require in child components
+var LineGraph = require('./linegraph.jsx');
+var HighChartExample = require('./highchartexample.jsx');
 
 var ClientGraphs = React.createClass({
+    componentWillMount: function() {
+
+    },
 	render: function() {
 		return (
-			<div>
+			<div className="graph-start-container">
 
-				<LineChart className="behavior-line-chart" data={data} width="600" height="250"/>
-			</div>
+
+                 <Button  className="session-start-btn" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">Graphs</Button>
+
+                <div className="collapse" id="collapse">
+                 <div>
+                    <LineGraph clientId={this.props.clientId} clientObj={this.props.clientObj}/>
+
+                </div>
+                </div>
+        </div>
 		);
 	}
 
 });
 
 
-var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-            label: "My Second dataset",
-            fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [28, 48, 40, 19, 86, 27, 90]
-        }
-    ]
-};
+
+
 
 module.exports = ClientGraphs;

@@ -11,6 +11,7 @@ var ClientSession = require('./clientSession.jsx');
 var ClientNotes = require('./clientNotes.jsx');
 var ClientPrograms = require('./clientPrograms.jsx');
 var ClientGraphs = require('./clientGraphs.jsx');
+var SessionStart = require('./sessionStart.jsx');
 
 
 //bootstrap-react components
@@ -64,7 +65,7 @@ var ClientDetail = React.createClass({
 						</div>
 						<div className= "col-sm-12 client-data-container">
 							<Tabs defaultActiveKey={1}>
-									<Tab eventKey={1} title="Today"><ClientSession clientId={this.props.id} clientObj={this.data.clientObj}/> </Tab>
+									<Tab eventKey={1} title="Today"><SessionStart clientId={this.props.id} clientObj={this.data.clientObj}/> </Tab>
 									<Tab eventKey={2} title="Notes"> <ClientNotes clientId={this.props.id} clientObj={this.data.clientObj}/></Tab>
 
 							    <Tab eventKey={3} title="Programs"><ClientPrograms clientId={this.props.id} clientObj={this.data.clientObj}/></Tab>
