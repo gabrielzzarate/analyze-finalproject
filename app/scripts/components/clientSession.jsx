@@ -48,7 +48,7 @@ saveSession: function(){
 			 		success: function(results){
 			 			if(results.length > 0){
 			 				//alert("Successfully retrieved " + results.length + " sessions.");
-			 				console.log(results);
+			 				//console.log(results);
 
 			 				query.equalTo('client', clientObj);
 							query.include('targets');
@@ -96,9 +96,9 @@ saveSession: function(){
 
 			var session = this.props.session;
 			//console.log('session', session);
-			var sessionId = session.id;
+			//var sessionId = session.id;
 
-			console.log('session id', sessionId);
+			//console.log('session id', sessionId);
 
 
 			//console.log(session);
@@ -114,7 +114,7 @@ saveSession: function(){
 				var targets = targetsArray.map(function(target){
 					return (
 						<div  key = {target.id}>
-							<TargetSessionList  sessionObj={session} target={target}/>
+							<TargetSessionList client={data} sessionObj={session} target={target}/>
 						</div>
 						);
 
