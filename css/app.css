@@ -6072,11 +6072,32 @@ body {
     float: right;
     margin: 10px; }
 
+.graph-start-container {
+  height: 700px; }
+
 .program-config-container {
   margin-top: 15px;
   height: 300px;
   overflow: scroll;
   border-bottom: solid 1px #e1e4eb; }
+
+.add-program-btn {
+  float: right;
+  font-family: "Merriweather Sans", sans-serif;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  color: white;
+  width: 120px;
+  height: 35px;
+  border-radius: 100px;
+  background-color: #57cbbb;
+  border: none; }
+
+.program-edit {
+  float: right;
+  text-decoration: underline; }
 
 .targets-item {
   list-style: none; }
@@ -6097,7 +6118,8 @@ input[type=text]:focus, textarea:focus {
   background-color: #f9f9f9;
   border: none;
   border-radius: 0;
-  margin: 15px; }
+  margin-top: 15px;
+  margin-bottom: 1px; }
 
 .program-config-item-container {
   margin-bottom: 20px; }
@@ -6106,18 +6128,47 @@ input[type=text]:focus, textarea:focus {
   font-family: "Merriweather", serif;
   color: #8d909e; }
 
-.no-icon, .yes-icon {
+.target-item-name {
+  font-size: 18px;
+  color: rgba(11, 28, 84, 0.88);
+  font-family: "Merriweather Sans", sans-serif; }
+
+.target-item-container {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.yes-btn {
+  border-radius: 100%;
+  float: left;
+  color: white;
+  background-color: green; }
+
+.no-btn {
+  border-radius: 100%;
+  color: white;
   float: right;
-  margin-right: 10px; }
+  background-color: red; }
 
-.no-background {
-  background-color: #cc0000; }
+.session-start-btn {
+  font-family: "Merriweather Sans", sans-serif;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  color: white;
+  width: 120px;
+  height: 35px;
+  border-radius: 100px;
+  background-color: #57cbbb;
+  border: none; }
 
-.yes-background {
-  background-color: #00b300; }
+.session-start-container {
+  margin-top: 10px; }
 
-.default-background {
-  background-color: #f9f9f9; }
+.save-session-btn {
+  border-radius: 100px;
+  border: solid 2px #57cbbb;
+  margin-bottom: 20px; }
 
 .client-notes-container {
   margin-top: 15px;
@@ -6133,11 +6184,20 @@ input[type=text]:focus, textarea:focus {
   height: 600px;
   overflow: scroll; }
 
+.session-date {
+  float: right; }
+
+.session-input {
+  float: right; }
+
 .target-session-container {
   height: 200px; }
 
 .save-session-btn {
   margin-left: 15px; }
+
+.modal-edit-container {
+  height: 300px; }
 
 .behavior-line-chart {
   margin-top: 20px; }
@@ -6158,5 +6218,21 @@ input[type=text]:focus, textarea:focus {
   overflow: hidden;
   border-bottom: 1px solid black;
   padding-top: 14px; }
+
+.splash-screen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+  .splash-screen body {
+    background: rgba(212, 212, 212, 0.8); }
+
+.splash-container {
+  width: 80%;
+  margin: 10% auto 0 auto;
+  background: white;
+  border: 1px solid #d4d4d4;
+  padding: 10px 0; }
 
 /*# sourceMappingURL=app.css.map */
