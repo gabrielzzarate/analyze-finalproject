@@ -1,3 +1,7 @@
+
+/* clientSession.jsx */
+
+//3rd party
 var $ = require('jQuery');
 var React = require("react");
 var Backbone = require('backbone');
@@ -5,6 +9,7 @@ var Parse = require('parse');
 var ParseReact = require('parse-react');
 var moment = require('moment');
 
+// parse server init
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
@@ -59,8 +64,8 @@ saveSession: function(){
 							}, function(error){
 									console.log(error);
 							});
-			 			//	self.setState({"programs": results});
-			 			//	self.setState({"sessionObj": results});
+			 				//	self.setState({"programs": results});
+			 				//	self.setState({"sessionObj": results});
 
 
 			 			} else {
@@ -83,32 +88,16 @@ saveSession: function(){
 			 		},
 	 			});
 
-
-
-
 	},
 
 		render: function() {
 		//console.log(this.props);
 
-		if(this.state.programs && this.state.sessionObj) {
-
-
-			var session = this.props.session;
-			//console.log('session', session);
-			//var sessionId = session.id;
-
-			//console.log('session id', sessionId);
-
-
-			//console.log(session);
-
-
-			var data = this.props.clientObj;
-			var targetValues = this.state.targetValues;
-			var programs = this.state.programs.map(function(program){
-
-
+			if(this.state.programs && this.state.sessionObj) {
+				var session = this.props.session;
+				var data = this.props.clientObj;
+				var targetValues = this.state.targetValues;
+				var programs = this.state.programs.map(function(program){
 				var targetsArray = program.get('targets');
 
 				var targets = targetsArray.map(function(target){
@@ -133,15 +122,10 @@ saveSession: function(){
 
 				<div className="col-sm-10 col-sm-offset-1 client-session-container">
 
-					<div>
-
-
-
-
-					</div>
+				<div>
+				</div>
 					<ListGroup>
 						{programs}
-
 					</ListGroup>
 
 				</div>

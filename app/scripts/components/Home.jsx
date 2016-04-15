@@ -1,7 +1,11 @@
+
+/* Home.jsx */
+
 //3rd party
 var React = require('react');
 var Parse = require('parse');
-var iconic = require('iconic/iconic.min.js');
+
+// parse server init
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 

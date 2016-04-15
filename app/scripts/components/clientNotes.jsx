@@ -1,3 +1,7 @@
+
+/* clientNotes.jsx */
+
+//3rd party
 var $ = require('jQuery');
 var React = require("react");
 var moment = require('moment');
@@ -5,7 +9,7 @@ require('backbone-react-component');
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 
-
+//parse server init
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
@@ -39,7 +43,6 @@ var ClientNotes = React.createClass({
 		});
 	},
 
-
 	handleSubmit: function(event){
 		event.preventDefault();
 		var self = this;
@@ -63,6 +66,7 @@ var ClientNotes = React.createClass({
 		});
 
 	},
+
 	render: function() {
 
 
@@ -70,7 +74,6 @@ var ClientNotes = React.createClass({
 			var notes = this.state.notes.map(function(note){
 				var created = note.get('createdAt');
 				//console.log("notes", this.state.notes);
-
 				return (
 						<div  key={note.id}>
 							<p>{note.get('text')}</p>

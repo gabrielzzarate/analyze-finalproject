@@ -1,10 +1,13 @@
+
+/* Login.jsx */
+
 //3rd party
 var $ = require('jquery');
 var Backbone = require('backbone');
 var React = require('react');
 var Parse = require('parse');
 
-
+// parse server init
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
@@ -52,7 +55,6 @@ var Login = React.createClass ({
 							<p className='text-center login-sub-title'>Therapy Tracking</p>
 				</div>
 
-
 						<form onSubmit={this.handleLogin}>
 							<p className="login-label">Username</p>
 							<input type="text" id="userName" className="username-input" />
@@ -62,8 +64,6 @@ var Login = React.createClass ({
 
 							<button type='submit' className="logIn-button">Log In</button>
 						</form>
-
-
 
 				</div>
 			</div>

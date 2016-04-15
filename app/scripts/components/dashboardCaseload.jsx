@@ -1,8 +1,12 @@
+
+/* dashboardCaseload.jsx */
+
+//3rd party
 var React = require('react');
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 
-
+// parse server init
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
@@ -21,13 +25,7 @@ var DashboardCaseload = React.createClass({
 			clientObj: (new Parse.Query('Clients').equalTo('therapistTeam', this.state.user))
 		};
 	},
-	componentWillMount: function() {
-
-
-
-
-
-
+	//componentWillMount: function() {
 		// var Clients = Parse.Object.extend('Clients');
 		// var query = new Parse.Query(Clients);
 		// console.log(this.state.user);
@@ -39,23 +37,18 @@ var DashboardCaseload = React.createClass({
 
 		// console.log(query);
 		// console.log(this.state.clients);
-	},
+	//},
 	render: function() {
 
 		var caseLoadItems = function(client) {
 				return (
 					<div key={client.objectId} className="col-sm-2">
-
 									<a href={"#profile/" + client.objectId}>
 									<img src="./images/user-icon-1.svg" />
 									<p className="client-name caseload-name">{client.Name}</p>
 								</a>
-
-
 					</div>
-
 					);
-
 			};
 			return (
 				<div>
@@ -64,7 +57,6 @@ var DashboardCaseload = React.createClass({
 						{this.data.clientObj.map(caseLoadItems.bind(this))}
 					</div>
 				</div>
-
 				);
 		}
 	});

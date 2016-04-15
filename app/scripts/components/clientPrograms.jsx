@@ -1,3 +1,7 @@
+
+/* clientPrograms.jsx */
+
+//3rd party
 var $ = require('jQuery');
 var React = require("react");
 var Parse = require('parse');
@@ -6,6 +10,7 @@ var iconic = require('iconic/iconic.min.js');
 var _ = require('underscore');
 var LinkedStateMixin = require('react/lib/LinkedStateMixin');
 
+//parse server init
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
@@ -35,11 +40,30 @@ var ClientPrograms = React.createClass({
 	    	targetCount: 1,
 	    	modalAddToggle: false,
 	    	modalEditToggle: false,
-	    	modalEditModel: null
+	    	modalEditModel: null,
+	    	splash: false
 	    };
 	},
 
 	getPrograms: function(){
+		var self = this;
+
+		var query = new Parse.Query(models.Program);
+
+		query.equalTo('client', this.props.clientObj);
+		query.include('targets');
+		query.find().then(function(programs){
+				console.log("program:", programs);
+				self.setState({"programs": programs});
+
+		}, function(error){
+			console.log(error);
+		});
+	},
+
+
+
+	componentWillMount: function() {
 		var self = this;
 		var targetsObj;
 		var query = new Parse.Query(models.Program);
@@ -47,46 +71,39 @@ var ClientPrograms = React.createClass({
 		query.equalTo('client', this.props.clientObj);
 		query.include('targets');
 		query.find().then(function(programs){
-				//console.log("program:", programs);
+				console.log("program:", programs);
 				self.setState({"programs": programs});
 
 		}, function(error){
 			console.log(error);
 		});
-	},
-	componentWillMount: function() {
-		this.getPrograms();
-	},
-
-	handleClick: function(program){
-	//	console.log("programs:", this.state.programs);
 
 	},
+
 	modalAddOpen: function(e){
     e.preventDefault();
    this.setState({ modalAddToggle: true });
   },
+
   modalAddClose: function(){
    this.setState({ modalAddToggle: false });
   },
+
   modalEditOpen: function(program){
-  	this.setState({modalEditModel: program, modalEditToggle: true});
+  	this.setState({modalEditModel: program, splash: true});
   },
+
   modalEditClose: function(){
-  	this.setState({modalEditToggle: false});
+  	this.setState({splash: false});
   },
 
 	handleSubmit: function(event){
 		event.preventDefault();
-
-
 		var programName = $('#program-input').val();
 		var programDescription = $('#description-input').val();
 		var client = this.props.clientObj;
 		var programObj;
 		var self = this;
-
-
 
 		var program = new models.Program();
 		program.set("name", programName);
@@ -94,12 +111,11 @@ var ClientPrograms = React.createClass({
 		program.set("client", new models.Client(this.props.clientObj));
 		program.save(null, {
   		success: function(program) {
-   			 // Execute any logic that should take place after the object is saved.
+
   		  alert('New object created with objectId: ' + program.id);
   		  	programObj = program;
   		  	self.getPrograms();
   		  	var programTargets = [];
-
 
   		  	for(var i=1; i <= self.state.targetCount; i++){
 
@@ -123,18 +139,18 @@ var ClientPrograms = React.createClass({
     					// error is a Parse.Error with an error code and message.
   					  alert('Failed to create new object, with error code: ' + error.message);
   					}
-
-
   		  	});
-
-
-
 	},
 
 	render: function() {
 
 		if(this.state.programs) {
+			console.log("programs", this.state.programs);
 			var data = this.props.clientObj;
+
+			if(this.state.splash === true) {
+				return (<ProgramEditForm programObj={this.state.modalEditModel}  clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>);
+			}
 
 			var programs = this.state.programs.map(function(program){
 					var targetsArray = program.get('targets');
@@ -151,7 +167,7 @@ var ClientPrograms = React.createClass({
 					<div key={program.id}>
 						<div className="col-sm-12 program-config-item-container">
 						 <SiteHeader title={program.get('name')}/><a onClick={this.modalEditOpen.bind(this, program)}   className="program-edit">edit</a>
-						 <ProgramEditForm programObj={this.state.modalEditModel} modal={this.state.modalEditToggle} open={this.modalEditOpen} close={this.modalEditClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
+
 
 							<div className="col-sm-10 col-sm-offset-1">
 								<p className="master-criteria-text">mastery criteria: {program.get('description')}</p>
@@ -170,14 +186,11 @@ var ClientPrograms = React.createClass({
 						<div>
 							<div className="col-sm-12 program-config-container">
 								<Button className="add-program-btn" bsStyle="primary" onClick={this.modalAddOpen}>Add Program</Button>
-								<ProgramAddForm modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
+								<ProgramAddForm getPrograms={this.getPrograms} clientObj={this.props.clientObj} modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
 
 									{programs}
 							</div>
 					</div>
-
-
-
 				</div>
 				);
 		} else {

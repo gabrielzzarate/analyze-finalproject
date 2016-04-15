@@ -1,3 +1,7 @@
+
+/* sessionStart.jsx */
+
+//3rd party
 var $ = require('jQuery');
 var React = require("react");
 var Parse = require('parse');
@@ -5,6 +9,8 @@ var ParseReact = require('parse-react');
 var moment = require('moment');
 var _ = require('underscore');
 
+
+//parse server initialize
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
@@ -18,8 +24,9 @@ var ClientSession = require('./clientSession.jsx');
 
 // Parse class models
 var models = require('../models/models.js');
-
 var session = new models.Session();
+
+
 
 var SessionStart = React.createClass({
 	getInitialState: function() {
@@ -29,6 +36,7 @@ var SessionStart = React.createClass({
 	    };
 	},
 	handleSession: function(){
+
 	var self = this;
 
 	session.set('client', new models.Client(this.props.clientObj));
@@ -44,37 +52,43 @@ var SessionStart = React.createClass({
 			//var id = session.id;
 		//	console.log(id);
 	});
+	var scheduleRecord = new models.ScheduleRecord();
+	scheduleRecord.set('client', new models.Client(this.props.clientObj));
+	scheduleRecord.set('dayOfWeek', "monday");
+	scheduleRecord.set('timeOfDay', "9:00AM");
+
 },
 saveSession: function(){
+	var self = this;
+	var endedTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 	$('#session-save').addClass('hide');
 	$('#session-start').removeClass('hide');
 	$('#session-container').addClass('hide');
 
-	var endedTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 
 
-			session.set('dateEnded', endedTime);
-			session.set('targetsMastered', new models.Target());
-			session.save();
-
-
-	var self = this;
+	//query all session outcomes and return outcomes set to "true"
 	var query = new Parse.Query(models.SessionOutcome);
 	query.equalTo('client', this.props.clientObj);
 	query.equalTo('outcome', true);
 	query.find({
 		success: function(results){
 			//console.log("outcome results", results);
+
+			//map all true outcomes and return the ids of each associated target
 			var targetIds = results.map(function(outcome){
 				return outcome.get('target').id;
 			});
 			//console.log('targetIds', targetIds);
 
+			// group each outcome by its associated target
 			var groupedOutcomes = _.groupBy(results, function(result){
 				return result.get('target').id;
 			});
 			//console.log("filtered:", groupedOutcomes);
 			//console.log(targetIds);
+
+			//map the grouped Object of outcomes and only return if the "true" outcomes are >= 3
 			var mastered = _.mapObject(groupedOutcomes, function(group){
 				if(group.length >= 3){
 					return group;
@@ -82,37 +96,26 @@ saveSession: function(){
 
 			});
 			//console.log("mastered", mastered);
+
+			//return the keys of the mastered targets
 			var keys = _.keys(mastered);
-			//console.log("keys", keys);
 
-			// var queryArray = _.map(keys, function(id){
-			// 	return queryTargets.equalTo('objectId', id);
+			session.set('dateEnded', endedTime);
+			//save an array of the ids of the targetsMastered to Parse
+			session.set('targetsMastered', keys);
+			session.save( null, {
+	 						 success: function(session) {
+						    // Execute any logic that should take place after the object is saved.
+						    alert('New object created with objectId: ' + session.id);
+						  },
+						  error: function(session, error) {
+						    // Execute any logic that should take place if the save fails.
+						    // error is a Parse.Error with an error code and message.
+						    alert('Failed to create new object, with error code: ' + error.message);
+						  }
+						});
 
-			// });
-			//console.log('queryArray', queryArray);
-			//queryTargets.containedIn('objectId', keys);
-			//queryTargets.find({
-			//	success: function(results){
-
-				//	console.log("target mastered:", results);
-		session.set('dateEnded', endedTime);
-		session.set('targetsMastered', keys);
-		session.save( null, {
- 						 success: function(session) {
-					    // Execute any logic that should take place after the object is saved.
-					    alert('New object created with objectId: ' + session.id);
-					  },
-					  error: function(session, error) {
-					    // Execute any logic that should take place if the save fails.
-					    // error is a Parse.Error with an error code and message.
-					    alert('Failed to create new object, with error code: ' + error.message);
-					  }
-					});
-
-			//session.set('dateEnded', endedTime);
-			//session.set('targetsMastered', new models.Target(keys));
-		//	session.save();
-		},
+			},
 		error: function(error){
 			 alert("Error: " + error.code + " " + error.message);
 

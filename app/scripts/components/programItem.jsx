@@ -1,11 +1,15 @@
+
+/* programItem.jsx */
+
+// 3rd party
 var React = require("react");
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 
+// bootstrap-react components
 var ListGroupItem = require("react-bootstrap").ListGroupItem;
 
 var ProgramItem = React.createClass({
-
 	render: function() {
 		var program = this.props.program;
 		//console.log('program', program);
@@ -15,7 +19,6 @@ var ProgramItem = React.createClass({
 					</div>
 		);
 	}
-
 });
 
 module.exports = ProgramItem;

@@ -1,9 +1,14 @@
+
+/* programEditForm.jsx */
+
+// 3rd party
 var $ = require('jQuery');
 var React = require("react");
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var LinkedStateMixin = require('react/lib/LinkedStateMixin');
 
+// parse server init
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
@@ -25,7 +30,7 @@ var ProgramEditForm = React.createClass({
 	mixins: [LinkedStateMixin],
 
 	buildProgram: function(program){
-		var programName = program.get('name');
+		var programName = program.get("name")  ;
 		var masteryCriteria = program.get('description');
 		var targets = program.get('targets');
 		var targetNames = targets.map(function(target){
@@ -77,14 +82,9 @@ var ProgramEditForm = React.createClass({
 			//console.log('programName', this.state.programName);
 			return (
 
-				<div>
+				<div className = "splash-screen">
+						<div className = "splash-container">
 
-						<Modal show={this.props.modal} close={this.props.close} bsSize="large" aria-labelledby="contained-modal-title-lg">
-							<Modal.Header closeButton>
-								 <Modal.Title id="contained-modal-title-sm"> Edit Program: {program.get('name')} </Modal.Title>
-								// <Button onClick={this.props.close}>Close</Button>
-							</Modal.Header>
-							<Modal.Body>
 								<div className="modal-edit-container">
 								<form onSubmit={this.props.handleSubmit}>
 								<div className="col-sm-6">
@@ -97,16 +97,12 @@ var ProgramEditForm = React.createClass({
 										{targetForms}
 
 								</div>
+									<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
 
 								</form>
 								</div>
-							</Modal.Body>
-							<Modal.Footer>
-									<Button type="submit" className="secondary-btn program-add-btn">Save Program</Button>
 
-	          			<Button onClick={this.props.close}>Close</Button>
-	        		</Modal.Footer>
-					</Modal>
+						</div>
 				</div>
 		);
 	} else {

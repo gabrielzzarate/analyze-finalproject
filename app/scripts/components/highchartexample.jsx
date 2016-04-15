@@ -3,7 +3,8 @@ var $ = require('jQuery');
 var React = require('react');
 var Parse = require('parse');
 var ParseReact = require('parse-react');
-
+var ReactD3 = require('react-d3-components');
+var d3 = require('d3');
 //var Chart = require('chart.js');
 //var LineChart = require("react-chartjs").Line;
 var moment = require('moment');
@@ -17,71 +18,76 @@ Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
 // Parse class models
 var models = require('../models/models.js');
-var highcharts;
 
 var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 
-var HighChartExample = React.createClass({
-		componentWillMount: function() {
-			 highcharts =({
-        title: {
-            text: 'Monthly Average Temperature',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com',
-            x: -20
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
-            title: {
-                text: 'Temperature (°C)'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: '°C'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },
-        series: [{
-            name: 'Tokyo',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }, {
-            name: 'New York',
-            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-        }, {
-            name: 'Berlin',
-            data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-        }, {
-            name: 'London',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-        }]
-    });
 
-		},
-
-    //Create the div which the chart will be rendered to.
-    render: function () {
-        return  (
+var LineChart = ReactD3.LineChart;
+var Brush = ReactD3.Brush;
 
 
-				<div id="container" data = {highcharts} width = "310" height = "400" margin =  "0 auto"></div>
-        	);
+var D3Example = React.createClass({
+		getInitialState: function() {
+        return {
+            data: {label: '', values: [
+                {x: new Date(2015, 2, 5), y: 1},
+                {x: new Date(2015, 2, 6), y: 2},
+                {x: new Date(2015, 2, 7), y: 0},
+                {x: new Date(2015, 2, 8), y: 3},
+                {x: new Date(2015, 2, 9), y: 2},
+                {x: new Date(2015, 2, 10), y: 3},
+                {x: new Date(2015, 2, 11), y: 4},
+                {x: new Date(2015, 2, 12), y: 4},
+                {x: new Date(2015, 2, 13), y: 1},
+                {x: new Date(2015, 2, 14), y: 5},
+                {x: new Date(2015, 2, 15), y: 0},
+                {x: new Date(2015, 2, 16), y: 1},
+                {x: new Date(2015, 2, 16), y: 1},
+                {x: new Date(2015, 2, 18), y: 4},
+                {x: new Date(2015, 2, 19), y: 4},
+                {x: new Date(2015, 2, 20), y: 5},
+                {x: new Date(2015, 2, 21), y: 5},
+                {x: new Date(2015, 2, 22), y: 5},
+                {x: new Date(2015, 2, 23), y: 1},
+                {x: new Date(2015, 2, 24), y: 0},
+                {x: new Date(2015, 2, 25), y: 1},
+                {x: new Date(2015, 2, 26), y: 1}
+            ]},
+            xScale: d3.time.scale().domain([new Date(2015, 2, 5), new Date(2015, 2, 26)]).range([0, 400 - 70]),
+            xScaleBrush: d3.time.scale().domain([new Date(2015, 2, 5), new Date(2015, 2, 26)]).range([0, 400 - 70])
+        };
+    },
 
+    render: function() {
+        return (
+                <div>
+                <LineChart
+                   data={this.state.data}
+                   width={400}
+                   height={400}
+                   margin={{top: 10, bottom: 50, left: 50, right: 20}}
+                   xScale={this.state.xScale}
+                   xAxis={{tickValues: this.state.xScale.ticks(d3.time.day, 2), tickFormat: d3.time.format("%m/%d")}}
+                />
+                <div className="brush" style={{float: 'none'}}>
+                <Brush
+                   width={400}
+                   height={50}
+                   margin={{top: 0, bottom: 30, left: 50, right: 20}}
+                   xScale={this.state.xScaleBrush}
+                   extent={[new Date(2015, 2, 10), new Date(2015, 2, 12)]}
+                   onChange={this._onChange}
+                   xAxis={{tickValues: this.state.xScaleBrush.ticks(d3.time.day, 2), tickFormat: d3.time.format("%m/%d")}}
+                />
+                </div>
+                </div>
+        );
+    },
+
+    _onChange: function(extent) {
+        this.setState({xScale: d3.time.scale().domain([extent[0], extent[1]]).range([0, 400 - 70])});
     }
 });
 
-module.exports= HighChartExample;
+module.exports= D3Example;

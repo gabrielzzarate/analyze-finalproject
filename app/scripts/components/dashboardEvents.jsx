@@ -1,3 +1,7 @@
+
+/* dashboardEvents.jsx */
+
+//3rd party
 var React = require('react');
 
 
@@ -31,7 +35,6 @@ var DashboardEvents = React.createClass({
 	}
 
 });
-
 
 module.exports = {
 	"DashboardEvents" : DashboardEvents

@@ -13,7 +13,7 @@ var Target = Parse.Object.extend('Targets');
 var Session = Parse.Object.extend('ClientSessions');
 var SessionOutcome = Parse.Object.extend('SessionOutcomes');
 
-
+var ScheduleRecord = Parse.Object.extend('Schedule');
 
 module.exports = {
 	"Note": Note,
@@ -21,7 +21,8 @@ module.exports = {
 	"Program": Program,
 	"Target": Target,
 	"Session": Session,
-	"SessionOutcome": SessionOutcome
+	"SessionOutcome": SessionOutcome,
+	"ScheduleRecord": ScheduleRecord
 
 
 };

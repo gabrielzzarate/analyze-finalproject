@@ -1,3 +1,6 @@
+
+/* Interface.jsx */
+
 //3rd party
 var $ = require('jQuery');
 var React = require('react');
@@ -5,9 +8,9 @@ var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
 var _ = require('underscore');
 require('backbone-react-component');
+var Parse =require('parse');
 
 //setup parse SDK to connect to server
-var Parse =require('parse');
 Parse.initialize('analyzetracking');
 Parse.serverURL= "http://analyzetracking.herokuapp.com/";
 
@@ -74,8 +77,6 @@ var Interface = React.createClass({
 						</div>
 					</div>
 					</div>
-
-
 
 				</div>
 				);

@@ -459,6 +459,10 @@ body {
 
 }
 
+.graph-start-container {
+  height: 700px;
+}
+
 .program-config-container {
   margin-top: 15px;
   height: 300px;
@@ -650,3 +654,24 @@ input[type=text]:focus, textarea:focus {
      padding-top: 14px;
 }
 
+
+
+///splash screen styles
+
+.splash-screen{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  body {
+    background: rgba(212, 212, 212, .8);
+  }
+}
+.splash-container{
+  width: 80%;
+  margin: 10% auto 0 auto;
+  background: white;
+  border: 1px solid rgb(212, 212, 212);
+  padding: 10px 0;
+}

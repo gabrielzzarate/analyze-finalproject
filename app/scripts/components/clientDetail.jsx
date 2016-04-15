@@ -1,10 +1,14 @@
+
+/* clientDetail.jsx */
+
+//3rd party
 var React = require("react");
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 
+// parse-server init
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
-
 
 //require in child components
 var ClientSession = require('./clientSession.jsx');
@@ -36,8 +40,6 @@ var ClientDetail = React.createClass({
 
 	render: function() {
 		var client = this.data.clientObj;
-
-		//console.log(client);
 
 		if(this.data.clientObj){
 				return (
