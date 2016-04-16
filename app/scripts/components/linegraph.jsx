@@ -9,6 +9,7 @@ var ParseReact = require('parse-react');
 var Chart = require('chart.js');
 //var LineChart = require("react-chartjs").Line;
 var LineChart = require("rc-chartjs").Line;
+
 var moment = require('moment');
 var _ = require('underscore');
 
@@ -70,7 +71,7 @@ var LineGraph = React.createClass({
         querySessions.ascending("createdAt");
         querySessions.find({
             success: function(sessions){
-
+                //console.log('sessions', sessions);
                 self.getPrograms(sessions);
             },
             error: function(results, error){
@@ -82,62 +83,60 @@ var LineGraph = React.createClass({
     buildGraphs: function(sessions, programs){
         var self = this;
         var targets;
-        var sessionDates;
-        var sessionDateArray = [];
-        var targetName = [];
-        var countArray = [];
 
 
-        programs.map( function(program){
-            //console.log("program", program);
-            var targetIds;
+
+       _.each(programs, function(program){
+
+
             targets = program.get('targets');
 
-            var targetNameArray = targets.map(function(target){
+            var targetsT = program.get('targets');
+
+             var targetNameArray = targetsT.map(function(target){
                return target.get('name');
             });
-            console.log(targetName);
+
 
             var targetsArray = targets.map(function(target){
                 return target.id;
 
-
-
             });
-           // console.log('targetsArray', targetsArray);
-            //console.log('targets', targets);
-            var maxCount = 0;
+
+                var countArray = [];
+
+                var sessionDateArray = [];
+
+
             var sessionData = sessions.map(function(session){
-                //console.log("session" ,session);
                 var targetsMastered = session.get('targetsMastered');
+                var dates = session.get('createdAt');
+                var sessionDates = moment(dates).format("MMM Do");
+                 sessionDateArray.push(sessionDates);
 
-                //var targets = session.get(targets);
-               // console.log("mastered", targetsMastered);
-                 var dates = session.get('createdAt');
-                sessionDates = moment(dates).format("MMM Do");
-                sessionDateArray.push(sessionDates);
-                //console.log(sessionDateArray);
-                var maxCount = 0;
+
+
+                 // var targetName = targetNameArray.map(function(name){
+                 //        return name;
+                 // });
+
                 var count = _.intersection(targetsArray, targetsMastered).length;
-               // console.log("count" ,count);
-                 maxCount = count > maxCount ? count : maxCount;
-                 countArray.push(maxCount);
-
-               //console.log("maxCount", maxCount);
+                // var maxCount = count > maxCount ? count : maxCount;
+                 countArray.push(count);
+                 console.log(countArray);
 
                 return {
                         label: targetNameArray,
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        pointColor: "rgba(220,220,220,1)",
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
                         data: countArray
 
                 };
             });
-
 
 
             var graphs = self.state.graphs;
@@ -158,9 +157,10 @@ var LineGraph = React.createClass({
         var self = this;
 
 
-
+            console.log(this.state.graphs);
         var graphs = this.state.graphs.map(function(data){
-           var programName;//console.log("graphConfig", graphConfig);
+           var programName;
+           //console.log("data", data);
           var  programNames = data.programs.map(function(program){
                 programName = program.get('name');
 
@@ -168,7 +168,7 @@ var LineGraph = React.createClass({
             return (
                 <div key={data.id}>
                     {programName}
-                    <LineChart className="behavior-line-chart" data={data}  width="500" height="250" />
+                    <LineChart className="behavior-line-chart" data={data} options={data.options}  width="500" height="250" />
 
                 </div>
                 );

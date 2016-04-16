@@ -84,8 +84,12 @@ var ProgramEditForm = React.createClass({
 
 				<div className = "splash-screen">
 						<div className = "splash-container">
+							<Modal.Header closeButton>
+							 <Modal.Title id="contained-modal-title-sm">Edit a Program</Modal.Title>
+						</Modal.Header>
 
 								<div className="modal-edit-container">
+								<Modal.Body>
 								<form onSubmit={this.props.handleSubmit}>
 								<div className="col-sm-6">
 									<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"  valueLink={this.linkState('programName')}/>
@@ -97,9 +101,11 @@ var ProgramEditForm = React.createClass({
 										{targetForms}
 
 								</div>
+
 									<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
 
 								</form>
+								</Modal.Body>
 								</div>
 
 						</div>

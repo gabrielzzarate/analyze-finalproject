@@ -36,7 +36,7 @@ var SessionStart = React.createClass({
 	    };
 	},
 	handleSession: function(){
-
+		$('#session-container').addClass('fadeIn').removeClass('hide');
 	var self = this;
 
 	session.set('client', new models.Client(this.props.clientObj));
@@ -66,43 +66,48 @@ saveSession: function(){
 	$('#session-container').addClass('hide');
 
 
-
-	//query all session outcomes and return outcomes set to "true"
 	var query = new Parse.Query(models.SessionOutcome);
 	query.equalTo('client', this.props.clientObj);
 	query.equalTo('outcome', true);
 	query.find({
 		success: function(results){
 			//console.log("outcome results", results);
-
-			//map all true outcomes and return the ids of each associated target
 			var targetIds = results.map(function(outcome){
 				return outcome.get('target').id;
 			});
 			//console.log('targetIds', targetIds);
 
-			// group each outcome by its associated target
 			var groupedOutcomes = _.groupBy(results, function(result){
 				return result.get('target').id;
 			});
-			//console.log("filtered:", groupedOutcomes);
+			//console.log("grouped:", groupedOutcomes);
 			//console.log(targetIds);
-
-			//map the grouped Object of outcomes and only return if the "true" outcomes are >= 3
-			var mastered = _.mapObject(groupedOutcomes, function(group){
-				if(group.length >= 3){
-					return group;
-				}
+			var masteredArray = [];
+			var mastered = _.mapObject(groupedOutcomes, function(group, keys){
+				//console.log("group" ,group);
+				//console.log("group length", group.length);
+				//console.log('key:', keys);
+				 if (group.length >= 3){
+				 		masteredArray.push(keys);
+				 }
+				 //console.log('masteredArray', masteredArray);
 
 			});
+			 //console.log('masteredArray', masteredArray);
 			//console.log("mastered", mastered);
+			//var keys = _.keys(masteredArray);
+			//console.log("keys", keys);
+			var queryTargets = new Parse.Query(models.Target);
+			// var queryArray = _.map(keys, function(id){
+			// 	return queryTargets.equalTo('objectId', id);
 
-			//return the keys of the mastered targets
-			var keys = _.keys(mastered);
+			// });
+			//console.log('queryArray', queryArray);
+
 
 			session.set('dateEnded', endedTime);
 			//save an array of the ids of the targetsMastered to Parse
-			session.set('targetsMastered', keys);
+			session.set('targetsMastered', masteredArray);
 			session.save( null, {
 	 						 success: function(session) {
 						    // Execute any logic that should take place after the object is saved.
@@ -124,8 +129,30 @@ saveSession: function(){
 
 
 },
+
+	render: function() {
+		//this.getCompletedTargets();
+		var todaysDate = moment().format("MMM Do YY");
+		return (
+			<div className="session-start-container">
+
+
+		<Button onClick={this.handleSession} id="session-start" className="session-start-btn" >Start Session</Button>
+		<Button onClick={this.saveSession} id="session-save" className="hide save-session-btn" >Save Session</Button>
+		<span className="session-date">{todaysDate}</span>
+			  			<div id="session-container" className="animated hide">
+  				<ClientSession  session={this.state.sessionData} clientId={this.props.clientId} clientObj={this.props.clientObj}/>
+
+		</div>
+		</div>
+		);
+	}
+});
+
+module.exports = SessionStart;
 // getCompletedTargets: function(){
 // 	var self = this;
+// 	var endedTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 // 	var query = new Parse.Query(models.SessionOutcome);
 // 	query.equalTo('client', this.props.clientObj);
 // 	query.equalTo('outcome', true);
@@ -140,16 +167,23 @@ saveSession: function(){
 // 			var groupedOutcomes = _.groupBy(results, function(result){
 // 				return result.get('target').id;
 // 			});
-// 			//console.log("filtered:", groupedOutcomes);
+// 			console.log("grouped:", groupedOutcomes);
 // 			//console.log(targetIds);
-// 			var mastered = _.mapObject(groupedOutcomes, function(group){
-// 				if(group.length >= 3){
-// 					return group;
-// 				}
+// 			var masteredArray = [];
+// 			var mastered = _.mapObject(groupedOutcomes, function(group, keys){
+// 				//console.log("group" ,group);
+// 				//console.log("group length", group.length);
+// 				console.log('key:', keys);
+// 				 if (group.length >= 3){
+
+// 				 		masteredArray.push(keys);
+// 				 }
+// 				 //console.log('masteredArray', masteredArray);
 
 // 			});
+// 			 console.log('masteredArray', masteredArray);
 // 			//console.log("mastered", mastered);
-// 			var keys = _.keys(mastered);
+// 			//var keys = _.keys(masteredArray);
 // 			//console.log("keys", keys);
 // 			var queryTargets = new Parse.Query(models.Target);
 // 			// var queryArray = _.map(keys, function(id){
@@ -157,45 +191,29 @@ saveSession: function(){
 
 // 			// });
 // 			//console.log('queryArray', queryArray);
-// 			queryTargets.containedIn('objectId', keys);
-// 			queryTargets.find({
-// 				success: function(results){
-// 					console.log("target mastered:", results);
-// 					self.setState({"masteredTargets": results});
-// 				},
-// 				error: function(error){
-// 					alert("Error: " + error.code + " " + error.message);
-// 				}
-// 			});
-// 			//session.set('dateEnded', endedTime);
-// 			//session.set('targetsMastered', new models.Target(keys));
-// 		//	session.save();
-// 		},
+
+
+// 			session.set('dateEnded', endedTime);
+// 			//save an array of the ids of the targetsMastered to Parse
+// 			session.set('targetsMastered', masteredArray);
+// 			session.save( null, {
+// 	 						 success: function(session) {
+// 						    // Execute any logic that should take place after the object is saved.
+// 						    alert('New object created with objectId: ' + session.id);
+// 						  },
+// 						  error: function(session, error) {
+// 						    // Execute any logic that should take place if the save fails.
+// 						    // error is a Parse.Error with an error code and message.
+// 						    alert('Failed to create new object, with error code: ' + error.message);
+// 						  }
+// 						});
+
+// 			},
 // 		error: function(error){
 // 			 alert("Error: " + error.code + " " + error.message);
 
 // 		}
 // 	});
 
+
 // },
-	render: function() {
-
-		var todaysDate = moment().format("MMM Do YY");
-		return (
-			<div className="session-start-container">
-
-
-		<Button onClick={this.handleSession} id="session-start" className="session-start-btn" data-toggle="collapse" data-target="#session-container" aria-expanded="false" aria-controls="collapseExample" >Start Session</Button>
-		<Button onClick={this.saveSession} id="session-save" className="hide save-session-btn" >Save Session</Button>
-		<span className="session-date">{todaysDate}</span>
-			<div className="collapse" id="session-container">
-  			<div>
-  				<ClientSession  session={this.state.sessionData} clientId={this.props.clientId} clientObj={this.props.clientObj}/>
-  			</div>
-		</div>
-		</div>
-		);
-	}
-});
-
-module.exports = SessionStart;

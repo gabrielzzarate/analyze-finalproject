@@ -53,7 +53,7 @@ var ClientPrograms = React.createClass({
 		query.equalTo('client', this.props.clientObj);
 		query.include('targets');
 		query.find().then(function(programs){
-				console.log("program:", programs);
+				//console.log("program:", programs);
 				self.setState({"programs": programs});
 
 		}, function(error){
@@ -71,7 +71,7 @@ var ClientPrograms = React.createClass({
 		query.equalTo('client', this.props.clientObj);
 		query.include('targets');
 		query.find().then(function(programs){
-				console.log("program:", programs);
+				//console.log("program:", programs);
 				self.setState({"programs": programs});
 
 		}, function(error){
@@ -145,7 +145,7 @@ var ClientPrograms = React.createClass({
 	render: function() {
 
 		if(this.state.programs) {
-			console.log("programs", this.state.programs);
+			//console.log("programs", this.state.programs);
 			var data = this.props.clientObj;
 
 			if(this.state.splash === true) {

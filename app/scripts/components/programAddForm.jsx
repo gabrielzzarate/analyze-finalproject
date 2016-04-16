@@ -92,11 +92,12 @@ var ProgramAddForm = React.createClass({
 			<div>
 
 					<Modal show={this.props.modal} close={this.props.close} bsSize="large" aria-labelledby="contained-modal-title-lg">
+						<form onSubmit={this.handleSubmit}>
 						<Modal.Header closeButton>
-							 <Modal.Title id="contained-modal-title-sm">Modal heading</Modal.Title>
+							 <Modal.Title id="contained-modal-title-sm">Add a New Program</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
-							<form onSubmit={this.handleSubmit}>
+
 								<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"/>
 								<Input id="description-input" className="program-form" type="textarea" placeholder="Enter mastery criteria"/>
 								<div className="col-sm-8 pull-right">
@@ -104,16 +105,13 @@ var ProgramAddForm = React.createClass({
 									{targetForms}
 								</div>
 
-
-								<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
-
-							</form>
 						</Modal.Body>
 						<Modal.Footer>
 								<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
 
           			<Button onClick={this.props.close}>Close</Button>
         		</Modal.Footer>
+        		</form>
 				</Modal>
 			</div>
 		);

@@ -34,7 +34,7 @@ var ClientNotes = React.createClass({
 		var self = this;
 		var Notes = Parse.Object.extend("Notes");
 		var query = new Parse.Query( Notes );
-
+		query.descending('createdAt');
 		query.equalTo('client', this.props.clientObj);
 		query.find().then(function(notes){
 			self.setState({"notes": notes});
