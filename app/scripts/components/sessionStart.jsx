@@ -52,16 +52,23 @@ var SessionStart = React.createClass({
 			//var id = session.id;
 		//	console.log(id);
 	});
-	var scheduleRecord = new models.ScheduleRecord();
-	scheduleRecord.set('client', new models.Client(this.props.clientObj));
-	scheduleRecord.set('dayOfWeek', "monday");
-	scheduleRecord.set('timeOfDay', "9:00AM");
+	// var scheduleRecord = new models.ScheduleRecord();
+	// scheduleRecord.set('client', new models.Client(this.props.clientObj));
+	// //scheduleRecord.set('therapistTeam', Parse.User.current());
+	// scheduleRecord.set('dayOfWeek', "monday");
+	// scheduleRecord.set('timeOfDay', "9:00AM");
+
+	// var client = new models.Client();
+	// client.set('therapistTeam', Parse.User.current());
+	// client.save();
+
+
 
 },
 saveSession: function(){
 	var self = this;
 	var endedTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-	$('#session-save').addClass('hide');
+	$('#session-save').addClass('fadeOut');
 	$('#session-start').removeClass('hide');
 	$('#session-container').addClass('hide');
 
@@ -140,7 +147,7 @@ saveSession: function(){
 		<Button onClick={this.handleSession} id="session-start" className="session-start-btn" >Start Session</Button>
 		<Button onClick={this.saveSession} id="session-save" className="hide save-session-btn" >Save Session</Button>
 		<span className="session-date">{todaysDate}</span>
-			  			<div id="session-container" className="animated hide">
+			  			<div id="session-container" className="animated hide delay-three">
   				<ClientSession  session={this.state.sessionData} clientId={this.props.clientId} clientObj={this.props.clientObj}/>
 
 		</div>

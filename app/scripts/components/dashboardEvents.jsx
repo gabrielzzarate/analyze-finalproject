@@ -3,14 +3,28 @@
 
 //3rd party
 var React = require('react');
+var _ = require('underscore');
 
 
 var DashboardEvents = React.createClass({
+
 	render: function() {
+		var clients = this.props.allClientObj;
+		console.log(clients);
+
+		var sessionsPerWeek = _.map(this.props.allClientObj, function(client){
+			return client.get('numberOfSessions');
+		});
+		console.log(sessionsPerWeek);
+
+		var totalSessions = _.reduce(sessionsPerWeek, function(memo, num){ return memo + num; }, 0);
+
+		console.log(totalSessions);
+
 		return (
 			<div>
 				<div className="col-sm-3 event-section sessions-this-week">
-						<p className="event-number">15</p>
+						<p className="event-number">{totalSessions}</p>
 						<p className="event-title">Sessions</p>
 						<p className="event-subtitle">This Week</p>
 				</div>

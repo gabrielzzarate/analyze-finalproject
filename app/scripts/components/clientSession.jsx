@@ -110,7 +110,7 @@ saveSession: function(){
 				});
 				return (
 					<div className="target-session-container" key={program.id}>
-					<div className="program-item" >
+					<div>
 						<ListGroupItem className="program-item">{program.get('name')}</ListGroupItem>
 						{targets}
 					</div>

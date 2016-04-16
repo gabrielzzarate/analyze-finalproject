@@ -149,7 +149,7 @@ var ClientPrograms = React.createClass({
 			var data = this.props.clientObj;
 
 			if(this.state.splash === true) {
-				return (<ProgramEditForm programObj={this.state.modalEditModel}  clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>);
+				return (<ProgramEditForm programObj={this.state.modalEditModel} close={this.modalEditClose} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>);
 			}
 
 			var programs = this.state.programs.map(function(program){
@@ -166,11 +166,21 @@ var ClientPrograms = React.createClass({
 				return (
 					<div key={program.id}>
 						<div className="col-sm-12 program-config-item-container">
-						 <SiteHeader title={program.get('name')}/><a onClick={this.modalEditOpen.bind(this, program)}   className="program-edit">edit</a>
-
-
+						<div className="row">
+							<div className="col-sm-12">
+						 	<SiteHeader title={program.get('name')}/>
+						 	</div>
+						</div>
 							<div className="col-sm-10 col-sm-offset-1">
-								<p className="master-criteria-text">mastery criteria: {program.get('description')}</p>
+								<div className="row">
+									<div className="col-sm-11">
+
+									<p className="master-criteria-text">mastery criteria: <span className="criteria-text">{program.get('description')}</span></p>
+									</div>
+
+									<a onClick={this.modalEditOpen.bind(this, program)}   className="program-edit pull-right"> <i className="fa fa-pencil" aria-hidden="true"></i></a>
+
+								</div>
 								<h5 className="targets-header">Targets:</h5>
 								<ul>
 									<li className="targets-item">{targets}</li>
@@ -185,9 +195,10 @@ var ClientPrograms = React.createClass({
 				<div>
 						<div>
 							<div className="col-sm-12 program-config-container">
+							<div className = "row">
 								<Button className="add-program-btn" bsStyle="primary" onClick={this.modalAddOpen}>Add Program</Button>
 								<ProgramAddForm getPrograms={this.getPrograms} clientObj={this.props.clientObj} modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
-
+							</div>
 									{programs}
 							</div>
 					</div>

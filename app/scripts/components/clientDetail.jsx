@@ -28,7 +28,7 @@ var ClientDetail = React.createClass({
 
 	getInitialState: function() {
 	    return {
-	    	clientObj: null
+	    	clientObj: null,
 	    };
 	},
 	observe: function(){
@@ -42,6 +42,7 @@ var ClientDetail = React.createClass({
 		var client = this.data.clientObj;
 
 		if(this.data.clientObj){
+			var user = Parse.User.current().get('username');
 				return (
 					<div key={client.objectId}>
 					<div className = "col-sm-10 col-sm-offset-1 client-profile-container">
@@ -52,17 +53,24 @@ var ClientDetail = React.createClass({
 								</div>
 
 								<div className="client-header col-sm-6">
-										<h4 className='client-name'>{client.Name}</h4>
+
+										<h4 className='client-name-detail-page'>{client.Name}</h4>
 										<p><i className="fa fa-phone client-phone"></i> {client.telephone}</p>
 
 										<p><i className="fa fa-map-marker client-address"></i> {client.address}</p>
-										<p><i className="fa fa-calendar"></i></p>
+										<p><i className="fa fa-calendar"></i> {client.schedule}</p>
 								</div>
 							</div>
 
 
 						<div className="col-sm-4 col-sm-offset-1 team-info">
-								<p><i className="fa fa-user"></i></p>
+								<h6>Therapist Team <i className="fa fa-user"></i> </h6>
+
+								<ul className ="therapist-team-list">
+									<li> Lead: {user}</li>
+									<li>Line: Suzie Martin</li>
+								</ul>
+
 						</div>
 						</div>
 						<div className= "col-sm-12 client-data-container">

@@ -22,6 +22,63 @@ $font-stack-secondary: 'Merriweather', serif;
 img {
   max-width: 100%;
 }
+
+
+
+@-webkit-keyframes fadeOut {
+0% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+}
+}
+
+@-moz-keyframes fadeOut {
+0% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+}
+}
+
+@-o-keyframes fadeOut {
+0% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+}
+}
+
+@keyframes fadeOut {
+0% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+}
+}
+
+.animated.fadeOut {
+-webkit-animation-name: fadeOut;
+-moz-animation-name: fadeOut;
+-o-animation-name: fadeOut;
+animation-name: fadeOut;
+}
+
+
+.delay-three {
+-webkit-animation-delay: 0.60s;
+-moz-animation-delay: 0.60s;
+-o-animation-delay: 0.60s;
+animation-delay: 0.60s;
+}
 .animated {
 -webkit-animation-fill-mode: both;
 -moz-animation-fill-mode: both;
@@ -83,13 +140,31 @@ opacity: 1;
 }
 }
 
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+
+input[type=text]:focus, textarea:focus,  {
+  box-shadow: 0 0 5px  #57cbbb;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid  #57cbbb;
+}
+
 
 // ##############################################
 //###############################################
 // Login Screen Styles
 // #############################################
 // #############################################
-h1, h2, h3, h4, h5, h6, span, div, p {
+h1, h2, h3, h4, h5, h6, div,  {
   font-family: $font-stack-primary;
   color: rgba(11, 28, 84, 0.88);
 }
@@ -441,11 +516,13 @@ body {
 
 }
 
+
 .client-info-container {
   width: 100%;
 
   margin-left: 22px;
   img {
+
     display: inline-block;
 
   }
@@ -454,11 +531,12 @@ body {
   padding-bottom: 25px;
 
 }
+
 .client-info {
   margin-top: 20px;
 }
-.client-name {
-  display: inline-block;
+.client-name-detail-page {
+  color: #4caaa0;
 }
 .client-image-container {
   padding: 0px;
@@ -482,11 +560,22 @@ body {
 .team-info {
   height: 150px;
   box-shadow: none;
-  border-color: #8d909e;
-  border: 1px solid;
-  border-radius: 5%;
+
+  border-left: 1px solid #8d909e;
 
 
+
+}
+.therapist-team-list {
+  margin-left: 10px;
+  padding-left: 5px;
+  li {
+    font-size: 10px;
+    list-style: none;
+    font-family: $font-stack-secondary;
+     color: #8d909e;
+
+  }
 }
 
 .client-data-container {
@@ -516,12 +605,30 @@ body {
   height: 300px;
   //overflow: scroll;
 
-  .add-target-btn {
-    float: right;
-    margin: 10px;
-  }
+  // .add-target-btn  {
+  //   border-radius: 100%;
+  //   float: right;
+  //   height: 20px;
+  //   color: #57cbbb;
+  //   background-color: #57cbbb;
+  //   margin: 10px;
+  // }
 
 }
+
+.add-target-btn  {
+    border-radius: 100%;
+    float: right;
+    height: 35px;
+    width: 35px;
+    border: none;
+
+    background-color: #57cbbb;
+    margin: 10px;
+    color: white;
+    position: relative;
+    top: -3px;
+  }
 
 .graph-start-container {
   height: 700px;
@@ -533,6 +640,10 @@ body {
   //overflow: scroll;
   border-bottom: solid 1px #e1e4eb;
 
+}
+
+.program-name-header, .site-header-link {
+  color: black;
 }
 
 .add-program-btn {
@@ -553,7 +664,7 @@ body {
 }
 .program-edit {
   float: right;
-  text-decoration: underline;
+  color: rgba( 11, 28, 84, 0.88);
 }
 .targets-item {
   list-style: none;
@@ -590,14 +701,20 @@ input[type=text]:focus, textarea:focus {
 }
 
 .master-criteria-text {
-  font-family: "Merriweather", serif;
-    color: #8d909e;
+  font-size: 13px;
+  color: #8d909e;
+  font-style: italic;
+
+  .criteria-text {
+    color: #4caaa0;
+    font-style: italic;
+  }
 }
 
 .target-item-name {
   font-size: 18px;
-    color: rgba(11, 28, 84, 0.88);
-    font-family: "Merriweather Sans", sans-serif;
+    //color: rgba(11, 28, 84, 0.88);
+    //font-family: "Merriweather Sans", sans-serif;
 }
 
 .target-item-container {
@@ -605,43 +722,9 @@ input[type=text]:focus, textarea:focus {
   margin-bottom: 10px;
 }
 
- .yes-btn {
-  border-radius: 100%;
-  float: left;
-  color: white;
-  background-color: green;
- }
 
- .no-btn {
-  border-radius: 100%;
-  color: white;
-  float: right;
-  background-color: red;
- }
- .session-start-btn {
 
-   font-family: "Merriweather Sans", sans-serif;
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-    color: white;
-    width: 120px;
-    height: 35px;
-    border-radius: 100px;
-    background-color: #57cbbb;
-    border: none;
-  }
 
-  .session-start-container {
-    margin-top: 10px;
-  }
-
-.save-session-btn {
-  border-radius: 100px;
-  border: solid 2px #57cbbb;
-  margin-bottom: 20px;
-}
 
 // notes styles
 
@@ -660,9 +743,49 @@ input[type=text]:focus, textarea:focus {
 }
 
 //session styles
+
+ .yes-btn {
+  border-radius: 100%;
+  float: left;
+  color: white;
+  background-color: green;
+ }
+
+ .no-btn {
+  border-radius: 100%;
+  color: white;
+  float: right;
+  background-color: red;
+ }
+
+.save-session-btn {
+  border-radius: 100px;
+  border: solid 2px #57cbbb;
+  margin-bottom: 20px;
+}
+
+ .session-start-container {
+    margin: 20px;
+    margin-bottom: 60px;
+  }
+
+.session-start-btn {
+
+   font-family: "Merriweather Sans", sans-serif;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    color: white;
+    width: 120px;
+    height: 35px;
+    border-radius: 100px;
+    background-color: #57cbbb;
+    border: none;
+  }
 .client-session-container {
   margin-top: 15px;
-  height: 600px;
+  //height: 600px;
 
   //overflow: scroll;
 }
@@ -723,20 +846,39 @@ input[type=text]:focus, textarea:focus {
 ///splash screen styles
 
 .splash-screen{
+  transition: opacity 0.15s linear;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 1050;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
   .body-container {
     background: rgba(212, 212, 212, .8);
   }
 
 }
 .splash-container{
-  width: 80%;
-  margin: 10% auto 0 auto;
-  background: white;
-  border: 1px solid rgb(212, 212, 212);
+  position: relative;
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    background-clip: padding-box;
+    outline: 0;
+  border-radius: 3%;
+  width: 100%;
+
+
+
   padding: 10px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.custom-modal {
+  width: 60%;
 }

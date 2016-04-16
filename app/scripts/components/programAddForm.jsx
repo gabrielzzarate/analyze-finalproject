@@ -91,18 +91,26 @@ var ProgramAddForm = React.createClass({
 
 			<div>
 
-					<Modal show={this.props.modal} close={this.props.close} bsSize="large" aria-labelledby="contained-modal-title-lg">
-						<form onSubmit={this.handleSubmit}>
-						<Modal.Header closeButton>
+					<Modal show={this.props.modal} onHide={this.props.close} close={this.props.close} dialogClassName="custom-modal" >
+						<form onSubmit={this.props.handleSubmit}>
+						<Modal.Header >
 							 <Modal.Title id="contained-modal-title-sm">Add a New Program</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
+							<div className="row">
+
+							<div className="col-sm-6 ">
 
 								<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"/>
 								<Input id="description-input" className="program-form" type="textarea" placeholder="Enter mastery criteria"/>
-								<div className="col-sm-8 pull-right">
-									<a onClick={this.addTarget} className="add-target-btn"><i className="fa fa-plus-circle"></i></a>
+							</div>
+								<div className="col-sm-4 ">
 									{targetForms}
+								</div>
+								<div className="col-sm-1">
+									<button onClick={this.addTarget} type="button"className="add-target-btn pull-right"><i className="fa fa-plus-circle"></i></button>
+								</div>
+
 								</div>
 
 						</Modal.Body>

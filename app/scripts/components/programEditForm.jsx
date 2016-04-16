@@ -84,28 +84,36 @@ var ProgramEditForm = React.createClass({
 
 				<div className = "splash-screen">
 						<div className = "splash-container">
-							<Modal.Header closeButton>
+							<Modal.Header >
 							 <Modal.Title id="contained-modal-title-sm">Edit a Program</Modal.Title>
 						</Modal.Header>
 
 								<div className="modal-edit-container">
-								<Modal.Body>
 								<form onSubmit={this.props.handleSubmit}>
-								<div className="col-sm-6">
-									<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"  valueLink={this.linkState('programName')}/>
-									<Input id="description-input" className="program-form" type="textarea" placeholder="Enter mastery criteria" valueLink={this.linkState('masteryCriteria')}/>
-								</div>
-								<div className="col-sm-6">
+										<Modal.Body>
+										<div className="row">
+										<div className="col-sm-6">
+											<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"  valueLink={this.linkState('programName')}/>
+											<Input id="description-input" className="program-form" type="textarea" placeholder="Enter mastery criteria" valueLink={this.linkState('masteryCriteria')}/>
+										</div>
+										<div className="col-sm-4 ">
 
-										<a onClick={this.addTarget} className="add-target-btn"><i className="fa fa-plus-circle"></i></a>
-										{targetForms}
+											{targetForms}
+										</div>
+									<div className="col-sm-1">
+										<button onClick={this.addTarget} type="button"className="add-target-btn pull-right"><i className="fa fa-plus-circle"></i></button>
+									</div>
 
-								</div>
 
-									<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
+										</div>
+										</Modal.Body>
+								<Modal.Footer>
+								<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
 
-								</form>
-								</Modal.Body>
+
+          			<Button onClick={this.props.close}>Close</Button>
+        			</Modal.Footer>
+        			</form>
 								</div>
 
 						</div>

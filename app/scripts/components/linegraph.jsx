@@ -87,26 +87,17 @@ var LineGraph = React.createClass({
 
 
        _.each(programs, function(program){
-
-
             targets = program.get('targets');
-
             var targetsT = program.get('targets');
-
              var targetNameArray = targetsT.map(function(target){
                return target.get('name');
             });
-
-
             var targetsArray = targets.map(function(target){
                 return target.id;
-
             });
-
-                var countArray = [];
-
+                //var countArray = [];
                 var sessionDateArray = [];
-
+                var overallMasteredTargetCount = 0;
 
             var sessionData = sessions.map(function(session){
                 var targetsMastered = session.get('targetsMastered');
@@ -114,30 +105,32 @@ var LineGraph = React.createClass({
                 var sessionDates = moment(dates).format("MMM Do");
                  sessionDateArray.push(sessionDates);
 
-
-
                  // var targetName = targetNameArray.map(function(name){
                  //        return name;
                  // });
 
                 var count = _.intersection(targetsArray, targetsMastered).length;
+                if(count > overallMasteredTargetCount){
+                    overallMasteredTargetCount = count;
+                }
+                return overallMasteredTargetCount;
                 // var maxCount = count > maxCount ? count : maxCount;
-                 countArray.push(count);
-                 console.log(countArray);
+                //  countArray.push(count);
+                //  console.log('countArray', countArray);
 
-                return {
-                        label: targetNameArray,
-                        fillColor: "rgba(151,187,205,0.2)",
-                        strokeColor: "rgba(151,187,205,1)",
-                        pointColor: "rgba(151,187,205,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(151,187,205,1)",
-                        data: countArray
+                // return {
+                //         label: targetNameArray,
+                //         fillColor: "rgba(151,187,205,0.2)",
+                //         strokeColor: "rgba(151,187,205,1)",
+                //         pointColor: "rgba(151,187,205,1)",
+                //         pointStrokeColor: "#fff",
+                //         pointHighlightFill: "#fff",
+                //         pointHighlightStroke: "rgba(151,187,205,1)",
+                //         data: countArray
 
-                };
+                // };
             });
-
+            console.log('sessionData', sessionData);
 
             var graphs = self.state.graphs;
 
@@ -145,7 +138,16 @@ var LineGraph = React.createClass({
                     programs: programs,
                     id: targets,
                     labels: sessionDateArray,
-                    datasets: sessionData
+                    datasets: [{
+                        label: targetNameArray,
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: sessionData
+                    }]
 
             };
             graphs.push(graphConfig);
