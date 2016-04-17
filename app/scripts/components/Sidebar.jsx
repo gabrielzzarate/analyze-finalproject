@@ -6,9 +6,16 @@ var NavItem = require('react-bootstrap').NavItem;
 
 
 var Sidebar = React.createClass ({
+
+	toggleMenu: function(){
+		$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+	},
 	render: function() {
 		return (
-			<div>
+			<div id="sidebar-wrapper">
 
 					<div className="sidebar-header col-sm-10 ">
 
@@ -26,7 +33,8 @@ var Sidebar = React.createClass ({
 
 				</div>
 
-				<div className="sidebar-nav col-sm-10 col-sm-offset-1">
+
+				<div className="sidebar-nav col-sm-10 col-sm-offset-1 ">
 						<Nav bsStyle="pills" stacked >
     						<NavItem className="navitem" eventKey={1} href="#home/">Dashboard</NavItem>
     						<NavItem className="navitem" eventKey={2} title="Item">Procedures</NavItem>
@@ -35,6 +43,7 @@ var Sidebar = React.createClass ({
 
 
 				</div>
+
 
 
 

@@ -65,7 +65,7 @@ var Interface = React.createClass({
 			return (
 				<div className="app-content">
 					<div className="row body-container">
-					<div id="sidebar" className="col-sm-3">
+					<div id="sidebar" className="col-sm-1 col-md-3">
 
 						<Sidebar />
 					</div>

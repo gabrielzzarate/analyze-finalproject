@@ -59,13 +59,16 @@ var ProgramEditForm = React.createClass({
 	},
 	componentWillReceiveProps: function(nextProps) {
 		//console.log('nextProps.programObj', nextProps);
-		console.log('edit', nextProps.programObj);
+
 	  this.setState(this.buildProgram(nextProps.programObj));
 	},
 
 	addTarget:function(){
 		var newCount = this.state.targetCount + 1;
     this.setState({'targetCount': newCount});
+	},
+	handleSubmit: function(){
+
 	},
 	render: function() {
 	//	console.log("edit this program", this.props.programObj);
@@ -82,46 +85,43 @@ var ProgramEditForm = React.createClass({
 			//console.log('programName', this.state.programName);
 			return (
 
-				<div className = "splash-screen">
-						<div className = "splash-container">
+
+					<Modal show={this.props.modal} dialogClassName="custom-modal">
+					<form onSubmit={this.props.handleSubmit}>
 							<Modal.Header >
-							 <Modal.Title id="contained-modal-title-sm">Edit a Program</Modal.Title>
+							 <Modal.Title id="contained-modal-title-sm">Edit Program</Modal.Title>
 						</Modal.Header>
 
-								<div className="modal-edit-container">
-								<form onSubmit={this.props.handleSubmit}>
 										<Modal.Body>
-										<div className="row">
-										<div className="col-sm-6">
-											<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"  valueLink={this.linkState('programName')}/>
-											<Input id="description-input" className="program-form" type="textarea" placeholder="Enter mastery criteria" valueLink={this.linkState('masteryCriteria')}/>
+											<div className="row">
+											<div className="col-sm-6">
+												<Input id="program-edit-input" className="program-input program-form" type="text" placeholder="Enter new program"  valueLink={this.linkState('programName')}/>
+												<Input id="description-edit-input" className=" description-input program-form" type="textarea" placeholder="Enter mastery criteria" valueLink={this.linkState('masteryCriteria')}/>
+											</div>
+											<div className="col-sm-4">
+												{targetForms}
+											</div>
+										<div className="col-sm-1">
+											<button onClick={this.addTarget} type="button"className="add-target-btn pull-right"><i className="fa fa-plus-circle"></i></button>
 										</div>
-										<div className="col-sm-4 ">
-
-											{targetForms}
-										</div>
-									<div className="col-sm-1">
-										<button onClick={this.addTarget} type="button"className="add-target-btn pull-right"><i className="fa fa-plus-circle"></i></button>
-									</div>
-
-
-										</div>
+											</div>
 										</Modal.Body>
-								<Modal.Footer>
-								<Button type="submit" className="secondary-btn program-add-btn">Add Program</Button>
 
+								<Modal.Footer>
+								<Button type="submit" className="secondary-btn program-add-btn">Save Program</Button>
 
           			<Button onClick={this.props.close}>Close</Button>
+
         			</Modal.Footer>
         			</form>
-								</div>
 
-						</div>
-				</div>
+
+				</Modal>
+
 		);
 	} else {
 			return (
-				<p> </p>
+				<p>Loading... </p>
 				);
 	}
 }
@@ -129,3 +129,5 @@ var ProgramEditForm = React.createClass({
 });
 
 module.exports = ProgramEditForm;
+
+

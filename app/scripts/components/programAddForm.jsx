@@ -37,10 +37,10 @@ var ProgramAddForm = React.createClass({
 		var newCount = this.state.targetCount + 1;
     this.setState({'targetCount': newCount});
 	},
-	handleSubmit: function(event){
+		handleSubmit: function(event){
 		event.preventDefault();
-		var programName = $('#program-input').val();
-		var programDescription = $('#description-input').val();
+		var programName = $('.program-input').val();
+		var programDescription = $('.description-input').val();
 		var client = this.props.clientObj;
 		var programObj;
 		var self = this;
@@ -59,12 +59,12 @@ var ProgramAddForm = React.createClass({
 
   		  	for(var i=1; i <= self.state.targetCount; i++){
 
-  		  		//console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
+  		  		console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
   		  		var name = self.refs["formset"+i].refs["name"+i].value;
   		  		var target = new models.Target();
 
   		  		target.set("name", name);
-  		  		target.set("client", new models.Client(this.props.clientObj));
+  		  		target.set("client", new models.Client(client));
   		  		target.set('program', programObj);
   		  		programTargets.push(target);
   		  	}
@@ -81,6 +81,8 @@ var ProgramAddForm = React.createClass({
   					}
   		  	});
 	},
+
+
 	render: function() {
 		var targetForms = [];
 			for(var i=1; i<= this.state.targetCount; i++){
@@ -89,29 +91,29 @@ var ProgramAddForm = React.createClass({
 			}
 		return (
 
-			<div>
 
-					<Modal show={this.props.modal} onHide={this.props.close} close={this.props.close} dialogClassName="custom-modal" >
-						<form onSubmit={this.props.handleSubmit}>
+
+					<Modal show={this.props.modal}  close={this.props.close} dialogClassName="custom-modal" >
+						<form onSubmit={this.handleSubmit}>
 						<Modal.Header >
 							 <Modal.Title id="contained-modal-title-sm">Add a New Program</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
 							<div className="row">
 
-							<div className="col-sm-6 ">
+								<div className="col-sm-6 ">
 
-								<Input id="program-input" className="program-form" type="text" placeholder="Enter new program"/>
-								<Input id="description-input" className="program-form" type="textarea" placeholder="Enter mastery criteria"/>
-							</div>
-								<div className="col-sm-4 ">
-									{targetForms}
+									<Input id="program-input" className="program-input program-form" type="text" placeholder="Enter new program"/>
+									<Input id="description-input" className="description-input program-form" type="textarea" placeholder="Enter mastery criteria"/>
 								</div>
-								<div className="col-sm-1">
-									<button onClick={this.addTarget} type="button"className="add-target-btn pull-right"><i className="fa fa-plus-circle"></i></button>
-								</div>
+									<div className="col-sm-4 ">
+										{targetForms}
+									</div>
+									<div className="col-sm-1">
+										<button onClick={this.addTarget} type="button" className="add-target-btn pull-right"><i className="fa fa-plus-circle"></i></button>
+									</div>
 
-								</div>
+									</div>
 
 						</Modal.Body>
 						<Modal.Footer>
@@ -121,7 +123,7 @@ var ProgramAddForm = React.createClass({
         		</Modal.Footer>
         		</form>
 				</Modal>
-			</div>
+
 		);
 	}
 

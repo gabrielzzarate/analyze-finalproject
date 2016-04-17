@@ -184,6 +184,76 @@ body {
   //   right:0;
 }
 
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    padding: 0px;
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: rgba (11, 28, 84, 0.88);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+
+@media(min-width:768px) {
+
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
 .user-login-container {
 	margin: 80px auto;
   width: 380px;
@@ -266,22 +336,22 @@ body {
 // #############################################
 // #############################################
 
-#sidebar {
-  padding: 0px;
-  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.11);
-  height: 100%;
-}
+// #sidebar {
+//   padding: 0px;
+//   box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.11);
+//   height: 100%;
+// }
 
-.sidebar {
-	height: 100%;
-	background-color: rgba(10, 27, 84, 0.88);
+// .sidebar {
+// 	height: 100%;
+// 	background-color: rgba(10, 27, 84, 0.88);
 
-}
+// }
 
 .sidebar-header {
   width: 100%;
   margin-top: 22px;
-  margin-left: 22px;
+  margin-left: 5px;
   img {
     display: inline-block;
   }
@@ -292,7 +362,7 @@ body {
 
 }
 .sidebar-heading {
-  margin-left: 10px;
+  margin-left: 5px;
   display: inline-block;
   vertical-align: bottom;
   width: 70%;

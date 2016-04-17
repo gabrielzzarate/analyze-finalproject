@@ -80,8 +80,7 @@ var ClientPrograms = React.createClass({
 
 	},
 
-	modalAddOpen: function(e){
-    e.preventDefault();
+	modalAddOpen: function(){
    this.setState({ modalAddToggle: true });
   },
 
@@ -99,8 +98,8 @@ var ClientPrograms = React.createClass({
 
 	handleSubmit: function(event){
 		event.preventDefault();
-		var programName = $('#program-input').val();
-		var programDescription = $('#description-input').val();
+		var programName = $('.program-input').val();
+		var programDescription = $('.description-input').val();
 		var client = this.props.clientObj;
 		var programObj;
 		var self = this;
@@ -119,7 +118,7 @@ var ClientPrograms = React.createClass({
 
   		  	for(var i=1; i <= self.state.targetCount; i++){
 
-  		  		//console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
+  		  		console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
   		  		var name = self.refs["formset"+i].refs["name"+i].value;
   		  		var target = new models.Target();
 
@@ -148,10 +147,9 @@ var ClientPrograms = React.createClass({
 			//console.log("programs", this.state.programs);
 			var data = this.props.clientObj;
 
-			if(this.state.splash === true) {
-				return (<ProgramEditForm programObj={this.state.modalEditModel} close={this.modalEditClose} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>);
-			}
-
+			// if(this.state.splash === true) {
+			// 	return (<ProgramEditForm programObj={this.state.modalEditModel} close={this.modalEditClose} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>);
+			// }
 			var programs = this.state.programs.map(function(program){
 					var targetsArray = program.get('targets');
 
@@ -198,6 +196,8 @@ var ClientPrograms = React.createClass({
 							<div className = "row">
 								<Button className="add-program-btn" bsStyle="primary" onClick={this.modalAddOpen}>Add Program</Button>
 								<ProgramAddForm getPrograms={this.getPrograms} clientObj={this.props.clientObj} modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
+								<ProgramEditForm programObj={this.state.modalEditModel} close={this.modalEditClose} modal={this.state.splash} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
+
 							</div>
 									{programs}
 							</div>
