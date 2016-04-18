@@ -10,22 +10,23 @@ var Sidebar = React.createClass ({
 
 	render: function() {
 		return (
-			<div id="sidebar-wrapper">
+			<div id="sidebar-wrapper ">
 
 
 
-						<div className="sidebar-header col-sm-10 ">
+						<div className="sidebar-header col-sm-12 ">
 
 
 									<a href="#home/">
+												<div className="col-xs-3 sidebar-image-container">
 
 												<img className="sidebar-brand" src="./images/app-icon-main.svg" />
-
-
-
+												</div>
+												<div className="col-xs-9 sidebar-heading-container">
 												<div className="sidebar-heading">
 												<span className="sidebar-title">Analyze</span>
 												<span className="sidebar-subtitle">Therapy Tracking</span>
+												</div>
 
 
 

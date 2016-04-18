@@ -72,14 +72,14 @@ var Interface = React.createClass({
 			return (
 				<div className="app-content">
 					<div className="row body-container">
-					<div id="sidebar" className="col-sm-3">
+					<div id="sidebar" className="col-xs-3 hidden-xs animated fadeInLeft">
 
 						<Sidebar />
 
 					</div>
-					<div id="main-container" style={style} className="col-sm-9">
+					<div id="main-container" style={style} className="animated fadeIn col-sm-9 col-xs-9 col-xs-12">
 						<Header />
-						<div id="body-container" className="col-sm-12">
+						<div id="body-container" className="col-xs-12 ">
 
 						{body}
 						</div>

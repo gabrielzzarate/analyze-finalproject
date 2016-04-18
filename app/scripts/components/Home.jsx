@@ -48,9 +48,9 @@ var Home = React.createClass ({
 		return (
 
 			<div style ={style}>
-			 	<div className = "col-sm-10 col-sm-offset-1 main-dashboard-container">
+			 	<div className = "col-sm-10 col-sm-offset-1 col-xs-9 col-xs-offset-2 main-dashboard-container">
 			 			<div className="col-sm-10 col-sm-offset-1 dashboard-welcome-container">
-			 				<div className="welcome-left col-sm-6">
+			 				<div className="welcome-left col-sm-6 col-xs-6">
 			 					<span className="welcome-user">Welcome, {currentUser}</span>
 			 				</div>
 			 				<div className="welcome-right col-sm-5 col-sm-offset-1">

@@ -9,6 +9,7 @@ var ParseReact = require('parse-react');
 var Chart = require('chart.js');
 //var LineChart = require("react-chartjs").Line;
 var LineChart = require("rc-chartjs").Line;
+var DoughnutChart = require("rc-chartjs").Doughnut;
 
 var moment = require('moment');
 var _ = require('underscore');
@@ -305,7 +306,7 @@ var LineGraph = React.createClass({
                 <div key={data.id}>
                     {programName}
                     <LineChart className="behavior-line-chart" data={data} options={data.options}  width="500" height="250" />
-
+                    <DoughnutChart />
                 </div>
                 );
         });

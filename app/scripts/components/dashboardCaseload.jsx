@@ -23,12 +23,8 @@ var DashboardCaseload = React.createClass({
 
 	    };
 	},
-
-
 	componentWillMount: function() {
-
 		var query = new Parse.Query(models.Client);
-
 		query.equalTo('therapistTeam', this.state.user);
 		query.find().then(function(clients){
 		//	console.log(clients);
@@ -44,7 +40,7 @@ var DashboardCaseload = React.createClass({
 		var caseLoadItems = this.state.clients.map(function(client) {
 
 				return (
-					<div key={client.id} className="col-sm-2">
+					<div key={client.id} className="col-sm-2 col-xs-4">
 									<a href={"#profile/" + client.id}>
 									<img src= "./images/user-icon-1.svg" />
 
