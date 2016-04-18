@@ -24,7 +24,6 @@ Backbone.history.start();
 
 
 
-
 //when page loads interface component renders first, passes in router
 // ReactDOM.render(
 // 	React.createElement(Interface, {

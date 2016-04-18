@@ -50,13 +50,16 @@ var ProgramEditForm = React.createClass({
 
 		if(this.props.programObj){
 			var program = this.props.programObj;
+
 			state = this.buildProgram(program);
-		}
-		state.targetCount = 1;
-		state.targets = '';
+
+		state.targetCount = 0;
+		state.targets = program.get('targets').name;
 	    //console.log('state', state);
-	    return state;
-	},
+
+	}
+	return state;
+},
 	componentWillReceiveProps: function(nextProps) {
 		//console.log('nextProps.programObj', nextProps);
 
@@ -75,12 +78,15 @@ var ProgramEditForm = React.createClass({
 
 
 		if(this.props.programObj) {
+
 			var targetForms = [];
 			var program = this.props.programObj;
+			console.log("program", program);
+			console.log(this.state.targets);
 			//console.log(program.get('name'));w
 				for(var i=1; i<= this.state.targetCount; i++){
 					var count = i;
-					targetForms.push(<TargetFormSet targets={this.state.targets} key={count} count={count} ref={"formset" + count} />);
+					targetForms.push(<TargetFormSet targets={this.state.targets[i]} key={count} count={count} ref={"formset" + count} />);
 				}
 			//console.log('programName', this.state.programName);
 			return (

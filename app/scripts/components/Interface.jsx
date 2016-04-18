@@ -20,6 +20,7 @@ var Sidebar = require('./Sidebar.jsx');
 var Login = require('./Login.jsx');
 var Home = require('./Home.jsx');
 var ClientDetail = require("./clientDetail.jsx").ClientDetail;
+var Admin = require("./Admin.jsx");
 
 // } else if (this.props.router.current == 'session') {
 // 				body = (
@@ -45,6 +46,12 @@ var Interface = React.createClass({
 					//home screen
 					<Home />
 					);
+				} else if(this.props.router.current == 'admin'){
+					body = (
+						// admin screen
+						<Admin id={this.props.router.clientId} />
+						);
+
 			} else if (this.props.router.current == 'profile'){
 					body = (
 						//client profile
@@ -60,14 +67,15 @@ var Interface = React.createClass({
 
 			}
 			var style = {
-        backgroundColor: 'rgb(225, 228, 235)' // variable for background color of main-content
+        backgroundColor: 'rgb(225, 228, 235)'
        };
 			return (
 				<div className="app-content">
 					<div className="row body-container">
-					<div id="sidebar" className="col-sm-1 col-md-3">
+					<div id="sidebar" className="col-sm-3">
 
 						<Sidebar />
+
 					</div>
 					<div id="main-container" style={style} className="col-sm-9">
 						<Header />
@@ -78,7 +86,10 @@ var Interface = React.createClass({
 					</div>
 					</div>
 
+
+
 				</div>
+
 				);
 	}
 

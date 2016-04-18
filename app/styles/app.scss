@@ -23,122 +23,29 @@ img {
   max-width: 100%;
 }
 
+body {
+  font-family: $font-stack-primary;
+  background-color: #273669;
+  background-size: cover;
+  color: rgba (11, 28, 84, 0.88);
+  margin: 0;
+  display: block;
 
-
-@-webkit-keyframes fadeOut {
-0% {
-opacity: 1;
-}
-
-100% {
-opacity: 0;
-}
 }
 
-@-moz-keyframes fadeOut {
-0% {
-opacity: 1;
-}
-
-100% {
-opacity: 0;
-}
-}
-
-@-o-keyframes fadeOut {
-0% {
-opacity: 1;
-}
-
-100% {
-opacity: 0;
-}
-}
-
-@keyframes fadeOut {
-0% {
-opacity: 1;
-}
-
-100% {
-opacity: 0;
-}
-}
-
-.animated.fadeOut {
--webkit-animation-name: fadeOut;
--moz-animation-name: fadeOut;
--o-animation-name: fadeOut;
-animation-name: fadeOut;
+#body-container {
+  position: relative;
+    width: 100%;
+    max-width: 120em;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
-.delay-three {
--webkit-animation-delay: 0.60s;
--moz-animation-delay: 0.60s;
--o-animation-delay: 0.60s;
-animation-delay: 0.60s;
-}
-.animated {
--webkit-animation-fill-mode: both;
--moz-animation-fill-mode: both;
--ms-animation-fill-mode: both;
--o-animation-fill-mode: both;
-animation-fill-mode: both;
--webkit-animation-duration: 1s;
--moz-animation-duration: 1s;
--ms-animation-duration: 1s;
--o-animation-duration: 1s;
-animation-duration: 1s;
-}
-
-.fadeIn {
--webkit-animation-name: fadeIn;
--moz-animation-name: fadeIn;
--o-animation-name: fadeIn;
-animation-name: fadeIn;
-}
-
-
-@-webkit-keyframes fadeIn {
-0% {
-opacity: 0;
-}
-
-100% {
-opacity: 1;
-}
-}
-
-@-moz-keyframes fadeIn {
-0% {
-opacity: 0;
-}
-
-100% {
-opacity: 1;
-}
-}
-
-@-o-keyframes fadeIn {
-0% {
-opacity: 0;
-}
-
-100% {
-opacity: 1;
-}
-}
-
-@keyframes fadeIn {
-0% {
-opacity: 0;
-}
-
-100% {
-opacity: 1;
-}
-}
 
 input[type=text], textarea {
   -webkit-transition: all 0.30s ease-in-out;
@@ -169,90 +76,6 @@ h1, h2, h3, h4, h5, h6, div,  {
   color: rgba(11, 28, 84, 0.88);
 }
 
-
-body {
-  font-family: $font-stack-primary;
-  background-color: #273669;
-  background-size: cover;
-  color: rgba (11, 28, 84, 0.88);
-  // &::before{
-  //   position: absolute;
-  //   content: "";
-  //   top: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   right:0;
-}
-
-/* Toggle Styles */
-
-#wrapper {
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled {
-    padding-left: 250px;
-}
-
-#sidebar-wrapper {
-    padding: 0px;
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: rgba (11, 28, 84, 0.88);
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-}
-
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-}
-
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
-}
-
-/* Sidebar Styles */
-
-
-@media(min-width:768px) {
-
-
-    #sidebar-wrapper {
-        width: 250px;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
-    }
-
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-    }
-
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
-}
 
 .user-login-container {
 	margin: 80px auto;
@@ -358,14 +181,14 @@ body {
 
 }
 .sidebar-image {
-  width: 30%;
+  max-width: 30%;
 
 }
 .sidebar-heading {
   margin-left: 5px;
   display: inline-block;
   vertical-align: bottom;
-  width: 70%;
+  max-width: 70%;
 }
 
 .sidebar-title {
@@ -400,15 +223,12 @@ body {
 }
 
 
-
 .nav-pills > li > a {
   &:hover {
     background-color: #57cbbb;
   }
 
 }
-
-
 
 
 // ##############################################
@@ -463,7 +283,7 @@ body {
 
 #main-container {
   padding: 0px;
-  height: 1024px;
+  height: 3000px;
 }
 
 .main-dashboard-container {
@@ -951,4 +771,209 @@ input[type=text]:focus, textarea:focus {
 
 .custom-modal {
   width: 60%;
+}
+
+//transitions
+
+@-webkit-keyframes fadeOut {
+0% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+}
+}
+
+@-moz-keyframes fadeOut {
+0% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+}
+}
+
+@-o-keyframes fadeOut {
+0% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+}
+}
+
+@keyframes fadeOut {
+0% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+}
+}
+
+.animated.fadeOut {
+-webkit-animation-name: fadeOut;
+-moz-animation-name: fadeOut;
+-o-animation-name: fadeOut;
+animation-name: fadeOut;
+}
+
+
+.delay-three {
+-webkit-animation-delay: 0.60s;
+-moz-animation-delay: 0.60s;
+-o-animation-delay: 0.60s;
+animation-delay: 0.60s;
+}
+.animated {
+-webkit-animation-fill-mode: both;
+-moz-animation-fill-mode: both;
+-ms-animation-fill-mode: both;
+-o-animation-fill-mode: both;
+animation-fill-mode: both;
+-webkit-animation-duration: 1s;
+-moz-animation-duration: 1s;
+-ms-animation-duration: 1s;
+-o-animation-duration: 1s;
+animation-duration: 1s;
+}
+
+.fadeIn {
+-webkit-animation-name: fadeIn;
+-moz-animation-name: fadeIn;
+-o-animation-name: fadeIn;
+animation-name: fadeIn;
+}
+
+
+@-webkit-keyframes fadeIn {
+0% {
+opacity: 0;
+}
+
+100% {
+opacity: 1;
+}
+}
+
+@-moz-keyframes fadeIn {
+0% {
+opacity: 0;
+}
+
+100% {
+opacity: 1;
+}
+}
+
+@-o-keyframes fadeIn {
+0% {
+opacity: 0;
+}
+
+100% {
+opacity: 1;
+}
+}
+
+@keyframes fadeIn {
+0% {
+opacity: 0;
+}
+
+100% {
+opacity: 1;
+}
+}
+
+
+/* ----------- iPad mini ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+
+
+
+/// media queries IPAD ///
+
+
+/* Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+
+/* ----------- iPad 1 and 2 ----------- */
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+
+/* Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+
+/* ----------- iPad 3 and 4 ----------- */
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+
+/* Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
 }

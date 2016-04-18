@@ -10,9 +10,12 @@ var ParseReact = require('parse-react');
 Parse.initialize("analyzetracking");
 Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 
+// Parse class models
+var models = require('../models/models.js');
+
 
 var DashboardCaseload = React.createClass({
-	mixins: [ParseReact.Mixin],
+
 	getInitialState: function() {
 	    return {
 	    	user: Parse.User.current(),
@@ -20,45 +23,55 @@ var DashboardCaseload = React.createClass({
 
 	    };
 	},
-	observe: function(){
-		return {
-			clientObj: (new Parse.Query('Clients').equalTo('therapistTeam', this.state.user))
-		};
+
+
+	componentWillMount: function() {
+
+		var query = new Parse.Query(models.Client);
+
+		query.equalTo('therapistTeam', this.state.user);
+		query.find().then(function(clients){
+		//	console.log(clients);
+			this.setState({"clients": clients});
+		}.bind(this));
+
+
 	},
-	//componentWillMount: function() {
-		// var Clients = Parse.Object.extend('Clients');
-		// var query = new Parse.Query(Clients);
-		// console.log(this.state.user);
-		// query.equalTo('therapistTeam', this.state.user);
-		// query.find().then(function(clients){
-		// 	console.log(clients);
-		// 	this.setState({"clients": clients});
-		// }.bind(this));
-
-		// console.log(query);
-		// console.log(this.state.clients);
-	//},
 	render: function() {
+		if(this.state.clients){
+		//	console.log(this.state.clients);
 
-		var caseLoadItems = function(client) {
+		var caseLoadItems = this.state.clients.map(function(client) {
+
 				return (
-					<div key={client.objectId} className="col-sm-2">
-									<a href={"#profile/" + client.objectId}>
-									<img src="./images/user-icon-1.svg" />
-									<p className="client-name caseload-name">{client.Name}</p>
+					<div key={client.id} className="col-sm-2">
+									<a href={"#profile/" + client.id}>
+									<img src= "./images/user-icon-1.svg" />
+
+									<p className="client-name caseload-name">{client.get('Name')}</p>
 								</a>
 					</div>
 					);
-			};
+			});
 			return (
 				<div>
 						<p className="caseload-heading">My Caseload</p>
 						<div className="caseload-listing">
-						{this.data.clientObj.map(caseLoadItems.bind(this))}
+
+						{caseLoadItems}
 					</div>
 				</div>
 				);
-		}
+
+	} else {
+			return (
+				<div>
+					<p>Loading ... </p>
+			</div>
+				);
+
+	}
+}
 	});
 		// return (
 		// 	<div>

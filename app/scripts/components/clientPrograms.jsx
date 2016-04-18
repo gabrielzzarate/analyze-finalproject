@@ -118,7 +118,7 @@ var ClientPrograms = React.createClass({
 
   		  	for(var i=1; i <= self.state.targetCount; i++){
 
-  		  		console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
+  		  		//console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
   		  		var name = self.refs["formset"+i].refs["name"+i].value;
   		  		var target = new models.Target();
 
