@@ -22,6 +22,7 @@ var Header = React.createClass ({
 	},
 	toggleSidebar: function(){
 		$('#sidebar').toggleClass('hidden-xs');
+		$('.toggle-icon').toggleClass('rotate');
 		$('#main-container').toggleClass('col-xs-12');
 	},
 
@@ -30,11 +31,11 @@ var Header = React.createClass ({
 		return (
 				<div className="col-xs-10 header-container">
 
-					<div classname = "col-xs-6">
 
-						<a className="toggle-sidebar-btn visible-xs" onClick={this.toggleSidebar} ><i className="fa fa-angle-double-right" aria-hidden="true"></i></a>
 
-					</div>
+						<a className="toggle-sidebar-btn visible-xs" onClick={this.toggleSidebar} ><i className="toggle-icon fa fa-angle-double-right" aria-hidden="true"></i></a>
+
+
 
 
 					<div className="col-xs-6 col-xs-offset-8 ">

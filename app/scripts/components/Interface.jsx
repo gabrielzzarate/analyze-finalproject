@@ -72,7 +72,7 @@ var Interface = React.createClass({
 			return (
 				<div className="app-content">
 					<div className="row body-container">
-					<div id="sidebar" className="col-xs-3 hidden-xs animated fadeInLeft">
+					<div id="sidebar" className="col-xs-3 hidden-xs col-lg-2 animated fadeInLeft">
 
 						<Sidebar />
 

@@ -42,7 +42,7 @@ var DashboardCaseload = React.createClass({
 				return (
 					<div key={client.id} className="col-sm-2 col-xs-4">
 									<a href={"#profile/" + client.id}>
-									<img src= "./images/user-icon-1.svg" />
+									<img src={client.get('profileImage').url()} />
 
 									<p className="client-name caseload-name">{client.get('Name')}</p>
 								</a>

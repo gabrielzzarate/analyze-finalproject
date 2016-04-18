@@ -50,7 +50,7 @@ var ClientDetail = React.createClass({
 						<div className= "col-xs-11 client-info-container">
 							<div className="col-xs-6 client-info">
 								<div className="col-xs-3 client-image-container">
-									<img className="client-image" src="./images/user-icon-1.svg" />
+									<img className="client-image" src={client.profileImage.url()} />
 								</div>
 
 								<div className="client-header col-sm-8 col-xs-6">

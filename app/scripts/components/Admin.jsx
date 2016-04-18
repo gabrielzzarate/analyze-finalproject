@@ -53,27 +53,70 @@ var Admin = React.createClass({
   // 	});
   // },
 
-  handleProfileImage: function(client){
+  handleChange: function( client, e){
+  	//console.log(client);
+  	e.preventDefault();
+    // grabs file from input
+    var file = e.target.files[0];
+    console.log(file);
+    // passes up to be set as parse file, named and pushed to images array
+    this.handleProfileImage(file, client);
+  },
+
+  handleProfileImage: function(file, client){
   	 	var self = this;
 
-    // grabs file from input
-    var fileUpload = $("#profile-upload")[0];
-    if (fileUpload.files.length > 0) {
- 				var file = fileUpload.files[0];
-  			var name = "profile-image";
+  	 	console.log(client);
+  	 	var name = "profile" + Date.now() + ".svg";
+    // pass in name and file that is passed in to function above
+    	var image = new Parse.File(name, file);
 
-		  	var parseFile = new Parse.File(name, file);
-		  	parseFile.save().then(function(result) {
-		      // The file has been saved to Parse.
-		     // console.log('result is: ', result);
-		      var user = new models.Client(client);
-		      user.set('profileImage', result);
-		      user.save();
+
+
+    			var user = new models.Client(client);
+		      user.set('profileImage', image);
+		      user.save(null, {
+		      	sucess:function(result){
+		      		console.log(success);
+		      	},
+		      	error: function(error){
+		      		console.log(error);
+		      	}
+		      });
+
+
+
+
+    // grabs file from input
+
+    // if (fileUpload.files.length === 0) {
+ 			// 	var file = fileUpload.files[0];
+  		// 	var name = "profile-image" + Date.now();
+  		// 	console.log("saving...");
+		  // 	var parseFile = new Parse.File(name, file);
+		  // 	parseFile.save(null, {
+		  // 		success:function(results){
+		  // 			console.log("success");
+		  //     // The file has been saved to Parse.
+		  //    // console.log('result is: ', result);
+		  //     var user = new models.Client(client);
+		  //     user.set('profileImage', results);
+		  //     user.save(null, {
+		  //     	sucess:function(result){
+		  //     		console.log(sucess);
+		  //     	},
+		  //     	error: function(error){
+		  //     		console.log(error);
+		  //     	}
+		  //     });
 		      // location.reload();
 		      //self.forceUpdate();  //attempt to rerender page after pic uploaded.
+		//       },
+		//       error: function(error){
+		//       	console.log(error);
+		//       }
+		// });
 
-		});
-}
 
 
 
@@ -97,15 +140,15 @@ var Admin = React.createClass({
 				return (
 					<div  key={client.objectId} className="col-sm-12">
 									<div className="col-sm-2">
-									<img src="./images/user-icon-1.svg" />
 
+									<img src={client.profileImage.url()} />
 									<p className="client-name caseload-name">{client.Name}</p>
 									</div>
 									<div className="col-sm-12">
 											<form onSubmit={this.handleProfileImage.bind(this, client)}>
 								<fieldset className="form-group">
 			            <label className="file-field input-field form-label" htmlFor="add-client-profile"> Change Profile Image</label>
-			            <input type="file" id="profile-upload" className="form-control"/>
+			            <input onChange={this.handleChange.bind(this, client)} type="file" id="profile-upload" className="form-control"/>
 
 			          </fieldset>
 			          <button type="submit">Submit</button>

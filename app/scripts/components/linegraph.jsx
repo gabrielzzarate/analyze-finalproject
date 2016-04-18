@@ -306,7 +306,7 @@ var LineGraph = React.createClass({
                 <div key={data.id}>
                     {programName}
                     <LineChart className="behavior-line-chart" data={data} options={data.options}  width="500" height="250" />
-                    <DoughnutChart />
+
                 </div>
                 );
         });
