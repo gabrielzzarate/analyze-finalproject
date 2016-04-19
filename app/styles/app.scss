@@ -33,15 +33,17 @@ body {
 
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, button:focus {
   box-shadow: 0 0 5px rgba 11 28 84, 0.88;
   border: 1px solid rgba 11 28 84, 0.88;
 }
-
+// *:focus{
+//   outline: none;
+// }
 #body-container {
   position: relative;
-    //width: 100%;
-   // max-width: 120em;
+    width: 100%;
+   max-width: 120em;
     margin: 0 auto;
     padding: 0;
     overflow: hidden;
@@ -52,18 +54,15 @@ input:focus, textarea:focus {
 
 
 
-input[type=text], textarea {
-  -webkit-transition: all 0.30s ease-in-out;
-  -moz-transition: all 0.30s ease-in-out;
-  -ms-transition: all 0.30s ease-in-out;
-  -o-transition: all 0.30s ease-in-out;
+input, textarea {
+
   outline: none;
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
   border: 1px solid #DDDDDD;
 }
 
-input[type=text]:focus, textarea:focus,  {
+input:focus, textarea:focus,  {
   box-shadow: 0 0 5px  #57cbbb;
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
@@ -248,6 +247,8 @@ h1, h2, h3, h4, h5, h6, div,  {
     font-family: $font-stack-primary;
     position: relative;
     top: 3px;
+    right: 20px;
+    float: right;
 
     img {
       height: 15px;
@@ -275,6 +276,10 @@ h1, h2, h3, h4, h5, h6, div,  {
 
 .toggle-sidebar-btn {
   margin-left: 20px;
+  display: inline-block;
+}
+.toggle-sidebar {
+  display: inline-block;
 }
 .rotate {
   transform: rotate(180deg);
@@ -568,9 +573,24 @@ h1, h2, h3, h4, h5, h6, div,  {
 
 }
 .program-edit {
-  float: right;
+  //float: right;
   color: rgba( 11, 28, 84, 0.88);
+  margin-left: 5px;
+
 }
+// .program-btns {
+
+//   height: 40px;
+//   padding: 10px;
+//   float: right;
+//   display: inline-block;
+//   box-shadow: none;
+//   background-color: #a6a6a6;
+//   border: none;
+//   border-radius: 0;
+//   margin: 15px;
+//   //margin-bottom: 1px;
+// }
 .targets-item {
   list-style: none;
 

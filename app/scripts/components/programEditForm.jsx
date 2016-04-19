@@ -127,7 +127,7 @@ var ProgramEditForm = React.createClass({
 		);
 	} else {
 			return (
-				<p>Loading... </p>
+				<p> </p>
 				);
 	}
 }

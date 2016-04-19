@@ -175,8 +175,10 @@ var ClientPrograms = React.createClass({
 
 									<p className="master-criteria-text">mastery criteria: <span className="criteria-text">{program.get('description')}</span></p>
 									</div>
-
+									<div className='program-btns'>
+									<a className="program-edit pull-right"> <i className="fa fa-times" aria-hidden="true"></i></a>
 									<a onClick={this.modalEditOpen.bind(this, program)}   className="program-edit pull-right"> <i className="fa fa-pencil" aria-hidden="true"></i></a>
+									</div>
 
 								</div>
 								<h5 className="targets-header">Targets:</h5>
@@ -207,7 +209,7 @@ var ClientPrograms = React.createClass({
 		} else {
 			return (
 				<div>
-					<p>Loading...</p>
+					<p></p>
 				</div>);
 		}
 	}

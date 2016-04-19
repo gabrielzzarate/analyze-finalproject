@@ -25,6 +25,7 @@ var ListGroup = require("react-bootstrap").ListGroup;
 var ListGroupItem = require("react-bootstrap").ListGroupItem;
 var Input = require("react-bootstrap").Input;
 var Button = require('react-bootstrap').Button;
+var ButtonGroup = require('react-bootstrap').ButtonGroup;
 
 
 var ClientSession = React.createClass({

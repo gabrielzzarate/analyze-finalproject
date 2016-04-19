@@ -23,9 +23,10 @@ var Sidebar = React.createClass ({
 
 
 
-												<div className="sidebar-heading">
+
+												<div className="sidebar-heading hidden-xs">
 												<span className="sidebar-title">Analyze</span>
-												<span className="sidebar-subtitle">Therapy Tracking</span>
+												<span className="sidebar-subtitle ">Therapy Tracking</span>
 
 
 
@@ -36,9 +37,9 @@ var Sidebar = React.createClass ({
 
             		<div className="sidebar-nav col-sm-10 col-sm-offset-1 ">
 								<Nav bsStyle="pills" stacked >
-		    						<NavItem className="navitem" eventKey={1} href="#home/">Dashboard</NavItem>
+		    						<NavItem className="navitem" eventKey={1} href="#home/"> Dashboard</NavItem>
 		    						<NavItem className="navitem" eventKey={2} href="#admin/">Admin</NavItem>
-		    						<NavItem className="navitem" eventKey={3}>Graphs</NavItem>
+
 		 					 </Nav>
 
 

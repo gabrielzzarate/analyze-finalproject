@@ -49,21 +49,21 @@ var Home = React.createClass ({
 
 			<div style ={style}>
 			 	<div className = "col-sm-10 col-sm-offset-1 col-xs-9 col-xs-offset-2 main-dashboard-container">
-			 			<div className="col-sm-10 col-sm-offset-1 dashboard-welcome-container">
-			 				<div className="welcome-left col-sm-6 col-xs-6">
+			 			<div className="col-xs-10 col-xs-offset-1 dashboard-welcome-container">
+			 				<div className="welcome-left col-xs-6">
 			 					<span className="welcome-user">Welcome, {currentUser}</span>
 			 				</div>
-			 				<div className="welcome-right col-sm-5 col-sm-offset-1">
+			 				<div className="welcome-right col-xs-5 col-xs-offset-1">
 			 					<span className="welcome-date">Week of {moment().format('LL')}  </span>
 
 			 				</div>
 
 			 			</div>
-			 			<div className="dashboard-events-container col-sm-10 col-sm-offset-1">
+			 			<div className="dashboard-events-container col-xs-10 col-xs-offset-1">
 			 				<DashboardEvents allClientObj={this.state.allClientObj}/>
 						</div>
 
-						<div className="dashboard-caseload-container col-sm-12">
+						<div className="dashboard-caseload-container col-xs-12">
 							<DashboardCaseload />
 						</div>
 			 	</div>
