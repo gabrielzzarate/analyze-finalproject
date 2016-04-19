@@ -76,10 +76,11 @@ var ClientNotes = React.createClass({
 				//console.log("notes", this.state.notes);
 				return (
 						<div  key={note.id}>
-							<p>{note.get('text')}</p>
-							<div>by {note.get('postedBy').get('username')}</div>
+							<p className="note-text">{note.get('text')}</p>
+							<div className="note-author">{note.get('postedBy').get('username')} </div>
 							{/* use moment.js to set format date of the note */}
-							<div>{moment(created).fromNow()}</div>
+							<div className="note-time">{moment(created).fromNow()} wrote: </div>
+
 						</div>
 					);
 			}.bind(this));
@@ -88,7 +89,7 @@ var ClientNotes = React.createClass({
 					<div className='client-notes-container'>
 						<div className="col-sm-6">
 							<form onSubmit={this.handleSubmit}>
-								<Input type="textarea" id="noteText" label="Notes" placeholder="write a note..." />
+								<Input type="textarea" id="noteText" label="Client Notes" placeholder="write a note..." />
 								<button type='submit' className="logIn-button note-button">Add Note</button>
 							</form>
 						</div>

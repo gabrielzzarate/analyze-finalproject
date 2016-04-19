@@ -72,7 +72,7 @@ var ClientDetail = React.createClass({
 
 
 						<div className="col-sm-4 col-sm-offset-1 col-xs-3 team-info">
-								<h6>Therapist Team <i className="fa fa-user"></i> </h6>
+								<h6>Therapist Team </h6>
 
 								<ul className ="therapist-team-list">
 									<li> Lead: {user}</li>

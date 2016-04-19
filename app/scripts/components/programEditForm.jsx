@@ -15,6 +15,9 @@ Parse.serverURL = 'http://analyzetracking.herokuapp.com/';
 //require in child components
 var TargetFormSet = require('./targetFormSet.jsx');
 
+// Parse class models
+var models = require('../models/models.js');
+
 //bootstrap-react components
 var Modal = require('react-bootstrap').Modal;
 var Header = require('react-bootstrap').Header;
@@ -70,7 +73,49 @@ var ProgramEditForm = React.createClass({
 		var newCount = this.state.targetCount + 1;
     this.setState({'targetCount': newCount});
 	},
-	handleSubmit: function(){
+	handleSubmit: function(event){
+		event.preventDefault();
+		var programName = $('.program-input').val();
+		var programDescription = $('.description-input').val();
+		var client = this.props.clientObj;
+		var programObj;
+		var self = this;
+		var program = this.props.programObj;
+
+		program.set("name", programName);
+		program.set("description", programDescription);
+		//program.set("client", new models.Client(this.props.clientObj));
+		program.save(null, {
+  		success: function(program) {
+
+  		  alert("Your program has been saved");
+  		  	programObj = program;
+  		  	self.props.getPrograms();
+  		  	var programTargets = [];
+
+  		  	for(var i=1; i <= self.state.targetCount; i++){
+
+  		  		//console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
+  		  		var name = self.refs["formset"+i].refs["name"+i].value;
+  		  		var target = new models.Target();
+
+  		  		target.set("name", name);
+  		  		target.set("client", new models.Client(client));
+  		  		target.set('program', programObj);
+  		  		programTargets.push(target);
+  		  	}
+  		  		Parse.Object.saveAll(programTargets).then(function(){
+  		  			program.set('targets', programTargets);
+  		  			program.save();
+  		  		});
+
+  			},
+  				error: function(note, error) {
+   						 // Execute any logic that should take place if the save fails.
+    					// error is a Parse.Error with an error code and message.
+  					  alert('Failed to create new object, with error code: ' + error.message);
+  					}
+  		  	});
 
 	},
 	render: function() {
@@ -93,7 +138,7 @@ var ProgramEditForm = React.createClass({
 
 
 					<Modal show={this.props.modal} dialogClassName="custom-modal">
-					<form onSubmit={this.props.handleSubmit}>
+					<form onSubmit={this.handleSubmit}>
 							<Modal.Header >
 							 <Modal.Title id="contained-modal-title-sm">Edit Program</Modal.Title>
 						</Modal.Header>
@@ -116,7 +161,7 @@ var ProgramEditForm = React.createClass({
 								<Modal.Footer>
 								<Button type="submit" className="secondary-btn program-add-btn">Save Program</Button>
 
-          			<Button onClick={this.props.close}>Close</Button>
+          			<Button type="button" onClick={this.props.close}>Close</Button>
 
         			</Modal.Footer>
         			</form>
