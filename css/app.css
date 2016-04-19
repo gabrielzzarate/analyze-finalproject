@@ -5769,13 +5769,42 @@ button.close {
 img {
   max-width: 100%; }
 
-h1, h2, h3 {
-  font-family: "Merriweather Sans", sans-serif; }
-
 body {
   font-family: "Merriweather Sans", sans-serif;
   background-color: #273669;
-  background-size: cover; }
+  background-size: cover;
+  color: rgba 11, 28, 84, 0.88;
+  margin: 0;
+  display: block; }
+
+input:focus, textarea:focus, button:focus {
+  box-shadow: 0 0 5px rgba 11 28 84, 0.88;
+  border: 1px solid rgba 11 28 84, 0.88; }
+
+#body-container {
+  position: relative;
+  width: 100%;
+  max-width: 120em;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box; }
+
+input, textarea {
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD; }
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 5px  #57cbbb;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid  #57cbbb; }
+
+h1, h2, h3, h4, h5, h6, div {
+  font-family: "Merriweather Sans", sans-serif;
+  color: rgba(11, 28, 84, 0.88); }
 
 .user-login-container {
   margin: 80px auto;
@@ -5845,30 +5874,21 @@ body {
   background-color: #57cbbb;
   border: none; }
 
-#sidebar {
-  padding: 0px;
-  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.11);
-  height: 100%; }
-
-.sidebar {
-  height: 100%;
-  background-color: rgba(10, 27, 84, 0.88); }
-
 .sidebar-header {
   width: 100%;
   margin-top: 22px;
-  margin-left: 22px; }
+  margin-left: 5px; }
   .sidebar-header img {
     display: inline-block; }
 
 .sidebar-image {
-  width: 30%; }
+  max-width: 30%; }
 
 .sidebar-heading {
-  margin-left: 10px;
+  margin-left: 5px;
   display: inline-block;
   vertical-align: bottom;
-  width: 70%; }
+  max-width: 70%; }
 
 .sidebar-title {
   width: 100%;
@@ -5906,7 +5926,7 @@ body {
   font-family: "Merriweather Sans", sans-serif;
   position: relative;
   top: 3px;
-  right: 50px;
+  right: 20px;
   float: right;
   font-size: 10px; }
   .user-header-info img {
@@ -5922,16 +5942,26 @@ body {
     .user-header-info .fullscreen-icon img {
       height: 10px; }
 
+.toggle-sidebar-btn {
+  margin-left: 20px;
+  display: inline-block; }
+
+.toggle-sidebar {
+  display: inline-block; }
+
+.rotate {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg); }
+
 #body-container {
   height: 100%; }
 
 #main-container {
   padding: 0px;
-  height: 1024px; }
+  height: 3000px; }
 
 .main-dashboard-container {
   margin-top: 50px;
-  height: 500px;
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 0 7px 0 #a5abb8; }
@@ -5987,7 +6017,8 @@ body {
   top: 10px; }
 
 .dashboard-caseload-container {
-  margin-top: 50px; }
+  margin-top: 50px;
+  margin-bottom: 30px; }
 
 .caseload-heading {
   font-family: "Merriweather Sans", sans-serif;
@@ -6006,13 +6037,12 @@ body {
 
 .client-profile-container {
   margin-top: 50px;
-  max-height: 100%;
+  height: 100%;
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 0 7px 0 #a5abb8; }
 
 .client-info-container {
-  width: 100%;
   margin-left: 22px;
   margin-top: 30px;
   border-bottom: 1px solid #e1e4eb;
@@ -6023,8 +6053,8 @@ body {
 .client-info {
   margin-top: 20px; }
 
-.client-name {
-  display: inline-block; }
+.client-name-detail-page {
+  color: #4caaa0; }
 
 .client-image-container {
   padding: 0px; }
@@ -6032,8 +6062,10 @@ body {
 .client-header p {
   font-family: "Merriweather", serif;
   color: #8d909e;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-size: 10px; }
+.client-header i {
+  color: rgba(11, 28, 84, 0.88); }
 
 .client-image {
   display: block;
@@ -6043,16 +6075,22 @@ body {
 .team-info {
   height: 150px;
   box-shadow: none;
-  border-color: #8d909e;
-  border: 1px solid;
-  border-radius: 5%; }
+  border-left: 1px solid #8d909e; }
+
+.therapist-team-list {
+  margin-left: 10px;
+  padding-left: 5px; }
+  .therapist-team-list li {
+    font-size: 10px;
+    list-style: none;
+    font-family: "Merriweather", serif;
+    color: #8d909e; }
 
 .client-data-container {
   margin-top: 5px; }
 
 .note-container {
-  height: 200px;
-  overflow: scroll; }
+  min-height: 200px; }
 
 .program-form {
   height: 40px;
@@ -6066,20 +6104,29 @@ body {
 
 .program-form-container {
   margin-top: 15px;
-  height: 300px;
-  overflow: scroll; }
-  .program-form-container .add-target-btn {
-    float: right;
-    margin: 10px; }
+  height: 300px; }
+
+.add-target-btn {
+  border-radius: 100%;
+  float: right;
+  height: 35px;
+  width: 35px;
+  border: none;
+  background-color: #57cbbb;
+  margin: 10px;
+  color: white;
+  position: relative;
+  top: -3px; }
 
 .graph-start-container {
   height: 700px; }
 
 .program-config-container {
   margin-top: 15px;
-  height: 300px;
-  overflow: scroll;
   border-bottom: solid 1px #e1e4eb; }
+
+.program-name-header, .site-header-link {
+  color: black; }
 
 .add-program-btn {
   float: right;
@@ -6096,13 +6143,13 @@ body {
   border: none; }
 
 .program-edit {
-  float: right;
-  text-decoration: underline; }
+  color: rgba(11, 28, 84, 0.88);
+  margin-left: 5px; }
 
 .targets-item {
   list-style: none; }
 
-input[type=text]:focus, textarea:focus {
+input:focus, textarea:focus {
   box-shadow: 0 0 5px rgba 11 28 84, 0.88;
   border: 1px solid rgba 11 28 84, 0.88; }
 
@@ -6125,29 +6172,51 @@ input[type=text]:focus, textarea:focus {
   margin-bottom: 20px; }
 
 .master-criteria-text {
-  font-family: "Merriweather", serif;
-  color: #8d909e; }
+  font-size: 13px;
+  color: #8d909e;
+  font-style: italic; }
+  .master-criteria-text .criteria-text {
+    color: #4caaa0;
+    font-style: italic; }
 
 .target-item-name {
   font-size: 18px;
-  color: rgba(11, 28, 84, 0.88);
-  font-family: "Merriweather Sans", sans-serif; }
+  list-style: inside circle; }
 
 .target-item-container {
   margin-top: 10px;
   margin-bottom: 10px; }
 
+.client-notes-container {
+  margin-top: 15px;
+  height: 500px; }
+
+.note-container {
+  margin-top: 10px;
+  margin-bottom: 5px; }
+
 .yes-btn {
   border-radius: 100%;
   float: left;
   color: white;
-  background-color: green; }
+  background-color: #57cbbb;
+  border: none; }
 
 .no-btn {
   border-radius: 100%;
   color: white;
   float: right;
-  background-color: red; }
+  background-color: #ff4d4d;
+  border: none; }
+
+.save-session-btn {
+  border-radius: 100px;
+  border: solid 2px #57cbbb;
+  margin-bottom: 20px; }
+
+.session-start-container {
+  margin: 20px;
+  margin-bottom: 60px; }
 
 .session-start-btn {
   font-family: "Merriweather Sans", sans-serif;
@@ -6162,27 +6231,8 @@ input[type=text]:focus, textarea:focus {
   background-color: #57cbbb;
   border: none; }
 
-.session-start-container {
-  margin-top: 10px; }
-
-.save-session-btn {
-  border-radius: 100px;
-  border: solid 2px #57cbbb;
-  margin-bottom: 20px; }
-
-.client-notes-container {
-  margin-top: 15px;
-  height: 500px;
-  overflow: scroll; }
-
-.note-container {
-  margin-top: 10px;
-  margin-bottom: 5px; }
-
 .client-session-container {
-  margin-top: 15px;
-  height: 600px;
-  overflow: scroll; }
+  margin-top: 15px; }
 
 .session-date {
   float: right; }
@@ -6219,20 +6269,58 @@ input[type=text]:focus, textarea:focus {
   border-bottom: 1px solid black;
   padding-top: 14px; }
 
-.splash-screen {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0; }
-  .splash-screen body {
-    background: rgba(212, 212, 212, 0.8); }
+.custom-modal {
+  width: 60%; }
 
-.splash-container {
-  width: 80%;
-  margin: 10% auto 0 auto;
-  background: white;
-  border: 1px solid #d4d4d4;
-  padding: 10px 0; }
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+.animated.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut; }
+
+.delay-three {
+  -webkit-animation-delay: 0.60s;
+  animation-delay: 0.60s; }
+
+.animated {
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s; }
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn; }
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+/* ----------- iPad mini ----------- */
+/* Portrait and Landscape */
+/* Portrait */
+/* Landscape */
+/* ----------- iPad 1 and 2 ----------- */
+/* Portrait and Landscape */
+/* Portrait */
+/* Landscape */
+/* ----------- iPad 3 and 4 ----------- */
+/* Portrait and Landscape */
+/* Portrait */
+/* Landscape */
 
 /*# sourceMappingURL=app.css.map */
