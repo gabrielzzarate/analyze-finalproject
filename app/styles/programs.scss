@@ -1,0 +1,106 @@
+
+.program-config-container {
+  margin-top: 15px;
+  //height: 300px;
+  //overflow: scroll;
+  border-bottom: solid 1px #e1e4eb;
+
+}
+
+.program-name-header, .site-header-link {
+  color: black;
+}
+
+.add-program-btn {
+  float: right;
+  font-family: $font-stack-primary;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-bottom: 20px;
+    color: white;
+    width: 120px;
+    height: 35px;
+    border-radius: 100px;
+    background-color: #57cbbb;
+    border: none;
+
+}
+.program-edit {
+  //float: right;
+  color: rgba( 11, 28, 84, 0.88);
+  margin-left: 5px;
+
+}
+
+.targets-item {
+  list-style: none;
+
+}
+
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba 11 28 84, 0.88;
+  border: 1px solid rgba 11 28 84, 0.88;
+}
+
+.secondary-btn {
+  width: 140px;
+  height: 35px;
+  border-radius: 100px;
+  border: solid 2px #57cbbb;
+
+
+}
+
+.program-item {
+  height: 40px;
+  box-shadow: none;
+  background-color: rgba(249, 249, 249, 1);
+  border: none;
+  border-radius: 0;
+  margin-top: 15px;
+  margin-bottom: 1px;
+
+}
+.program-config-item-container {
+  margin-bottom: 20px;
+}
+
+.master-criteria-text {
+  font-size: 13px;
+  color: #8d909e;
+  font-style: italic;
+
+  .criteria-text {
+    color: #4caaa0;
+    font-style: italic;
+  }
+}
+
+.target-item-name {
+  font-size: 18px;
+  list-style: inside circle,
+
+    //color: rgba(11, 28, 84, 0.88);
+    //font-family: "Merriweather Sans", sans-serif;
+}
+
+.target-item-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.program-form {
+  height: 40px;
+  box-shadow: none;
+  background-color: rgba(249, 249, 249, 1);
+  border: none;
+  border-radius: 0;
+
+}
+.remove-program-icon {
+  float: right;
+}

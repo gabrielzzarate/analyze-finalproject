@@ -138,7 +138,7 @@ var Admin = React.createClass({
 	render: function() {
 		var caseLoadItems = function(client) {
 				return (
-					<div  key={client.objectId} className="col-sm-12">
+					<div  key={client.objectId} className="col-sm-12 client-config-admin">
 									<div className="col-sm-2">
 
 									<img src={client.profileImage.url()} />
@@ -148,7 +148,7 @@ var Admin = React.createClass({
 											<form onSubmit={this.handleProfileImage.bind(this, client)}>
 								<fieldset className="form-group">
 			            <label className="file-field input-field form-label" htmlFor="add-client-profile"> Change Profile Image</label>
-			            <input onChange={this.handleChange.bind(this, client)} type="file" id="profile-upload" className="form-control"/>
+			            <input onChange={this.handleChange.bind(this, client)} type="file" id="profile-upload" />
 
 			          </fieldset>
 			          <button type="submit">Submit</button>

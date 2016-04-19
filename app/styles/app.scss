@@ -5,6 +5,14 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 // Import Bootstrap
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
+//Import Child scss files
+@import "admin";
+@import "transitions";
+@import "mediaQueries";
+@import "chart";
+@import "modal";
+@import "session";
+
 // my variables
 $font-stack-primary:   'Merriweather Sans', sans-serif;
 $font-stack-secondary: 'Merriweather', serif;
@@ -354,7 +362,7 @@ h1, h2, h3, h4, h5, h6, div,  {
 .event-title {
   font-family: $font-stack-primary;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 2.6px;
   color: rgba(11, 28, 84, 0.88);
 
@@ -498,156 +506,9 @@ h1, h2, h3, h4, h5, h6, div,  {
 
 }
 
-.program-form {
-  height: 40px;
-  box-shadow: none;
-  background-color: rgba(249, 249, 249, 1);
-  border: none;
-  border-radius: 0;
-
-}
-.remove-program-icon {
-  float: right;
-}
-
-.program-form-container {
-  margin-top: 15px;
-  height: 300px;
-  //overflow: scroll;
-
-  // .add-target-btn  {
-  //   border-radius: 100%;
-  //   float: right;
-  //   height: 20px;
-  //   color: #57cbbb;
-  //   background-color: #57cbbb;
-  //   margin: 10px;
-  // }
-
-}
-
-.add-target-btn  {
-    border-radius: 100%;
-    float: right;
-    height: 35px;
-    width: 35px;
-    border: none;
-
-    background-color: #57cbbb;
-    margin: 10px;
-    color: white;
-    position: relative;
-    top: -3px;
-  }
-
-.graph-start-container {
-  height: 700px;
-}
-
-.program-config-container {
-  margin-top: 15px;
-  //height: 300px;
-  //overflow: scroll;
-  border-bottom: solid 1px #e1e4eb;
-
-}
-
-.program-name-header, .site-header-link {
-  color: black;
-}
-
-.add-program-btn {
-  float: right;
-  font-family: $font-stack-primary;
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-
-    margin-bottom: 20px;
-    color: white;
-    width: 120px;
-    height: 35px;
-    border-radius: 100px;
-    background-color: #57cbbb;
-    border: none;
-
-}
-.program-edit {
-  //float: right;
-  color: rgba( 11, 28, 84, 0.88);
-  margin-left: 5px;
-
-}
-// .program-btns {
-
-//   height: 40px;
-//   padding: 10px;
-//   float: right;
-//   display: inline-block;
-//   box-shadow: none;
-//   background-color: #a6a6a6;
-//   border: none;
-//   border-radius: 0;
-//   margin: 15px;
-//   //margin-bottom: 1px;
-// }
-.targets-item {
-  list-style: none;
-
-}
 
 
-input:focus, textarea:focus {
-  box-shadow: 0 0 5px rgba 11 28 84, 0.88;
-  border: 1px solid rgba 11 28 84, 0.88;
-}
 
-.secondary-btn {
-  width: 140px;
-  height: 35px;
-  border-radius: 100px;
-  border: solid 2px #57cbbb;
-
-
-}
-
-.program-item {
-  height: 40px;
-  box-shadow: none;
-  background-color: rgba(249, 249, 249, 1);
-  border: none;
-  border-radius: 0;
-  margin-top: 15px;
-  margin-bottom: 1px;
-
-}
-.program-config-item-container {
-  margin-bottom: 20px;
-}
-
-.master-criteria-text {
-  font-size: 13px;
-  color: #8d909e;
-  font-style: italic;
-
-  .criteria-text {
-    color: #4caaa0;
-    font-style: italic;
-  }
-}
-
-.target-item-name {
-  font-size: 18px;
-  list-style: inside circle,
-
-    //color: rgba(11, 28, 84, 0.88);
-    //font-family: "Merriweather Sans", sans-serif;
-}
-
-.target-item-container {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
 
 
@@ -669,83 +530,9 @@ input:focus, textarea:focus {
 
 }
 
-//session styles
 
- .yes-btn {
-  border-radius: 100%;
-  float: left;
-  color: white;
-  background-color: #57cbbb;
-  border: none;
- }
 
- .no-btn {
-  border-radius: 100%;
-  color: white;
-  float: right;
-  background-color: #ff4d4d;
-  border: none;
- }
 
-.save-session-btn {
-  border-radius: 100px;
-  border: solid 2px #57cbbb;
-  margin-bottom: 20px;
-}
-
- .session-start-container {
-    margin: 20px;
-    margin-bottom: 60px;
-  }
-
-.session-start-btn {
-
-   font-family: "Merriweather Sans", sans-serif;
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-    color: white;
-    width: 120px;
-    height: 35px;
-    border-radius: 100px;
-    background-color: #57cbbb;
-    border: none;
-  }
-.client-session-container {
-  margin-top: 15px;
-  //height: 600px;
-
-  //overflow: scroll;
-}
-
-.session-date {
-  float: right;
-}
-.session-input {
-  float: right;
-}
-
-.target-session-container {
-  height: 200px;
-}
-.save-session-btn {
-  margin-left: 15px;
-}
-
-.modal-edit-container {
-  height: 300px;
-}
-
-// ##############################################
-//###############################################
-// Chart Styles
-// #############################################
-// #############################################
-
-.behavior-line-chart {
-  margin-top: 20px;
-}
 
 //site title styles
 
@@ -777,213 +564,10 @@ input:focus, textarea:focus {
 
 
 
-.custom-modal {
-  width: 60%;
-}
-
-//transitions
-
-@-webkit-keyframes fadeOut {
-0% {
-opacity: 1;
-}
-
-100% {
-opacity: 0;
-}
-}
-
-@-moz-keyframes fadeOut {
-0% {
-opacity: 1;
-}
-
-100% {
-opacity: 0;
-}
-}
-
-@-o-keyframes fadeOut {
-0% {
-opacity: 1;
-}
-
-100% {
-opacity: 0;
-}
-}
-
-@keyframes fadeOut {
-0% {
-opacity: 1;
-}
-
-100% {
-opacity: 0;
-}
-}
-
-.animated.fadeOut {
--webkit-animation-name: fadeOut;
--moz-animation-name: fadeOut;
--o-animation-name: fadeOut;
-animation-name: fadeOut;
-}
-
-
-.delay-three {
--webkit-animation-delay: 0.60s;
--moz-animation-delay: 0.60s;
--o-animation-delay: 0.60s;
-animation-delay: 0.60s;
-}
-.animated {
--webkit-animation-fill-mode: both;
--moz-animation-fill-mode: both;
--ms-animation-fill-mode: both;
--o-animation-fill-mode: both;
-animation-fill-mode: both;
--webkit-animation-duration: 1s;
--moz-animation-duration: 1s;
--ms-animation-duration: 1s;
--o-animation-duration: 1s;
-animation-duration: 1s;
-}
-
-.fadeIn {
--webkit-animation-name: fadeIn;
--moz-animation-name: fadeIn;
--o-animation-name: fadeIn;
-animation-name: fadeIn;
-}
-
-
-@-webkit-keyframes fadeIn {
-0% {
-opacity: 0;
-}
-
-100% {
-opacity: 1;
-}
-}
-
-@-moz-keyframes fadeIn {
-0% {
-opacity: 0;
-}
-
-100% {
-opacity: 1;
-}
-}
-
-@-o-keyframes fadeIn {
-0% {
-opacity: 0;
-}
-
-100% {
-opacity: 1;
-}
-}
-
-@keyframes fadeIn {
-0% {
-opacity: 0;
-}
-
-100% {
-opacity: 1;
-}
-}
 
 
 
 
-/* ----------- iPad mini ----------- */
-
-/* Portrait and Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 1) {
-
-}
-
-/* Portrait */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-
-}
 
 
 
-/// media queries IPAD ///
-
-
-/* Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
-
-}
-
-/* ----------- iPad 1 and 2 ----------- */
-/* Portrait and Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 1) {
-
-}
-
-/* Portrait */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-
-}
-
-/* Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
-
-}
-
-/* ----------- iPad 3 and 4 ----------- */
-/* Portrait and Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
-/* Portrait */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
-/* Landscape */
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
