@@ -6265,7 +6265,8 @@ h1, h2, h3, h4, h5, h6, div {
   margin-top: 10px;
   margin-bottom: 20px;
   background-color: #f8f8f8;
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  padding-top: 10px; }
 
 .note-author {
   font-size: 12px;
