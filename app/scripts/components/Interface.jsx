@@ -22,12 +22,7 @@ var Home = require('./Home.jsx');
 var ClientDetail = require("./clientDetail.jsx").ClientDetail;
 var Admin = require("./Admin.jsx");
 
-// } else if (this.props.router.current == 'session') {
-// 				body = (
-// 					<ClientDetail sessionId={this.props.router.sessionId} id={this.props.router.clientId} />
-// 					);
 
-// main interface component
 
 var Interface = React.createClass({
 	componentWillMount: function() {

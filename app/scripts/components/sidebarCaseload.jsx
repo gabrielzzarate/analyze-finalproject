@@ -35,7 +35,7 @@ var SidebarCaseload = React.createClass({
 	},
 	handleClick: function(client){
 			console.log("changing route...");
-		 Backbone.history.navigate("profile/" + client.id, {trigger: true});
+		 //Backbone.history.navigate("profile/" + client.id, {trigger: true});
 	},
 	render: function() {
 		if(this.state.clients){
@@ -45,7 +45,7 @@ var SidebarCaseload = React.createClass({
 
 				return (
 					<li key={client.id} >
-									<a onClick={this.handleClick.bind(this, client)} >
+									<a href={"#client/profile/" + client.id }>
 									<p className="client-name caseload-name">{client.get('Name')}</p>
 								</a>
 					</li>

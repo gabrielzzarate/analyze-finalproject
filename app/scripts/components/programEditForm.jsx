@@ -88,7 +88,7 @@ var ProgramEditForm = React.createClass({
 		program.save(null, {
   		success: function(program) {
 
-  		  alert("Your program has been saved");
+  		  	self.props.close();
   		  	programObj = program;
   		  	self.props.getPrograms();
   		  	var programTargets = [];

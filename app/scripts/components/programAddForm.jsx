@@ -51,8 +51,8 @@ var ProgramAddForm = React.createClass({
 		program.set("client", new models.Client(this.props.clientObj));
 		program.save(null, {
   		success: function(program) {
-
-  		  alert('New object created with objectId: ' + program.id);
+  			self.props.close();
+  		  //alert('New object created with objectId: ' + program.id);
   		  	programObj = program;
   		  	self.props.getPrograms();
   		  	var programTargets = [];

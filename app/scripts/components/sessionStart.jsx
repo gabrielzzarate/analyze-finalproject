@@ -21,6 +21,7 @@ var Button = require('react-bootstrap').Button;
 
 // require in child components
 var ClientSession = require('./clientSession.jsx');
+var CustomAlert = require('./customAlert.jsx');
 
 // Parse class models
 var models = require('../models/models.js');
@@ -33,25 +34,26 @@ var SessionStart = React.createClass({
 	    return {
 	    	sessionData: null,
 	    	masteredTargets: null,
+	    	customAlert: false
 	    };
 	},
 	handleSession: function(){
-		$('#session-container').addClass('fadeIn').removeClass('hide');
-	var self = this;
+				$('#session-container').addClass('fadeIn').removeClass('hide');
+				var self = this;
 
-	session.set('client', new models.Client(this.props.clientObj));
-	session.set('user', Parse.User.current());
-	session.save().then(function(session){
-			console.log(session);
-			self.setState({'sessionData': session});
-			var id = session.id;
-			$('#session-save').removeClass('hide');
-			$('#session-start').addClass('hide');
-			$('#session-container').removeClass('hide');
-			//Backbone.history.navigate("#session/" + id, {trigger: true});
-			//var id = session.id;
-		//	console.log(id);
-	});
+			session.set('client', new models.Client(this.props.clientObj));
+			session.set('user', Parse.User.current());
+			session.save().then(function(session){
+					console.log(session);
+					self.setState({'sessionData': session});
+					var id = session.id;
+					$('#session-save').removeClass('hide');
+					$('#session-start').addClass('hide');
+					$('#session-container').removeClass('hide');
+					//Backbone.history.navigate("#session/" + id, {trigger: true});
+					//var id = session.id;
+				//	console.log(id);
+			});
 	// var scheduleRecord = new models.ScheduleRecord();
 	// scheduleRecord.set('client', new models.Client(this.props.clientObj));
 	// //scheduleRecord.set('therapistTeam', Parse.User.current());
@@ -68,7 +70,7 @@ var SessionStart = React.createClass({
 saveSession: function(){
 	var self = this;
 	var endedTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-	$('#session-save').addClass('fadeOut');
+	$('#session-save').addClass('hide');
 	$('#session-start').removeClass('hide');
 	$('#session-container').addClass('hide');
 
@@ -117,13 +119,15 @@ saveSession: function(){
 			session.set('targetsMastered', masteredArray);
 			session.save( null, {
 	 						 success: function(session) {
+	 						 		self.openModal();
+
 						    // Execute any logic that should take place after the object is saved.
-						    alert('New object created with objectId: ' + session.id);
+						   // alert('New object created with objectId: ' + session.id);
 						  },
 						  error: function(session, error) {
 						    // Execute any logic that should take place if the save fails.
 						    // error is a Parse.Error with an error code and message.
-						    alert('Failed to create new object, with error code: ' + error.message);
+						   // alert('Failed to create new object, with error code: ' + error.message);
 						  }
 						});
 
@@ -136,6 +140,12 @@ saveSession: function(){
 
 
 },
+	openModal: function(){
+		this.setState({"customAlert": true});
+	},
+	closeModal: function(){
+		this.setState({"customAlert": false});
+	},
 
 	render: function() {
 		//this.getCompletedTargets();
@@ -149,7 +159,7 @@ saveSession: function(){
 		<span className="session-date">{todaysDate}</span>
 			  			<div id="session-container" className="animated hide delay-three">
   				<ClientSession  session={this.state.sessionData} clientId={this.props.clientId} clientObj={this.props.clientObj}/>
-
+  				<CustomAlert modal={this.state.customAlert} open={this.openModal} close={this.closeModal}/>
 		</div>
 		</div>
 		);

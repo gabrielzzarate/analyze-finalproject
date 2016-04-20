@@ -7,7 +7,7 @@ var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
 require('backbone-react-component');
 var bootstrap = require('bootstrap-sass/assets/javascripts/bootstrap.js');
-var iconic = require('iconic/iconic.min.js');
+
 var Chart = require('chart.js');
 //local
 var router = require('./router.js'); // app main router

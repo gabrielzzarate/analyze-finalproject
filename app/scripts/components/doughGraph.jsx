@@ -7,9 +7,12 @@ var React = require('react');
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var Chart = require('chart.js');
-//var LineChart = require("react-chartjs").Line;
-var LineChart = require("rc-chartjs").Line;
+
 var DoughnutChart = require("react-chartjs").Doughnut;
+console.log("DoughnutChart", DoughnutChart);
+
+var LineChart = require("react-chartjs").Line;
+
 
 var moment = require('moment');
 var _ = require('underscore');
@@ -32,8 +35,7 @@ var DoughGraph = React.createClass({
     getInitialState: function() {
         return {
             graphs: [],
-            outcomesTrue: null,
-            outcomesFalse: null,
+
         };
     },
 
@@ -50,8 +52,8 @@ var DoughGraph = React.createClass({
 
         queryOutcomes.find({
             success: function(outcomesTrue){
-                console.log("outcomesTrue", outcomesTrue);
-                self.setState({'outcomeTrue': outcomesTrue});
+                //console.log("outcomesTrue", outcomesTrue);
+               // self.setState({'outcomeTrue': outcomesTrue});
                 //self.buildGraphs(sessions, outcomesTrue);
 
                 var queryFalseOutcomes = new Parse.Query(models.SessionOutcome);
@@ -61,7 +63,7 @@ var DoughGraph = React.createClass({
 
                 queryFalseOutcomes.find({
                         success: function(outcomesFalse){
-                          self.setState({'outcomeFalse': outcomesFalse});
+                         // self.setState({'outcomeFalse': outcomesFalse});
                           self.buildGraphs(programs, outcomesTrue, outcomesFalse);
                 },
                  error: function(){
@@ -96,9 +98,7 @@ var DoughGraph = React.createClass({
     buildGraphs: function(programs, outcomesTrue, outcomesFalse){
         var self = this;
         var targets;
-      //  var True = outcomesTrue.length;
-      // var False = outcomesFalse.length;
-        console.log("outcomefalse", outcomesFalse);
+
             _.each(programs, function(program){
                  targets = program.get('targets');
 
@@ -116,12 +116,9 @@ var DoughGraph = React.createClass({
                     var targetAssociated = outcome.get('target').id;
 
                     associatedTrueArray.push(targetAssociated);
-                   // console.log(associatedArray);
 
-                   //  var trueCount = _.intersection(targetsArray, associatedArray).length;
-                   // console.log(trueCount);
                     var trueCount = _.intersection(targetsArray, associatedTrueArray).length;
-                  // console.log("trueCount", trueCount);
+
                     return trueCount;
 
             });
@@ -130,14 +127,10 @@ var DoughGraph = React.createClass({
                 associatedFalseArray.push(targetAssociated);
 
                  var falseCount = _.intersection(targets, associatedFalseArray).length;
-                   // console.log("falseCount", falseCount);
+
                 return falseCount;
             });
-              // var trueCount = _.intersection(targetsArray, associatedTrueArray).length;
-              //      console.log("trueCount", trueCount);
 
-                // var falseCount = _.intersection(targets, associatedFalseArray).length;
-                //     console.log("falseCount", falseCount);
            var chartOptions =     {
     //Boolean - Whether we should show a stroke on each segment
     segmentShowStroke : true,
@@ -216,26 +209,24 @@ var DoughGraph = React.createClass({
 
             });
 
-
-
-
-
-
     },
 
     render: function() {
-        var self = this;
-        var programs;
+        if(this.props.render === true){
 
-            console.log("graphs:", this.state.graphs);
+
+
+           // console.log("graphs:", this.state.graphs);
         var graphs = this.state.graphs.map(function(data){
 
-            console.log(data.data);
+           // console.log(data.data);
+
 
             return (
-                <div className="col-xs-12" key={data.id}>
+                <div  key={data.id}>
+                    <p>doughnut chart</p>
+                 <DoughnutChart  data={data.data} options={data.options}   redraw width="600" height="250" />
 
-                    <DoughnutChart  data={data.data}  options={data.options} width="500" height="250" />
 
                 </div>
                 );
@@ -246,9 +237,14 @@ var DoughGraph = React.createClass({
                 {graphs}
             </div>
         );
-    }
 
 
+} else {
+    return (
+        <div />
+        );
+}
+}
 });
 
 

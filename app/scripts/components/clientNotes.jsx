@@ -55,8 +55,9 @@ var ClientNotes = React.createClass({
 		note.save(null, {
   		success: function(note) {
    			 // Execute any logic that should take place after the object is saved.
-  		  alert('New object created with objectId: ' + note.id);
+  		  //alert('New object created with objectId: ' + note.id);
   		  self.getNotes();
+  		  $('#noteText').val('');
   			},
   		error: function(note, error) {
    				 // Execute any logic that should take place if the save fails.

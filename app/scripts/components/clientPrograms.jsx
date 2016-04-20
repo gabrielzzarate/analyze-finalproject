@@ -6,7 +6,7 @@ var $ = require('jQuery');
 var React = require("react");
 var Parse = require('parse');
 var ParseReact = require('parse-react');
-var iconic = require('iconic/iconic.min.js');
+
 var _ = require('underscore');
 var LinkedStateMixin = require('react/lib/LinkedStateMixin');
 

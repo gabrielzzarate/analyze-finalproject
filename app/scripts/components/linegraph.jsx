@@ -7,9 +7,10 @@ var React = require('react');
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var Chart = require('chart.js');
-//var LineChart = require("react-chartjs").Line;
-var LineChart = require("rc-chartjs").Line;
-var DoughnutChart = require("rc-chartjs").Doughnut;
+
+var LineChart = require("react-chartjs").Line;
+console.log("LineChart", LineChart);
+
 
 var moment = require('moment');
 var _ = require('underscore');
@@ -124,7 +125,7 @@ var LineGraph = React.createClass({
 
                 // };
             });
-            console.log('sessionData', sessionData);
+            //console.log('sessionData', sessionData);
 
             var chartOptions = {
     // Boolean - Whether to animate the chart
@@ -190,9 +191,8 @@ var LineGraph = React.createClass({
 
     // Boolean - whether or not the chart should be responsive and resize when the browser does.
     responsive: false,
-
     // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
 
     // Boolean - Determines whether to draw tooltips on the canvas or not
     showTooltips: true,
@@ -277,39 +277,29 @@ var LineGraph = React.createClass({
     },
 
     render: function() {
-        var self = this;
 
+        if(this.props.render === true){
 
         var graphs = this.state.graphs.map(function(data){
-
-            var programs = data.programs.map(function(program){
-                    return (
-                        program.get('name')
-                        );
-            });
-
             return (
-                <div className="col-xs-12" key={data.id}>
-
-                    <LineChart className="behavior-line-chart" data={data} options={data.options} width="500" height="250" redraw />
-
-
-
-
+                <div  key={data.id}>
+                    <p>a line chart </p>
+                    <LineChart className="behavior-line-chart" data={data} options={data.options} width="600" height="250"/>
                 </div>
                 );
         });
-
-
         return (
             <div>
-
                 {graphs}
-
             </div>
         );
-    }
 
+} else {
+    return (
+        <div />
+        );
+}
+}
 
 });
 
