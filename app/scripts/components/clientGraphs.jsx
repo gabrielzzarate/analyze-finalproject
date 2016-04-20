@@ -13,7 +13,7 @@ var Button = require('react-bootstrap').Button;
 
 // require in child components
 var LineGraph = require('./linegraph.jsx');
-var HighChartExample = require('./highchartexample.jsx');
+var DoughGraph = require('./doughGraph.jsx');
 
 
 
@@ -24,12 +24,16 @@ var ClientGraphs = React.createClass({
 	render: function() {
 		return (
 			<div className="graph-start-container">
-                 <Button  className="session-start-btn" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">Graphs</Button>
-                <div className="collapse" id="collapse">
-                     <div>
+                 <Button  className="session-start-btn graphs-button" data-toggle="collapse" data-target="#collapseLine" aria-expanded="false" aria-controls="collapse">Line</Button>
+                 <Button  className="session-start-btn graphs-button" data-toggle="collapse" data-target="#collapseDough" aria-expanded="false" aria-controls="collapse">Doughnut</Button>
+                <div className="collapse" id="collapseLine">
+
                         <LineGraph clientId={this.props.clientId} clientObj={this.props.clientObj}/>
 
-                    </div>
+                </div>
+
+                <div className ="collapse" id="collapseDough">
+                    <DoughGraph clientId = {this.props.clientId} clientObj = {this.props.clientObj} />
                 </div>
         </div>
 		);

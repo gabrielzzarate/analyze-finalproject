@@ -44,7 +44,7 @@ var Interface = React.createClass({
 			if(this.props.router.current == 'home'){
 				body = (
 					//home screen
-					<Home />
+					<Home id={this.props.router.clientId}/>
 					);
 				} else if(this.props.router.current == 'admin'){
 					body = (

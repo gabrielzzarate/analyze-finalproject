@@ -198,7 +198,7 @@ var ClientPrograms = React.createClass({
 							<div className = "row">
 								<Button className="add-program-btn" bsStyle="primary" onClick={this.modalAddOpen}>Add Program</Button>
 								<ProgramAddForm getPrograms={this.getPrograms} clientObj={this.props.clientObj} modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
-								<ProgramEditForm programObj={this.state.modalEditModel} getPrograms={this.getPrograms} close={this.modalEditClose} modal={this.state.splash} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
+						{/*	<ProgramEditForm programObj={this.state.modalEditModel} getPrograms={this.getPrograms} close={this.modalEditClose} modal={this.state.splash} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/> */}
 
 							</div>
 									{programs}

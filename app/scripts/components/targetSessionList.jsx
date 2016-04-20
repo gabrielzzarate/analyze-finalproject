@@ -57,8 +57,8 @@ saveYesTarget: function(target){
 		})
 
 );
- 	$('.yes-btn').attr('disabled', 'disabled');
- 	$('.no-btn').attr('disabled', 'disabled');
+ //	$('.yes-btn').attr('disabled', 'disabled');
+ //	$('.no-btn').attr('disabled', 'disabled');
 
 },
 saveNoTarget: function(target){
@@ -85,7 +85,7 @@ saveNoTarget: function(target){
 											<div className="col-xs-3">
 											<Button id="yes-btn" className="yes-btn" onClick={this.saveYesTarget.bind(this, target)} ><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></Button>
 											</div>
-											<div className="col-sm-5 col-sm-offset-3">
+											<div className="col-xs-5 col-xs-offset-1">
 											<span className="target-item-name">{target.get('name')}</span>
 											</div>
 

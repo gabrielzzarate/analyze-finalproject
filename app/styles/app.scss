@@ -25,9 +25,7 @@ $font-stack-secondary: 'Merriweather', serif;
 *::after {
   box-sizing: border-box;
 }
-*:focus{
-  outline: none;
-}
+
 
 .block {
   display: block;
@@ -488,7 +486,7 @@ h1, h2, h3, h4, h5, h6, div,  {
 
 .team-info {
   height: 160px;
-  padding-right: 80px;
+  padding-right: 30px;
   box-shadow: none;
   background-color:  rgb(248, 248, 248);
   border-left: 2px solid #8d909e;
@@ -514,6 +512,7 @@ h1, h2, h3, h4, h5, h6, div,  {
 }
 .note-container {
   min-height: 200px;
+  margin-bottom: 20px;
   //overflow: scroll;
 
 }
@@ -530,7 +529,7 @@ h1, h2, h3, h4, h5, h6, div,  {
 
 .client-notes-container {
   margin-top: 15px;
-  height: 500px;
+
 
   //overflow: scroll;
 
@@ -538,8 +537,9 @@ h1, h2, h3, h4, h5, h6, div,  {
 
 .note-container {
   margin-top: 10px;
-   margin-bottom: 5px;
+   margin-bottom: 20px;
    background-color:  rgb(248, 248, 248);
+   padding-bottom: 10px;
 
 }
 

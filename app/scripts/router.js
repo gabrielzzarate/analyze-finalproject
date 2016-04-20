@@ -20,7 +20,7 @@ var Router = Backbone.Router.extend({
 		"": "login",
 		"home/": "home",
 		"profile/(:id)": "profile",
-		"profile/(:id)/session/(:sessionId)/": 'session',
+		//"profile/(:id)/session/(:sessionId)/": 'session',
 		"admin/" : "admin",
 	},
 

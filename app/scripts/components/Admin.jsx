@@ -21,6 +21,8 @@ var models = require('../models/models.js');
 // react-bootstrap
 var Accordion = require('react-bootstrap').Accordion;
 var Panel = require('react-bootstrap').Panel;
+var Input = require("react-bootstrap").Input;
+var Button = require('react-bootstrap').Button;
 
 
 var Admin = React.createClass({

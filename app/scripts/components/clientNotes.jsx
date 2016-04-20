@@ -76,11 +76,11 @@ var ClientNotes = React.createClass({
 				//console.log("notes", this.state.notes);
 				return (
 						<div  key={note.id}>
-							<p className="note-text">{note.get('text')}</p>
+
 							<div className="note-author">{note.get('postedBy').get('username')} </div>
 							{/* use moment.js to set format date of the note */}
 							<div className="note-time">{moment(created).fromNow()} wrote: </div>
-
+							<p className="note-text">{note.get('text')}</p>
 						</div>
 					);
 			}.bind(this));

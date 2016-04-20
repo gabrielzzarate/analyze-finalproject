@@ -28,13 +28,6 @@ var NavItem = require('react-bootstrap').NavItem;
 //global variables
 
 
-// module: {
-//   loaders: [
-//     {test: require.resolve('chart.js'), loader: 'imports?this=>window'},
-//   ]
-// }
-
-
 var LineGraph = React.createClass({
     getInitialState: function() {
         return {
@@ -159,7 +152,7 @@ var LineGraph = React.createClass({
 
     // ** Required if scaleOverride is true **
     // Number - The number of steps in a hard coded scale
-    scaleSteps: 20,
+    scaleSteps: overallMasteredTargetCount + 1,
     // Number - The value jump in the hard coded scale
     scaleStepWidth: 1,
     // Number - The scale starting value
@@ -196,7 +189,7 @@ var LineGraph = React.createClass({
     scaleFontColor: "#666",
 
     // Boolean - whether or not the chart should be responsive and resize when the browser does.
-    responsive: false,
+    responsive: true,
 
     // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
     maintainAspectRatio: true,
@@ -211,7 +204,7 @@ var LineGraph = React.createClass({
     tooltipEvents: ["mousemove", "touchstart", "touchmove"],
 
     // String - Tooltip background colour
-    tooltipFillColor: "rgba(0,0,0,0.8)",
+    tooltipFillColor: "rgba(11, 28, 84, 0.88)",
 
     // String - Tooltip label font declaration for the scale label
     tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
@@ -223,7 +216,7 @@ var LineGraph = React.createClass({
     tooltipFontStyle: "normal",
 
     // String - Tooltip label font colour
-    tooltipFontColor: "#fff",
+    tooltipFontColor: "#57cbbb",
 
     // String - Tooltip title font declaration for the scale label
     tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
@@ -262,7 +255,11 @@ var LineGraph = React.createClass({
     onAnimationProgress: function(){},
 
     // Function - Will fire on animation completion.
-    onAnimationComplete: function(){}
+    onAnimationComplete: function(){},
+
+    //String - A legend template
+    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
 };
 
 
@@ -275,9 +272,9 @@ var LineGraph = React.createClass({
                     labels: sessionDateArray,
                     datasets: [{
                         label: targetNameArray,
-                        fillColor: "rgba(151,187,205,0.2)",
-                        strokeColor: "rgba(151,187,205,1)",
-                        pointColor: "rgba(151,187,205,1)",
+                        fillColor: "rgba(11, 28, 84, 0.5)",
+                        strokeColor: "rgba(11, 28, 84, 0.88)",
+                        pointColor: "#57cbbb",
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
                         pointHighlightStroke: "rgba(151,187,205,1)",
@@ -294,25 +291,32 @@ var LineGraph = React.createClass({
         var self = this;
 
 
-            console.log(this.state.graphs);
         var graphs = this.state.graphs.map(function(data){
-           var programName;
-           //console.log("data", data);
-          var  programNames = data.programs.map(function(program){
-                programName = program.get('name');
 
-           });
+            var programs = data.programs.map(function(program){
+                    return (
+                        program.get('name')
+                        );
+            });
+
             return (
-                <div key={data.id}>
-                    {programName}
-                    <LineChart className="behavior-line-chart" data={data} options={data.options}  width="500" height="250" />
+                <div className="col-xs-12" key={data.id}>
+
+                    <LineChart className="behavior-line-chart" data={data} options={data.options}  redraw />
+
+
+
 
                 </div>
                 );
         });
+
+
         return (
             <div>
+
                 {graphs}
+
             </div>
         );
     }

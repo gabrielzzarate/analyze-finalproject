@@ -47,23 +47,23 @@ var ClientDetail = React.createClass({
 					<div key={client.objectId}>
 					<div className = "col-xs-10 col-xs-offset-1  client-profile-container">
 					<div className='row'>
-						<div className= "col-xs-11 client-info-container">
-							<div className="col-xs-6 client-info">
+						<div className= "col-xs-12 client-info-container">
+							<div className="col-sm-6 col-mx-12 client-info">
 								<div className="col-xs-3 client-image-container">
 									<img className="client-image" src={client.profileImage.url()} />
 								</div>
 
-								<div className="client-header col-sm-8 col-xs-6">
-										<div className="col-sm-12">
+								<div className="client-header col-xs-8">
+										<div className="col-xs-12">
 										<h4 className='client-name-detail-page'>{client.Name}</h4>
 										</div>
-										<div className="col-sm-12 col-xs-8">
+										<div className="col-xs-12">
 										<p><i className="fa fa-phone client-phone"></i> {client.telephone}</p>
 										</div>
-										<div className="col-sm-12 col-xs-12">
+										<div className=" col-xs-12">
 										<p><i className="fa fa-map-marker client-address"></i> {client.address}</p>
 										</div>
-										<div className="col-sm-12 col-xs-12">
+										<div className=" col-xs-12">
 										<p><i className="fa fa-calendar"></i> {client.schedule}</p>
 										</div>
 
@@ -71,7 +71,7 @@ var ClientDetail = React.createClass({
 							</div>
 
 
-						<div className="col-sm-4 col-sm-offset-1 col-xs-3 team-info">
+						<div className="col-sm-offset-1 col-sm-4 col-xs-11 team-info">
 								<h6>Therapist Team </h6>
 
 								<ul className ="therapist-team-list">
@@ -83,7 +83,7 @@ var ClientDetail = React.createClass({
 						</div>
 						</div>
 						<div className= "row">
-						<div className= "col-sm-12 client-data-container">
+						<div className= "col-xs-12 client-data-container">
 							<Tabs defaultActiveKey={1}>
 									<Tab eventKey={1} title="Today"><SessionStart clientId={this.props.id} clientObj={this.data.clientObj}/> </Tab>
 									<Tab eventKey={2} title="Notes"> <ClientNotes clientId={this.props.id} clientObj={this.data.clientObj}/></Tab>
