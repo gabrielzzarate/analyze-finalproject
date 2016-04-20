@@ -121,7 +121,7 @@ saveSession: function(){
 			}.bind(this));
 			return (
 
-				<div className="col-sm-10 col-sm-offset-1 client-session-container">
+				<div className="col-xs-10 col-xs-offset-1 client-session-container">
 
 				<div>
 				</div>

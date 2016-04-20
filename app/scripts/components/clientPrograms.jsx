@@ -176,7 +176,7 @@ var ClientPrograms = React.createClass({
 									<p className="master-criteria-text">mastery criteria: <span className="criteria-text">{program.get('description')}</span></p>
 									</div>
 									<div className='program-btns'>
-									<a className="program-edit pull-right"> <i className="fa fa-times" aria-hidden="true"></i></a>
+
 									<a onClick={this.modalEditOpen.bind(this, program)}   className="program-edit pull-right"> <i className="fa fa-pencil" aria-hidden="true"></i></a>
 									</div>
 
@@ -198,7 +198,7 @@ var ClientPrograms = React.createClass({
 							<div className = "row">
 								<Button className="add-program-btn" bsStyle="primary" onClick={this.modalAddOpen}>Add Program</Button>
 								<ProgramAddForm getPrograms={this.getPrograms} clientObj={this.props.clientObj} modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
-						{/*	<ProgramEditForm programObj={this.state.modalEditModel} getPrograms={this.getPrograms} close={this.modalEditClose} modal={this.state.splash} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/> */}
+							<ProgramEditForm programObj={this.state.modalEditModel} getPrograms={this.getPrograms} close={this.modalEditClose} modal={this.state.splash} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
 
 							</div>
 									{programs}

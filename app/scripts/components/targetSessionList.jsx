@@ -81,7 +81,7 @@ saveNoTarget: function(target){
 
 		var	target = this.props.target;
 					return (
-						<div className="col-sm-12 target-item-container">
+						<div className="col-xs-12 target-item-container">
 											<div className="col-xs-3">
 											<Button id="yes-btn" className="yes-btn" onClick={this.saveYesTarget.bind(this, target)} ><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></Button>
 											</div>

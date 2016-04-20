@@ -143,7 +143,7 @@ var DoughGraph = React.createClass({
     segmentShowStroke : true,
 
     // Boolean - whether or not the chart should be responsive and resize when the browser does.
-    responsive: true,
+    responsive: false,
 
     //String - The colour of each segment stroke
     segmentStrokeColor : "#fff",

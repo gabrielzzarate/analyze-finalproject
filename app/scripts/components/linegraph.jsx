@@ -189,7 +189,7 @@ var LineGraph = React.createClass({
     scaleFontColor: "#666",
 
     // Boolean - whether or not the chart should be responsive and resize when the browser does.
-    responsive: true,
+    responsive: false,
 
     // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
     maintainAspectRatio: true,
@@ -197,8 +197,7 @@ var LineGraph = React.createClass({
     // Boolean - Determines whether to draw tooltips on the canvas or not
     showTooltips: true,
 
-    // Function - Determines whether to execute the customTooltips function instead of drawing the built in tooltips (See [Advanced - External Tooltips](#advanced-usage-custom-tooltips))
-    customTooltips: false,
+
 
     // Array - Array of string names to attach tooltip events
     tooltipEvents: ["mousemove", "touchstart", "touchmove"],
@@ -245,17 +244,7 @@ var LineGraph = React.createClass({
     // Number - Pixel offset from point x to tooltip edge
     tooltipXOffset: 10,
 
-    // String - Template string for single tooltips
-    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
 
-    // String - Template string for multiple tooltips
-    multiTooltipTemplate: "<%= value %>",
-
-    // Function - Will fire on animation progression.
-    onAnimationProgress: function(){},
-
-    // Function - Will fire on animation completion.
-    onAnimationComplete: function(){},
 
     //String - A legend template
     legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
@@ -302,7 +291,7 @@ var LineGraph = React.createClass({
             return (
                 <div className="col-xs-12" key={data.id}>
 
-                    <LineChart className="behavior-line-chart" data={data} options={data.options}  redraw />
+                    <LineChart className="behavior-line-chart" data={data} options={data.options} width="500" height="250" redraw />
 
 
 
@@ -326,6 +315,26 @@ var LineGraph = React.createClass({
 
 
 module.exports = LineGraph;
+
+
+
+  // var ChartLegend = React.createClass({
+  //   propTypes: {
+  //     datasets: React.PropTypes.array.isRequired
+  //   },
+
+  //   render: function () {
+  //     var datasets = _.map(this.props.datasets, function (ds) {
+  //       return <li><span className="legend-color-box" style={{ backgroundColor: ds.strokeColor }}></span> { ds.label }</li>;
+  //     });
+
+  //     return (
+  //       <ul className={ this.props.title + "-legend" }>
+  //         { datasets }
+  //       </ul>
+  //     );
+  //   }
+  // });
 
 // //mixins: [ParseReact.Mixin],
 //     getInitialState: function() {
