@@ -1,0 +1,23 @@
+.custom-modal {
+  width: 60%; }
+
+.modal-edit-container {
+  height: 300px; }
+
+.add-target-btn {
+  border-radius: 100%;
+  float: right;
+  height: 35px;
+  width: 35px;
+  border: none;
+  background-color: #57cbbb;
+  margin: 10px;
+  color: white;
+  position: relative;
+  top: -3px; }
+
+.program-form-container {
+  margin-top: 15px;
+  height: 300px; }
+
+/*# sourceMappingURL=modal.css.map */
