@@ -5818,7 +5818,7 @@ button.close {
   margin-top: 20px; }
 
 .graph-start-container {
-  height: 700px; }
+  height: 100%; }
 
 .graphs-button {
   margin: 15px;
@@ -6169,6 +6169,11 @@ h1, h2, h3, h4, h5, h6, div {
   text-transform: uppercase;
   font-size: 10px; }
 
+.caseload-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
 .client-name {
   font-family: "Merriweather", serif;
   font-size: 12px;
@@ -6368,4 +6373,5 @@ input:focus, textarea:focus {
 
 .remove-program-icon {
   float: right; }
+
 /*# sourceMappingURL=app.css.map */
