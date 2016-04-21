@@ -72,7 +72,7 @@ var Interface = React.createClass({
 						<Sidebar />
 
 					</div>
-					<div id="main-container" style={style} className="animated fadeIn col-sm-9 col-xs-9 col-xs-12">
+					<div id="main-container" style={style} className="animated fadeIn col-lg-12 col-sm-9 col-xs-9 col-xs-12">
 						<Header />
 						<div id="body-container" className="col-xs-12 ">
 
