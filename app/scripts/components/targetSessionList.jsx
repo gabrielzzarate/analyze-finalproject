@@ -61,7 +61,7 @@ saveYesTarget: function(target, event){
  //	$('.no-btn').attr('disabled', 'disabled');
 
 },
-saveNoTarget: function(event, target){
+saveNoTarget: function(target, event){
 	event.preventDefault();
 	var sessionObj = this.props.sessionObj;
 

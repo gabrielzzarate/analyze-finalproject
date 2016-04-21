@@ -29,7 +29,7 @@ var Button = require('react-bootstrap').Button;
 var ProgramAddForm = React.createClass({
 	getInitialState: function() {
 	    return {
-	    	targetCount: 1,
+	    	targetCount: 0,
 
 	    };
 	},
@@ -39,10 +39,12 @@ var ProgramAddForm = React.createClass({
 	},
 		handleSubmit: function(event){
 		event.preventDefault();
+		console.log('saving...');
 		var programName = $('.program-input').val();
 		var programDescription = $('.description-input').val();
 		var client = this.props.clientObj;
 		var programObj;
+
 		var self = this;
 
 		var program = new models.Program();
@@ -51,27 +53,37 @@ var ProgramAddForm = React.createClass({
 		program.set("client", new models.Client(this.props.clientObj));
 		program.save(null, {
   		success: function(program) {
-  			self.props.close();
-  		  //alert('New object created with objectId: ' + program.id);
-  		  	programObj = program;
-  		  	self.props.getPrograms();
+  			programObj = program;
+  		 // alert('New object created with objectId: ' + program.id);
   		  	var programTargets = [];
-
+  		  		self.props.getPrograms();
   		  	for(var i=1; i <= self.state.targetCount; i++){
 
   		  		console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
   		  		var name = self.refs["formset"+i].refs["name"+i].value;
+  		  		console.log(name);
   		  		var target = new models.Target();
 
   		  		target.set("name", name);
   		  		target.set("client", new models.Client(client));
   		  		target.set('program', programObj);
   		  		programTargets.push(target);
+  		  		console.log(programTargets);
   		  	}
   		  		Parse.Object.saveAll(programTargets).then(function(){
+  		  			console.log("saved");
   		  			program.set('targets', programTargets);
-  		  			program.save();
-  		  		});
+  		  			program.save(null, {
+  		  				success: function(){
+
+  		  					self.props.close();
+  		  				},
+  		  				error: function(){
+
+  		  				}
+  		  			});
+
+  		  	  		  		});
 
   			},
   				error: function(note, error) {
@@ -81,6 +93,7 @@ var ProgramAddForm = React.createClass({
   					}
   		  	});
 	},
+
 
 
 	render: function() {
@@ -101,16 +114,16 @@ var ProgramAddForm = React.createClass({
 						<Modal.Body>
 							<div className="row">
 
-								<div className="col-sm-6 ">
+								<div className="col-xs-6 ">
 
 									<Input id="program-input" className="program-input program-form" type="text" placeholder="Enter new program"/>
 									<Input id="description-input" className="description-input program-form" type="textarea" placeholder="Enter mastery criteria"/>
 								</div>
-									<div className="col-sm-4 ">
+									<div className="col-xs-4 ">
 										{targetForms}
 									</div>
-									<div className="col-sm-1">
-										<button onClick={this.addTarget} type="button" className="add-target-btn pull-right"><i className="fa fa-plus-circle"></i></button>
+									<div className="col-xs-1 col-xs-offset-3">
+										<button onClick={this.addTarget} type="button" className="add-target-btn"><i className="fa fa-plus-circle"></i></button>
 									</div>
 
 									</div>

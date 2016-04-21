@@ -36,11 +36,12 @@ var DoughGraph = React.createClass({
     getInitialState: function() {
         return {
             graphs: [],
+            programObj: null,
 
         };
     },
 
-    componentDidMount: function() {
+    componentWillMount: function() {
         this.getPrograms();
     },
     getOutcomes: function(programs){
@@ -89,6 +90,7 @@ var DoughGraph = React.createClass({
         queryPrograms.find({
             success: function(programs){
                 //console.log("programs", programs);
+                self.setState({"programObj": programs});
                 self.getOutcomes(programs);
             },
             error: function(){
@@ -99,8 +101,11 @@ var DoughGraph = React.createClass({
     buildGraphs: function(programs, outcomesTrue, outcomesFalse){
         var self = this;
         var targets;
+        var chartOptions;
+        var outcomeDataTrue;
+        var outcomeDataFalse;
 
-            _.each(programs, function(program){
+            _.map(programs, function(program){
                  targets = program.get('targets');
 
                 var targetNameArray = targets.map(function(target){
@@ -109,30 +114,34 @@ var DoughGraph = React.createClass({
                 var targetsArray = targets.map(function(target){
                 return target.id;
             });
-              //  console.log(targetsArray);
+               console.log(targetsArray);
               var associatedTrueArray = [];
               var associatedFalseArray = [];
-            var outcomeDataTrue = outcomesTrue.map(function(outcome){
+             outcomeDataTrue = outcomesTrue.map(function(outcome){
 
                     var targetAssociated = outcome.get('target').id;
-
+                    console.log("associated", targetAssociated);
+                    console.log("array", targetsArray);
                     associatedTrueArray.push(targetAssociated);
 
                     var trueCount = _.intersection(targetsArray, associatedTrueArray).length;
+                    console.log(trueCount);
+                    return trueCount.length;
 
-                    return trueCount;
 
             });
-            var outcomeDataFalse = outcomesFalse.map(function(outcome){
+             outcomeDataFalse = outcomesFalse.map(function(outcome){
                 var targetAssociated = outcome.get('target').id;
                 associatedFalseArray.push(targetAssociated);
 
                  var falseCount = _.intersection(targets, associatedFalseArray).length;
 
-                return falseCount;
+                return falseCount.length;
             });
+            console.log("outcomeDataFalse" , outcomeDataFalse.length);
+            console.log("outcomeDataTrue", outcomeDataTrue.length);
 
-           var chartOptions =     {
+            chartOptions =     {
     //Boolean - Whether we should show a stroke on each segment
     segmentShowStroke : true,
     // Boolean - whether or not the chart should be responsive and resize when the browser does.
@@ -169,6 +178,29 @@ var DoughGraph = React.createClass({
 };
 
 
+            //  var graphs = self.state.graphs;
+            //   var graphConfig = {
+            //         programs: programs,
+            //         id: targets,
+            //         options: chartOptions,
+            //         data: [{
+            //                     value: outcomeDataTrue.length,
+            //                     color:"#46BFBD",
+            //                     highlight: "#FF5A5E",
+            //                     label: "True"
+            //                 },
+            //                 {
+            //                     value: outcomeDataFalse.length,
+            //                     color: "#F7464A",
+            //                     highlight: "#5AD3D1",
+            //                     label: "False"
+            //                 }]
+            // };
+            // graphs.push(graphConfig);
+            // self.setState({graphs: graphs});
+
+            });
+
              var graphs = self.state.graphs;
               var graphConfig = {
                     programs: programs,
@@ -190,19 +222,19 @@ var DoughGraph = React.createClass({
             graphs.push(graphConfig);
             self.setState({graphs: graphs});
 
-            });
-
     },
 
     render: function() {
         if(this.props.render === true){
-           // console.log("graphs:", this.state.graphs);
-        var graphs = this.state.graphs.map(function(data){
-            var programs = data.programs;
+            var self = this;
+            console.log("graphs:", this.state.graphs);
+        var graphs = this.state.graphs.map(function(data, index){
+
 
             return (
                 <div  className="graph-container" key={data.id}>
-
+                {/*<p>{self.state.programObj[index].get('name')}</p> */}
+                <p> All Outcomes </p>
                  <DoughnutChart  data={data.data} options={data.options}   redraw width="600" height="250" />
                  <ul className="dough-legend">
                     <li><div id="squareGreen"></div> <i className="fa fa-thumbs-o-up" aria-hidden="true"></i></li>

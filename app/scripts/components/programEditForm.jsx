@@ -56,7 +56,7 @@ var ProgramEditForm = React.createClass({
 
 			state = this.buildProgram(program);
 
-		state.targetCount = 0;
+		state.targetCount = 1;
 		state.targets = program.get('targets').name;
 	    //console.log('state', state);
 
@@ -152,8 +152,8 @@ var ProgramEditForm = React.createClass({
 											<div className="col-sm-4">
 												{targetForms}
 											</div>
-										<div className="col-sm-1">
-											<button onClick={this.addTarget} type="button"className="add-target-btn pull-right"><i className="fa fa-plus-circle"></i></button>
+										<div className="col-sm-1 col-sm-offset-3">
+											<button onClick={this.addTarget} type="button"className="add-target-btn"><i className="fa fa-plus-circle"></i></button>
 										</div>
 											</div>
 										</Modal.Body>

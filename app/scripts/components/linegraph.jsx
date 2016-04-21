@@ -38,7 +38,7 @@ var LineGraph = React.createClass({
         };
     },
 
-    componentDidMount: function() {
+    componentWillMount: function() {
         this.getSessions();
     },
     getPrograms: function(sessions){

@@ -37,7 +37,7 @@ var ClientPrograms = React.createClass({
 	    return {
 	    	programs: null,
 	    	targets: null,
-	    	targetCount: 1,
+	    	targetCount: 0,
 	    	modalAddToggle: false,
 	    	modalEditToggle: false,
 	    	modalEditModel: null,
@@ -46,6 +46,7 @@ var ClientPrograms = React.createClass({
 	},
 
 	getPrograms: function(){
+		console.log('getting programs..');
 		var self = this;
 
 		var query = new Parse.Query(models.Program);
@@ -53,7 +54,7 @@ var ClientPrograms = React.createClass({
 		query.equalTo('client', this.props.clientObj);
 		query.include('targets');
 		query.find().then(function(programs){
-				//console.log("program:", programs);
+				console.log("program:", programs);
 				self.setState({"programs": programs});
 
 		}, function(error){
@@ -64,6 +65,7 @@ var ClientPrograms = React.createClass({
 
 
 	componentWillMount: function() {
+
 		var self = this;
 		var targetsObj;
 		var query = new Parse.Query(models.Program);
@@ -86,6 +88,7 @@ var ClientPrograms = React.createClass({
 
   modalAddClose: function(){
    this.setState({ modalAddToggle: false });
+
   },
 
   modalEditOpen: function(program){
@@ -94,6 +97,7 @@ var ClientPrograms = React.createClass({
 
   modalEditClose: function(){
   	this.setState({splash: false});
+
   },
 
 	handleSubmit: function(event){
@@ -142,21 +146,16 @@ var ClientPrograms = React.createClass({
 	},
 
 	render: function() {
-
+		var self = this;
 		if(this.state.programs) {
 			//console.log("programs", this.state.programs);
 			var data = this.props.clientObj;
-
-			// if(this.state.splash === true) {
-			// 	return (<ProgramEditForm programObj={this.state.modalEditModel} close={this.modalEditClose} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>);
-			// }
 			var programs = this.state.programs.map(function(program){
 					var targetsArray = program.get('targets');
 
 					var targets = targetsArray.map(function(target){
 						return (
-							<div className="col-sm-6 col-sm-offset-1" key = {target.id}>
-
+							<div className="col-sm-6 col-sm-offset-1" key ={target.id}>
 								<span>{target.get('name')}</span>
 							</div>
 							);
@@ -197,9 +196,8 @@ var ClientPrograms = React.createClass({
 							<div className="col-sm-12 program-config-container">
 							<div className = "row">
 								<Button className="add-program-btn" bsStyle="primary" onClick={this.modalAddOpen}>Add Program</Button>
-								<ProgramAddForm getPrograms={this.getPrograms} clientObj={this.props.clientObj} modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
-							<ProgramEditForm programObj={this.state.modalEditModel} getPrograms={this.getPrograms} close={this.modalEditClose} modal={this.state.splash} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
-
+								<ProgramAddForm targets={this.state.targets} getPrograms={this.getPrograms} clientObj={this.props.clientObj} modal={this.state.modalAddToggle} open={this.modalAddOpen} close={this.modalAddClose} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
+								<ProgramEditForm programObj={this.state.modalEditModel} getPrograms={this.getPrograms} close={this.modalEditClose} modal={this.state.splash} clientObj={this.props.clientObj} addTarget={this.addTarget} handleSubmit={this.handleSubmit}/>
 							</div>
 									{programs}
 							</div>
