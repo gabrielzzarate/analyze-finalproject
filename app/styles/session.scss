@@ -8,9 +8,7 @@
   color: white;
   background-color: #57cbbb;
   border: none;
-  &:visited {
-    background-color: gray;
-  }
+
  }
 
  .no-btn {
@@ -22,8 +20,11 @@
 
  }
 
- .no-btn:visited {
-  background-color: gray;
+ .no-btn:active {
+  background-color: red;
+ }
+ .yes-btn:active {
+    background-color: green;
  }
 
 .save-session-btn {

@@ -120,12 +120,12 @@ var DoughGraph = React.createClass({
              outcomeDataTrue = outcomesTrue.map(function(outcome){
 
                     var targetAssociated = outcome.get('target').id;
-                    console.log("associated", targetAssociated);
-                    console.log("array", targetsArray);
+                  //  console.log("associated", targetAssociated);
+                  //  console.log("array", targetsArray);
                     associatedTrueArray.push(targetAssociated);
 
                     var trueCount = _.intersection(targetsArray, associatedTrueArray).length;
-                    console.log(trueCount);
+                    //console.log(trueCount);
                     return trueCount.length;
 
 
@@ -138,8 +138,8 @@ var DoughGraph = React.createClass({
 
                 return falseCount.length;
             });
-            console.log("outcomeDataFalse" , outcomeDataFalse.length);
-            console.log("outcomeDataTrue", outcomeDataTrue.length);
+            //console.log("outcomeDataFalse" , outcomeDataFalse.length);
+            //console.log("outcomeDataTrue", outcomeDataTrue.length);
 
             chartOptions =     {
     //Boolean - Whether we should show a stroke on each segment
@@ -227,7 +227,7 @@ var DoughGraph = React.createClass({
     render: function() {
         if(this.props.render === true){
             var self = this;
-            console.log("graphs:", this.state.graphs);
+            //console.log("graphs:", this.state.graphs);
         var graphs = this.state.graphs.map(function(data, index){
 
 

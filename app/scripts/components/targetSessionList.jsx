@@ -32,7 +32,7 @@ var TargetSessionList = React.createClass({
 
 saveYesTarget: function(target, event){
  	event.preventDefault();
- 	event.target.setAttribute('disabled', 'disabled');
+ 	//event.target.setAttribute('disabled', 'disabled');
 
 
 
@@ -63,6 +63,8 @@ saveYesTarget: function(target, event){
 },
 saveNoTarget: function(target, event){
 	event.preventDefault();
+	//event.target.setAttribute('disabled', 'disabled');
+
 	var sessionObj = this.props.sessionObj;
 
  	var outcome = new models.SessionOutcome();

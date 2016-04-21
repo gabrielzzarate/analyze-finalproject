@@ -9,7 +9,7 @@ var ParseReact = require('parse-react');
 var Chart = require('chart.js');
 
 var LineChart = require("react-chartjs").Line;
-console.log("LineChart", LineChart);
+//console.log("LineChart", LineChart);
 
 
 var moment = require('moment');
