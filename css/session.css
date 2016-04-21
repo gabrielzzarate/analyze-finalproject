@@ -4,6 +4,8 @@
   color: white;
   background-color: #57cbbb;
   border: none; }
+  .yes-btn:visited {
+    background-color: gray; }
 
 .no-btn {
   border-radius: 100%;
@@ -11,6 +13,9 @@
   float: right;
   background-color: #ff4d4d;
   border: none; }
+
+.no-btn:visited {
+  background-color: gray; }
 
 .save-session-btn {
   border-radius: 100px;
@@ -48,4 +53,5 @@
 
 .save-session-btn {
   margin-left: 15px; }
+
 /*# sourceMappingURL=session.css.map */

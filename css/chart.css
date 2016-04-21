@@ -1,8 +1,16 @@
 .behavior-line-chart {
   margin-top: 20px; }
 
+.linechart-icon {
+  height: 30px;
+  margin: 20px; }
+
+.piechart-icon {
+  height: 30px;
+  margin: 20px; }
+
 .graph-start-container {
-  height: 100%; }
+  padding-bottom: 30px; }
 
 .graphs-button {
   margin: 15px;
@@ -27,5 +35,54 @@
   border-radius: 4px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
+
+#squareGreen {
+  width: 15px;
+  height: 15px;
+  background: #3fc0be; }
+
+#squareRed {
+  width: 15px;
+  height: 15px;
+  background: #fa4444; }
+
+.dough-legend {
+  border: 2px solid rgba(11, 28, 84, 0.88);
+  padding: 10px;
+  float: right;
+  margin-right: 20px; }
+  .dough-legend li div {
+    display: inline-block;
+    margin-right: 5px; }
+  .dough-legend li {
+    list-style: none; }
+  .dough-legend div {
+    position: relative;
+    top: 3px; }
+
+.targets-label {
+  color: #57cbbb;
+  font-size: 10px;
+  position: absolute;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.targets-label-container {
+  position: relative;
+  bottom: -120px;
+  left: -45px; }
+
+.date-label {
+  color: #57cbbb;
+  position: relative;
+  top: -10px;
+  font-size: 10px;
+  text-align: center; }
+
+.graph-btn-container {
+  margin-bottom: 40px; }
+
+.graph-container {
+  margin: 30px; }
 
 /*# sourceMappingURL=chart.css.map */
