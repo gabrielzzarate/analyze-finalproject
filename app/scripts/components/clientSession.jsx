@@ -135,7 +135,7 @@ saveSession: function(){
 		} else {
 			return (
 				<div>
-					<p>Loading...</p>
+					<p></p>
 				</div>);
 		}
 	}

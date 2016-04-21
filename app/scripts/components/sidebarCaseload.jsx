@@ -62,7 +62,7 @@ var SidebarCaseload = React.createClass({
 	} else {
 			return (
 				<div>
-					<p>Loading ... </p>
+					<p> </p>
 			</div>
 				);
 

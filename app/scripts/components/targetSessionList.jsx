@@ -30,9 +30,9 @@ var TargetSessionList = React.createClass({
 	// 	this.setState(this.buildSession(nextProps.session));
 	// },
 
-saveYesTarget: function(target){
+saveYesTarget: function(target, event){
  	event.preventDefault();
-
+ 	event.target.setAttribute('disabled', 'disabled');
 
 
 
@@ -61,7 +61,7 @@ saveYesTarget: function(target){
  //	$('.no-btn').attr('disabled', 'disabled');
 
 },
-saveNoTarget: function(target){
+saveNoTarget: function(event, target){
 	event.preventDefault();
 	var sessionObj = this.props.sessionObj;
 

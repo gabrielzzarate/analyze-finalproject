@@ -19,13 +19,10 @@ var Sidebar = React.createClass ({
 
 
 
-						<div className="sidebar-header col-sm-10 ">
+						<div className=" sidebar-logo col-sm-11 ">
 									<a href="#home/">
-												<img className="sidebar-brand" src="./images/app-icon-main.svg" />
-												<div className="sidebar-heading hidden-xs">
-												<span className="sidebar-title">Analyze</span>
-												<span className="sidebar-subtitle ">Therapy Tracking</span>
-												</div>
+												<img className="hidden-xs sidebar-brand" src="./images/analyze-sidebar-logo.png" />
+												<img className="small-logo visible-xs" src="./images/app-icon-main.svg" />
 								</a>
 
 						</div>

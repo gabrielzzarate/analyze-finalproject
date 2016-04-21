@@ -85,7 +85,7 @@ var ClientDetail = React.createClass({
 						<div className= "row">
 						<div className= "col-xs-12 client-data-container">
 							<Tabs defaultActiveKey={1}>
-									<Tab eventKey={1} title="Today"><SessionStart clientId={this.props.id} clientObj={this.data.clientObj}/> </Tab>
+									<Tab eventKey={1} title="Session"><SessionStart clientId={this.props.id} clientObj={this.data.clientObj}/> </Tab>
 									<Tab eventKey={2} title="Notes"> <ClientNotes clientId={this.props.id} clientObj={this.data.clientObj}/></Tab>
 
 							    <Tab eventKey={3} title="Behaviors"><ClientPrograms clientId={this.props.id} clientObj={this.data.clientObj}/></Tab>
@@ -104,7 +104,7 @@ var ClientDetail = React.createClass({
 	 } else {
 	 		return	(
 	 			<div>
-	 				<p>Loading...</p>
+	 				<p></p>
 	 			</div>);
 	 }
 	}

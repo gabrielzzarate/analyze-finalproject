@@ -68,11 +68,37 @@ var SessionStart = React.createClass({
 
 },
 saveSession: function(){
+
 	var self = this;
 	var endedTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 	$('#session-save').addClass('hide');
 	$('#session-start').removeClass('hide');
 	$('#session-container').addClass('hide');
+	var currentUser = Parse.User.current();
+	var currentUsername = Parse.User.current().get('username');
+	var queryUser = new Parse.Query(models.User);
+		queryUser.equalTo('username', currentUsername);
+
+		queryUser.find({
+			success: function(results){
+
+
+				var sessionsCompleted = results.map(function(user){
+						return user.get('SessionCompleted');
+				});
+
+				var sessionInt = parseInt(sessionsCompleted);
+
+				 currentUser.set('SessionCompleted', sessionInt + 1);
+				currentUser.save();
+
+			},
+			error: function(error){
+				console.log(error);
+			}
+
+		});
+
 
 
 	var query = new Parse.Query(models.SessionOutcome);
