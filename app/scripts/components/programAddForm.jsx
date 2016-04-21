@@ -57,7 +57,7 @@ var ProgramAddForm = React.createClass({
   			programObj = program;
   		 // alert('New object created with objectId: ' + program.id);
   		  	var programTargets = [];
-  		  		self.props.getPrograms();
+
   		  	for(var i=1; i <= self.state.targetCount; i++){
 
   		  		console.log("formset: ", i, self.refs["formset"+i].refs["name"+i]);
@@ -93,6 +93,7 @@ var ProgramAddForm = React.createClass({
   					  alert('Failed to create new object, with error code: ' + error.message);
   					}
   		  	});
+		self.props.getPrograms();
 	},
 
 
