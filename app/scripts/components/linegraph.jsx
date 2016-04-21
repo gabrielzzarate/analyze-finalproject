@@ -33,7 +33,8 @@ var LineGraph = React.createClass({
     getInitialState: function() {
         return {
             graphs: [],
-            count: []
+            count: [],
+            programObj: null
         };
     },
 
@@ -50,6 +51,7 @@ var LineGraph = React.createClass({
         queryPrograms.find({
             success: function(programs){
                 //console.log("programs", programs);
+                self.setState({"programObj": programs});
                 self.buildGraphs(sessions, programs);
             },
             error: function(){
@@ -181,18 +183,18 @@ var LineGraph = React.createClass({
     scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
 
     // Number - Scale label font size in pixels
-    scaleFontSize: 12,
+    scaleFontSize: 10,
 
     // String - Scale label font weight style
     scaleFontStyle: "normal",
 
     // String - Scale label font colour
-    scaleFontColor: "#666",
+    scaleFontColor: "rgba(11, 28, 84, 0.88)",
 
     // Boolean - whether or not the chart should be responsive and resize when the browser does.
-    responsive: false,
+    responsive: true,
     // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
 
     // Boolean - Determines whether to draw tooltips on the canvas or not
     showTooltips: true,
@@ -258,7 +260,7 @@ var LineGraph = React.createClass({
                     programs: programs,
                     id: targets,
                     options: chartOptions,
-                    labels: sessionDateArray,
+                   labels: sessionDateArray,
                     datasets: [{
                         label: targetNameArray,
                         fillColor: "rgba(11, 28, 84, 0.5)",
@@ -277,14 +279,23 @@ var LineGraph = React.createClass({
     },
 
     render: function() {
-
+        var self = this;
         if(this.props.render === true){
 
+             var programNames = this.state.programObj.map(function(program){
+                return program.get('name');
+
+            });
+
+
         var graphs = this.state.graphs.map(function(data){
+
             return (
                 <div  key={data.id}>
-                    <p>a line chart </p>
-                    <LineChart className="behavior-line-chart" data={data} options={data.options} width="600" height="250"/>
+
+                    <div className="targets-label-container "><p className="targets-label"> targets mastered </p></div>
+                    <LineChart className="behavior-line-chart" data={data} options={data.options} legend={data.legendTemplate} width="600" height="250"/>
+                    <p className="date-label"> session date </p>
                 </div>
                 );
         });
@@ -306,166 +317,4 @@ var LineGraph = React.createClass({
 
 module.exports = LineGraph;
 
-
-
-  // var ChartLegend = React.createClass({
-  //   propTypes: {
-  //     datasets: React.PropTypes.array.isRequired
-  //   },
-
-  //   render: function () {
-  //     var datasets = _.map(this.props.datasets, function (ds) {
-  //       return <li><span className="legend-color-box" style={{ backgroundColor: ds.strokeColor }}></span> { ds.label }</li>;
-  //     });
-
-  //     return (
-  //       <ul className={ this.props.title + "-legend" }>
-  //         { datasets }
-  //       </ul>
-  //     );
-  //   }
-  // });
-
-// //mixins: [ParseReact.Mixin],
-//     getInitialState: function() {
-//         return {
-//             sessionObj: null,
-//             session: null,
-//             programObj: null,
-//             targetsMastered: null,
-//             targets: null,
-//             sessionDates: null,
-//         };
-//     },
-
-//     componentWillMount: function() {
-//         var self = this;
-//         var clientObj = this.props.clientObj;
-//         var session;
-//         var program;
-//         var targets;
-//         var dateArray = [];
-//         var targetsArray = [];
-//         var masteredArray = [];
-
-//       //  console.log(targetsArray, masteredArray);
-
-//         var query = new Parse.Query(models.Session);
-//         query.equalTo('client', clientObj);
-//         query.find({
-//             success:function(results){
-//                 self.setState({'sessionObj': results});
-//                 console.log('session graph', self.state.sessionObj);
-//                 var sessionObj = self.state.sessionObj;
-//                 session = self.state.sessionObj.map(function(session){
-//                     var targetsMastered = session.get('targetsMastered');
-//                     masteredArray.push(targetsMastered);
-//                     //self.setState({'targetsMastered': targetsMastered});
-//                     //console.log(targetsMastered);
-
-//                     var dates = session.get('createdAt');
-//                     var formatDate = moment(dates).format("MMM Do");
-//                    // console.log(formatDate);
-
-//                     dateArray.push(formatDate);
-//                     //self.setState({sessionDates: dateArray});
-
-//                 });
-//                     dateArray.reverse();
-//                     self.setState({"sessionDates": dateArray});
-//                     self.setState({"targetsMastered": masteredArray});
-
-//             },
-//             error: function(results, error){
-
-//             },
-
-//         });
-//     var queryPrograms = new Parse.Query(models.Program);
-//     queryPrograms.equalTo('client', clientObj);
-//     queryPrograms.include('targets');
-//     queryPrograms.find({
-//         success:function(programs){
-//             self.setState({'programObj' : programs});
-//             targets = programs.map(function(program){
-//                 var target = program.get('targets');
-//                 //targetsArray.push(target);
-//                 self.setState({"targets": target});
-//             });
-//             //self.setState({"targets": targetsArray});
-
-//         },
-//         error: function(){
-
-//         },
-
-
-//     });
-
-//     },
-
-//     render: function() {
-
-//         if(this.state.programObj){
-//              var self = this;
-//             console.log('targets state', this.state.targets);
-//             console.log('mastered state', this.state.targetsMastered);
-
-//             var filteredTargets = _.pick(this.state.targets, 'id');
-//             console.log("filtered", filteredTargets);
-
-//             var targetsGraphed = _.intersection(this.state.targets, this.state.targetsMastered);
-//             console.log("targetsGraphed", targetsGraphed);
-
-
-
-//             var sessionDates = this.state.sessionDates;
-
-//             var programs = this.state.programObj.map(function(program){
-//                 var targetsArray = program.get('targets');
-
-//                 var targets = targetsArray.map(function(target){
-//                     return {
-//                         label: target.get('name'),
-//                         fillColor: "rgba(220,220,220,0.2)",
-//                         strokeColor: "rgba(220,220,220,1)",
-//                         pointColor: "rgba(220,220,220,1)",
-//                         pointStrokeColor: "#fff",
-//                         pointHighlightFill: "#fff",
-//                         pointHighlightStroke: "rgba(220,220,220,1)",
-//                         data: [65, 59, 80, 81, 56, 55, 40]
-
-//                     };
-
-//                 });
-
-
-//             var data = {
-//                 labels: self.state.sessionDates,
-//                 datasets: targets,
-
-
-//             };
-//             return (
-//                 <div key= {program.id}>
-//                     <p>{program.get('name')} </p>
-//                    <LineChart className="behavior-line-chart" data={data}  width="500" height="250" redraw/>
-
-//                 </div>
-//                 );
-
-
-//             });
-//             return (
-//                 <div>
-//                     {programs}
-//                 </div>
-//             );
-//     } else {
-//         return (
-//             <div>Loading .. </div>
-//             );
-//     }
-// }
-// });
 

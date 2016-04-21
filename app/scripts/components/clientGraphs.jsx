@@ -29,19 +29,23 @@ var ClientGraphs = React.createClass({
 
     },
     handleClick: function(){
-        this.setState({lineGraph: true});
+        this.setState({lineGraph: !this.state.lineGraph});
+        this.setState({doughnutGraph: false});
     },
 
     handleDoughnut: function(){
-        this.setState({doughnutGraph: true});
+        this.setState({doughnutGraph: !this.state.doughnutGraph});
+        this.setState({lineGraph: false });
     },
 
 
 	render: function() {
 		return (
 			<div className="graph-start-container">
-                 <Button onClick={this.handleClick}>Line</Button>
-                 <Button  onClick={this.handleDoughnut}>Doughnut</Button>
+                <div className="graph-btn-container">
+                 <Button className="session-start-btn graph-btn" onClick={this.handleClick}>Line</Button>
+                 <Button className="session-start-btn graph-btn" onClick={this.handleDoughnut}>Doughnut</Button>
+                </div>
                 <div >
 
                         <LineGraph render={this.state.lineGraph} clientId={this.props.clientId} clientObj={this.props.clientObj}/>

@@ -9,34 +9,51 @@ var _ = require('underscore');
 var DashboardEvents = React.createClass({
 
 	render: function() {
+		if(this.props.userInfo) {
 		var clients = this.props.allClientObj;
 		console.log(clients);
 
 		var sessionsPerWeek = _.map(this.props.allClientObj, function(client){
 			return client.get('numberOfSessions');
 		});
-		console.log(sessionsPerWeek);
+
 
 		var totalSessions = _.reduce(sessionsPerWeek, function(memo, num){ return memo + num; }, 0);
 
-		console.log(totalSessions);
+		var userInfo = this.props.userInfo;
+		console.log("userInfo", userInfo);
+
+		var sessions = userInfo.map(function(user){
+				return user.get('sessionTotal');
+		});
+		console.log(sessions);
+
+		var sessionsCompleted = userInfo.map(function(user){
+				return user.get('SessionCompleted');
+		});
+
+		console.log(sessionsCompleted);
+
+
+
+
 
 		return (
 			<div>
 				<div className="col-md-3 col-sm-6 col-xs-12 event-section sessions-this-week">
-						<p className="event-number">{totalSessions}</p>
+						<p className="event-number">{sessions}</p>
 						<p className="event-title">Sessions</p>
 						<p className="event-subtitle">This Week</p>
 				</div>
 				<div className="col-md-3 col-sm-6 col-xs-12 event-section sessions-completed">
-						<p className="event-number">5</p>
+						<p className="event-number">{sessionsCompleted}</p>
 						<p className="event-title">Sessions</p>
 						<p className="event-subtitle">Completed</p>
 				</div>
-				<div className="col-md-3 col-sm-6 col-xs-12 event-section best-results">
+				<div className="col-md-3 col-sm-6 col-xs-12 event-section reminder">
 
-						<p className="event-title align">Best Results</p>
-						<p className="client-name align">Sandy Beech</p>
+						<p className="event-title align">Reminder</p>
+						<p className="client-name align">Quarterly Training 4/25 </p>
 				</div>
 				<div className="col-md-3 col-sm-6 col-xs-12 event-section next-appointment">
 					<p className="event-title align">Next Appointment</p>
@@ -46,6 +63,11 @@ var DashboardEvents = React.createClass({
 
 			</div>
 		);
+	} else {
+		return (
+			<div />
+			);
+	}
 	}
 
 });

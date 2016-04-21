@@ -2,7 +2,7 @@ var $ = require('jQuery');
 var React = require("react");
 var Parse = require('parse');
 
-
+var User = Parse.Object.extend('User');
 var Note = Parse.Object.extend("Notes");
 
 var Client = Parse.Object.extend("Clients");
@@ -16,6 +16,7 @@ var SessionOutcome = Parse.Object.extend('SessionOutcomes');
 var ScheduleRecord = Parse.Object.extend('Schedule');
 
 module.exports = {
+	"User": User,
 	"Note": Note,
 	"Client": Client,
 	"Program": Program,

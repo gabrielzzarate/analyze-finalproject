@@ -5,7 +5,7 @@
 }
 
 .graph-start-container {
-  height: 700px;
+    height: 100%;
 }
 
 .graphs-button {
@@ -34,4 +34,70 @@
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     background-clip: padding-box;
+}
+
+#squareGreen {
+
+    width: 15px;
+    height: 15px;
+    background: rgb(63, 192, 190);
+}
+
+#squareRed {
+    width: 15px;
+    height: 15px;
+    background: rgb(250, 68, 68);
+
+}
+.dough-legend {
+    border: 2px solid rgba(11, 28, 84, 0.88);
+    padding: 10px;
+    float: right;
+    margin-right: 20px;
+    li div {
+
+    display: inline-block;
+    margin-right: 5px;
+    }
+    li {
+        list-style: none;
+
+
+    }
+    div {
+        position: relative;
+        top: 3px;
+    }
+}
+
+.targets-label {
+    color: #57cbbb;
+    font-size: 10px;
+    position: absolute;
+     -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+
+}
+
+.targets-label-container {
+     position: relative;
+     bottom: -120px;
+    left: -45px;
+}
+
+.date-label {
+    color: #57cbbb;
+    position: relative;
+    top: -10px;
+    font-size: 10px;
+     text-align: center;
+}
+
+
+
+.graph-btn-container {
+    margin-bottom: 40px;
 }

@@ -9,7 +9,7 @@ var ParseReact = require('parse-react');
 var Chart = require('chart.js');
 
 var DoughnutChart = require("react-chartjs").Doughnut;
-console.log("DoughnutChart", DoughnutChart);
+//console.log("DoughnutChart", DoughnutChart);
 
 var LineChart = require("react-chartjs").Line;
 
@@ -29,6 +29,7 @@ var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 
 //global variables
+
 
 
 var DoughGraph = React.createClass({
@@ -136,7 +137,7 @@ var DoughGraph = React.createClass({
     segmentShowStroke : true,
 
     // Boolean - whether or not the chart should be responsive and resize when the browser does.
-    responsive: false,
+    responsive: true,
 
     //String - The colour of each segment stroke
     segmentStrokeColor : "#fff",
@@ -185,7 +186,6 @@ var DoughGraph = React.createClass({
 
 
              var graphs = self.state.graphs;
-
               var graphConfig = {
                     programs: programs,
                     id: targets,
@@ -219,13 +219,16 @@ var DoughGraph = React.createClass({
            // console.log("graphs:", this.state.graphs);
         var graphs = this.state.graphs.map(function(data){
 
-           // console.log(data.data);
-
+            var programs = data.programs;
 
             return (
                 <div  key={data.id}>
-                    <p>doughnut chart</p>
+
                  <DoughnutChart  data={data.data} options={data.options}   redraw width="600" height="250" />
+                 <ul className="dough-legend">
+                    <li><div id="squareGreen"></div> True</li>
+                    <li><div id="squareRed"></div> False</li>
+                 </ul>
 
 
                 </div>

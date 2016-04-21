@@ -25,6 +25,7 @@ var Home = React.createClass ({
 	getInitialState: function() {
 	    return {
 	        allClientObj : 0,
+	        userInfo: null,
 	    };
 	},
 	componentWillMount: function() {
@@ -40,6 +41,19 @@ var Home = React.createClass ({
 				console.log(error);
 
 			}
+		});
+		var currentUser = Parse.User.current().get('username');
+		var queryUser = new Parse.Query(models.User);
+		queryUser.equalTo('username', currentUser);
+		queryUser.find({
+			success: function(results){
+				console.log("user:", results);
+				self.setState({"userInfo": results});
+			},
+			error: function(error){
+				console.log(error);
+			}
+
 		});
 	},
 	render: function() {
@@ -64,7 +78,7 @@ var Home = React.createClass ({
 
 			 			</div>
 			 			<div className="dashboard-events-container col-xs-10 col-xs-offset-1">
-			 				<DashboardEvents allClientObj={this.state.allClientObj}/>
+			 				<DashboardEvents userInfo={this.state.userInfo} allClientObj={this.state.allClientObj}/>
 						</div>
 
 						<div className="dashboard-caseload-container col-xs-12">
