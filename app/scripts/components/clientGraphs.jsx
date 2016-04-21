@@ -43,8 +43,8 @@ var ClientGraphs = React.createClass({
 		return (
 			<div className="graph-start-container">
                 <div className="graph-btn-container">
-                 <Button className="session-start-btn graph-btn" onClick={this.handleClick}>Line</Button>
-                 <Button className="session-start-btn graph-btn" onClick={this.handleDoughnut}>Doughnut</Button>
+                 <a onClick={this.handleClick}><img className="linechart-icon" src="./images/linegraph.svg" /></a>
+                 <a  onClick={this.handleDoughnut}><img className="piechart-icon" src="./images/piechart.svg"/></a>
                 </div>
                 <div >
 

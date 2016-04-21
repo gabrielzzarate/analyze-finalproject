@@ -102,34 +102,17 @@ var LineGraph = React.createClass({
                 var sessionDates = moment(dates).format("MMM Do");
                  sessionDateArray.push(sessionDates);
 
-                 // var targetName = targetNameArray.map(function(name){
-                 //        return name;
-                 // });
 
                 var count = _.intersection(targetsArray, targetsMastered).length;
                 if(count > overallMasteredTargetCount){
                     overallMasteredTargetCount = count;
                 }
                 return overallMasteredTargetCount;
-                // var maxCount = count > maxCount ? count : maxCount;
-                //  countArray.push(count);
-                //  console.log('countArray', countArray);
 
-                // return {
-                //         label: targetNameArray,
-                //         fillColor: "rgba(151,187,205,0.2)",
-                //         strokeColor: "rgba(151,187,205,1)",
-                //         pointColor: "rgba(151,187,205,1)",
-                //         pointStrokeColor: "#fff",
-                //         pointHighlightFill: "#fff",
-                //         pointHighlightStroke: "rgba(151,187,205,1)",
-                //         data: countArray
-
-                // };
             });
-            //console.log('sessionData', sessionData);
 
-            var chartOptions = {
+
+  var chartOptions = {
     // Boolean - Whether to animate the chart
     animation: true,
 
@@ -260,7 +243,7 @@ var LineGraph = React.createClass({
                     programs: programs,
                     id: targets,
                     options: chartOptions,
-                   labels: sessionDateArray,
+                    labels: sessionDateArray,
                     datasets: [{
                         label: targetNameArray,
                         fillColor: "rgba(11, 28, 84, 0.5)",
@@ -282,17 +265,18 @@ var LineGraph = React.createClass({
         var self = this;
         if(this.props.render === true){
 
-             var programNames = this.state.programObj.map(function(program){
-                return program.get('name');
+            //  var programNames = this.state.programObj.map(function(program){
+            //     return program.get('name');
 
-            });
+            // });
 
-
-        var graphs = this.state.graphs.map(function(data){
-
+            console.log(this.state.graphs);
+            // console.log("programObj");
+            // console.log(this.state.programObj);
+        var graphs = this.state.graphs.map(function(data, index){
             return (
                 <div  key={data.id}>
-
+                    {self.state.programObj[index].get('name')}
                     <div className="targets-label-container "><p className="targets-label"> targets mastered </p></div>
                     <LineChart className="behavior-line-chart" data={data} options={data.options} legend={data.legendTemplate} width="600" height="250"/>
                     <p className="date-label"> session date </p>
