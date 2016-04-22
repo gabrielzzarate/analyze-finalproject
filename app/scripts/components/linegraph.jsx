@@ -68,7 +68,7 @@ var LineGraph = React.createClass({
         querySessions.ascending("createdAt");
         querySessions.find({
             success: function(sessions){
-                //console.log('sessions', sessions);
+                console.log('sessions', sessions);
                 self.getPrograms(sessions);
             },
             error: function(results, error){

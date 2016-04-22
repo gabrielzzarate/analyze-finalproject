@@ -44,7 +44,7 @@ saveSession: function(){
 	session.save();
 },
 
-	componentWillMount: function() {
+	componentDidMount: function() {
 		var self = this;
 		var query = new Parse.Query(models.Program);
 		var clientObj = this.props.clientObj;
@@ -111,10 +111,10 @@ saveSession: function(){
 				});
 				return (
 					<div className="target-session-container" key={program.id}>
-					<div>
+
 						<ListGroupItem className="program-item">{program.get('name')}</ListGroupItem>
 						{targets}
-					</div>
+
 					</div>
 					);
 
